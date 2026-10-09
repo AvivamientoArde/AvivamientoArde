@@ -1,0 +1,3239 @@
+/* ==========================================
+           VARIABLES Y CONFIGURACIÓN DE COLOR
+           ========================================== */
+           :root {
+            --bg-black: #050505;
+            --bg-card: #0f0f0f;
+            --bg-dark-gray: #141414;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa8c2c;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .cinzel-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ==========================================
+           NAVEGACIÓN Y MENÚ MÓVIL
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-white);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-selector select {
+            background: var(--bg-card);
+            color: var(--gold-light);
+            border: 1px solid var(--gold-primary);
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .auth-btn {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .auth-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           SECCIÓN HERO
+           ========================================== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(5,5,5,0.7), rgba(5,5,5,0.9), rgba(5,5,5,0.95)), url('Fondo.jpeg') no-repeat center center/cover;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            z-index: 2;
+        }
+
+        .hero-tag-img {
+            display: block;
+            max-width: 100%;
+            width: 480px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 25px rgba(212, 175, 55, 0.25));
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            color: var(--bg-black);
+            padding: 12px 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ==========================================
+           SECCIONES GENERALES
+           ========================================== */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 45px;
+            font-size: 1rem;
+        }
+
+        /* ==========================================
+           QUIÉNES SOMOS & CARRUSEL
+           ========================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 16px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        .about-text p strong {
+            color: var(--text-white);
+        }
+
+        .about-text em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border-gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .crusade-banner {
+            margin-top: 50px;
+            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(15,15,15,0.95));
+            border: 1px solid var(--gold-primary);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        }
+
+        .crusade-banner h3 {
+            color: var(--gold-light);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .crusade-banner p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        .social-links-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-light);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+            border-color: var(--gold-primary);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================
+           CARRUSEL DE VIDEOS
+           ========================================== */
+        .videos-container {
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .videos-wrapper-outer {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+            width: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            overflow: hidden;
+            flex: 0 0 100%;
+            min-width: 0;
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+
+        .video-thumb-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            display: block;
+            overflow: hidden;
+        }
+
+        .video-thumb-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .video-card:hover .video-thumb-container img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .play-overlay i {
+            font-size: 2.2rem;
+            color: #ffffff;
+            background: #ff0000;
+            border-radius: 50%;
+            width: 68px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 4px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+            transition: var(--transition);
+        }
+
+        .video-card:hover .play-overlay i {
+            background: #e60000;
+            transform: scale(1.12);
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h4 {
+            color: var(--gold-light);
+            font-size: 1rem;
+        }
+
+        .video-nav-btn {
+            display: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 15, 15, 0.85);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .video-nav-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+        }
+
+        .video-prev { left: -20px; }
+        .video-next { right: -20px; }
+
+        /* ==========================================
+           TARJETAS DE MINISTERIOS, MOVIMIENTOS Y FUNDACIONES
+           ========================================== */
+        .ministries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .ministry-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 30px 25px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .ministry-card:hover {
+            background: var(--bg-dark-gray);
+            border-color: var(--gold-primary);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+        }
+
+        .ministry-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .ministry-card i.main-icon {
+            font-size: 2.2rem;
+            color: var(--gold-primary);
+        }
+
+        .badge-wa-indicator {
+            background: rgba(37, 211, 102, 0.15);
+            border: 1px solid #25d366;
+            color: #25d366;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ministry-card h3 {
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .ministry-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-explore-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--gold-light);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .ministry-card:hover .card-explore-btn {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+            border-color: var(--gold-primary);
+        }
+
+        /* ==========================================
+           LIBROS
+           ========================================== */
+        .books-section {
+            background: var(--bg-dark-gray);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .public-books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 480px));
+            justify-content: center;
+            align-items: stretch;
+            gap: 24px;
+            margin: 30px auto 0;
+        }
+
+        .public-book-featured {
+            width: 100%;
+            max-width: 480px;
+            margin: 0;
+        }
+
+        .public-book-featured > .ministry-card,
+        .public-books-grid > .ministry-card {
+            height: 100%;
+        }
+
+        .public-book-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .public-book-images img {
+            width: 100%;
+            max-width: 210px;
+            max-height: 280px;
+            object-fit: contain;
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+        }
+
+        .public-book-details {
+            margin-top: 14px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .public-book-details summary {
+            color: var(--gold-light);
+            cursor: pointer;
+        }
+
+        .book-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-card-3d {
+            position: relative;
+            width: 260px;
+            height: 380px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9);
+            border: 2px solid var(--gold-primary);
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .book-card-3d:hover {
+            transform: scale(1.04);
+        }
+
+        .book-card-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-details {
+            max-width: 500px;
+        }
+
+        .book-details h3 {
+            font-size: 1.7rem;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+
+        .book-details p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .book-actions-selector {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .book-actions-selector label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .book-actions-selector select {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg-black);
+            color: var(--text-white);
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           EVENTOS
+           ========================================== */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .event-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 25px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            border-color: var(--gold-primary);
+        }
+
+        .event-date {
+            display: inline-block;
+            background: var(--gold-primary);
+            color: var(--bg-black);
+            padding: 4px 10px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* ==========================================
+           DONACIONES (RED DISEÑADA Y ESPACIADA, SIN AMONTONAMIENTO)
+           ========================================== */
+        .donations-section {
+            background: linear-gradient(135deg, #0a0a0a, #1a1505);
+            border-top: 2px solid var(--gold-primary);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .donations-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .donations-content p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .donation-type-selector {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .donation-type-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            color: var(--text-white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .donation-type-btn.active {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+            border-color: var(--gold-primary);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .donation-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .donation-method-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-light);
+            padding: 14px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: none;
+        }
+
+        .donation-method-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+            border-color: var(--gold-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .donation-method-btn.active {
+            background: var(--gold-primary);
+            color: var(--bg-black);
+            border-color: var(--gold-primary);
+        }
+
+        /* ==========================================
+           MODALES Y FORMULARIOS DE REPORTAR PAGO
+           ========================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 2px solid var(--gold-primary);
+            padding: 40px 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 1.6rem;
+            color: var(--gold-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .modal-content h3 {
+            color: var(--gold-light);
+            margin-bottom: 22px;
+            font-size: 1.7rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 12px;
+        }
+
+        .modal-content p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+        }
+
+        .modal-content p strong {
+            color: var(--text-white);
+        }
+
+        /* Estilos para entradas de formulario dentro de modales */
+        #reportModal form input[type="text"],
+        #reportModal form input[type="email"],
+        #reportModal form select,
+        #reportModal form input[type="file"] {
+            width: 100%;
+            padding: 11px 14px;
+            background: var(--bg-black);
+            border: 1px solid var(--border-gold);
+            color: var(--text-white);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #reportModal form input:focus,
+        #reportModal form select:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        #reportModal form label {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .whatsapp-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #1e7e34, #28a745);
+            color: #ffffff;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 25px;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+            transition: var(--transition);
+            border: 1px solid #34ce57;
+        }
+
+        .whatsapp-link-btn:hover {
+            background: linear-gradient(135deg, #1c7430, #218838);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .whatsapp-link-btn i {
+            font-size: 1.2rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        footer {
+            background: var(--bg-black);
+            border-top: 1px solid var(--border-gold);
+            padding: 35px 20px;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        footer p span {
+            color: var(--gold-light);
+        }
+
+        /* ==========================================
+           ADAPTABILIDAD MÓVIL (MEDIA QUERIES)
+           ========================================== */
+        @media (max-width: 900px) {
+            .about-grid, .grid-2x2 {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .donation-methods-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(5, 5, 5, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                transition: left 0.4s ease;
+                border-bottom: 1px solid var(--border-gold);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 0.9rem;
+            }
+
+            .hero-tag-img {
+                width: 300px;
+            }
+
+            .section {
+                padding: 60px 15px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .videos-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                gap: 15px;
+                margin-top: 20px;
+                padding-bottom: 15px;
+            }
+            .videos-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .video-card {
+                flex: 0 0 100%;
+                scroll-snap-align: center;
+            }
+
+            .video-nav-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .video-prev { left: 5px; }
+            .video-next { right: 5px; }
+        }
+
+        @media (max-width: 500px) {
+            .donation-methods-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* =========================================================
+   CONTACTO MINISTERIAL
+   DISEÑO PREMIUM NEGRO + DORADO
+   ========================================================= */
+
+.contact-modal {
+    overflow: hidden !important;
+}
+
+.contact-modal-content {
+    width: 100%;
+    max-width: 620px;
+    max-height: 85vh;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden !important;
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(212, 175, 55, 0.08),
+            transparent 35%
+        ),
+        linear-gradient(145deg, #121212, #070707);
+
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.95),
+        0 0 35px rgba(212, 175, 55, 0.08);
+}
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.contact-modal-content .contact-modal-header {
+    flex-shrink: 0;
+    padding: 40px 35px 22px;
+    text-align: center;
+}
+
+.contact-modal-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212, 175, 55, 0.18),
+            rgba(212, 175, 55, 0.04)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.55);
+
+    color: var(--gold-primary);
+
+    font-size: 1.55rem;
+
+    box-shadow:
+        0 0 25px rgba(212, 175, 55, 0.12),
+        inset 0 0 15px rgba(212, 175, 55, 0.04);
+}
+
+.contact-modal-header h3 {
+    color: var(--gold-light);
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
+}
+
+.contact-intro {
+    color: #c7c7c7 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.65 !important;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   ÁREA DESPLAZABLE
+   ========================================================= */
+
+.contact-modal-scroll {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 0 35px 35px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.contact-modal-scroll::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+/* =========================================================
+   AVISO DE USO DEL CONTACTO
+   ========================================================= */
+
+.contact-notice {
+    position: relative;
+
+    display: flex;
+    gap: 15px;
+
+    padding: 18px;
+
+    margin-top: 8px;
+    margin-bottom: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(212, 175, 55, 0.08),
+            rgba(212, 175, 55, 0.025)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-left: 3px solid var(--gold-primary);
+
+    border-radius: 9px;
+}
+
+.contact-notice-icon {
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(212, 175, 55, 0.1);
+
+    color: var(--gold-primary);
+
+    font-size: 1rem;
+
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.contact-notice strong {
+    display: block;
+
+    color: var(--gold-light);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.contact-notice p {
+    color: #bdbdbd !important;
+
+    font-size: 0.82rem !important;
+    line-height: 1.55 !important;
+
+    margin-bottom: 10px;
+}
+
+/* =========================================================
+   LISTA DE PROPÓSITOS
+   ========================================================= */
+
+.contact-purpose-list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 12px 0 0;
+    padding: 0;
+}
+
+.contact-purpose-list li {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: #dddddd;
+
+    font-size: 0.82rem;
+    line-height: 1.4;
+
+    transition: var(--transition);
+}
+
+.contact-purpose-list li i {
+    width: 24px;
+    flex: 0 0 24px;
+
+    color: var(--gold-primary);
+
+    text-align: center;
+
+    font-size: 0.8rem;
+
+    filter: drop-shadow(
+        0 0 5px rgba(212, 175, 55, 0.2)
+    );
+}
+
+.contact-purpose-list li:hover {
+    color: var(--gold-light);
+    transform: translateX(3px);
+}
+
+/* =========================================================
+   ADVERTENCIA IMPORTANTE
+   ========================================================= */
+
+.contact-private-warning-box {
+    display: flex;
+    gap: 14px;
+
+    padding: 17px;
+
+    margin: 14px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 170, 0, 0.055),
+            rgba(255, 170, 0, 0.015)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.25);
+
+    border-radius: 9px;
+}
+
+.contact-private-icon {
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(212, 175, 55, 0.08);
+
+    color: var(--gold-primary);
+
+    border: 1px solid rgba(212, 175, 55, 0.22);
+
+    font-size: 0.95rem;
+}
+
+.contact-private-warning-box strong {
+    display: block;
+
+    color: var(--gold-primary);
+
+    font-size: 0.78rem;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+}
+
+.contact-private-warning-box p {
+    color: #c4c4c4 !important;
+
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+
+    margin-bottom: 7px;
+}
+
+.contact-private-warning-box p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-private-warning-box b {
+    color: #e7e7e7;
+}
+
+/* =========================================================
+   DATOS DE CONTACTO
+   ========================================================= */
+
+.contact-item {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 9px;
+
+    cursor: default !important;
+
+    transform: none !important;
+
+    transition: border-color 0.3s ease,
+                background 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: none !important;
+
+    border-color: rgba(212, 175, 55, 0.28);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(212, 175, 55, 0.055),
+            rgba(255, 255, 255, 0.015)
+        );
+}
+
+.contact-item-icon {
+    flex: 0 0 44px;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.15),
+            rgba(212, 175, 55, 0.04)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.25);
+
+    color: var(--gold-primary);
+
+    font-size: 1.05rem;
+
+    box-shadow:
+        inset 0 0 12px rgba(212, 175, 55, 0.03);
+}
+
+.whatsapp-contact-icon {
+    color: #25d366;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(37, 211, 102, 0.12),
+            rgba(37, 211, 102, 0.025)
+        );
+
+    border-color: rgba(37, 211, 102, 0.25);
+}
+
+.contact-item-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.contact-label {
+    color: #8f8f8f;
+
+    font-size: 0.68rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+.contact-copy-text {
+    display: block;
+
+    color: var(--gold-light);
+
+    font-size: 0.93rem;
+
+    line-height: 1.5;
+
+    font-weight: 500;
+
+    cursor: text;
+
+    user-select: text;
+    -webkit-user-select: text;
+
+    -webkit-tap-highlight-color: transparent;
+
+    word-break: break-word;
+
+    transition: color 0.25s ease;
+}
+
+.contact-copy-text:hover {
+    color: #fff2b8;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.contact-actions {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+    padding-bottom: 5px;
+}
+
+.contact-action-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    padding: 12px 14px;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    text-align: center;
+
+    transition: var(--transition);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* CORREO */
+
+.contact-email-btn {
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-primary),
+            var(--gold-dark)
+        );
+
+    color: var(--bg-black);
+
+    border: 1px solid var(--gold-primary);
+
+    box-shadow:
+        0 5px 18px rgba(212, 175, 55, 0.12);
+}
+
+.contact-email-btn i {
+    color: var(--bg-black);
+}
+
+.contact-email-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(212, 175, 55, 0.25);
+}
+
+.contact-email-btn:active {
+    transform: translateY(0);
+}
+
+/* WHATSAPP */
+
+.contact-whatsapp-btn {
+    background:
+        rgba(37, 211, 102, 0.035);
+
+    color: #4ee889;
+
+    border: 1px solid rgba(37, 211, 102, 0.4);
+
+    box-shadow:
+        0 5px 18px rgba(37, 211, 102, 0.04);
+}
+
+.contact-whatsapp-btn i {
+    color: #25d366;
+}
+
+.contact-whatsapp-btn:hover {
+    background: #25d366;
+
+    color: #050505;
+
+    border-color: #25d366;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(37, 211, 102, 0.2);
+}
+
+.contact-whatsapp-btn:hover i {
+    color: #050505;
+}
+
+.contact-whatsapp-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .contact-modal {
+        padding: 15px !important;
+    }
+
+    .contact-modal-content {
+        width: 100%;
+        max-width: 620px;
+
+        max-height: 90vh;
+
+        border-radius: 12px;
+    }
+
+    .contact-modal-content .contact-modal-header {
+        padding: 32px 24px 18px;
+    }
+
+    .contact-modal-scroll {
+        padding: 0 24px 25px;
+    }
+
+    .contact-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .contact-modal {
+        padding: 10px !important;
+    }
+
+    .contact-modal-content {
+        width: 100%;
+        max-width: 100%;
+
+        max-height: 92vh;
+
+        border-radius: 12px;
+    }
+
+    .contact-modal-content .contact-modal-header {
+        padding: 28px 18px 15px;
+    }
+
+    .contact-modal-scroll {
+        padding: 0 18px 22px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .contact-modal-scroll::-webkit-scrollbar {
+        display: none !important;
+
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .contact-modal-icon {
+        width: 58px;
+        height: 58px;
+
+        font-size: 1.35rem;
+
+        margin-bottom: 14px;
+    }
+
+    .contact-modal-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .contact-intro {
+        font-size: 0.82rem !important;
+
+        line-height: 1.55 !important;
+    }
+
+    .contact-notice {
+        padding: 14px;
+
+        gap: 10px;
+
+        margin-top: 15px;
+    }
+
+    .contact-notice-icon {
+        flex: 0 0 36px;
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 0.85rem;
+    }
+
+    .contact-notice strong {
+        font-size: 0.82rem;
+    }
+
+    .contact-notice p {
+        font-size: 0.78rem !important;
+    }
+
+    .contact-purpose-list {
+        gap: 8px;
+
+        margin-top: 10px;
+    }
+
+    .contact-purpose-list li {
+        font-size: 0.8rem;
+
+        line-height: 1.4;
+    }
+
+    .contact-private-warning-box {
+        padding: 14px;
+
+        gap: 10px;
+
+        margin-top: 13px;
+    }
+
+    .contact-private-icon {
+        flex: 0 0 36px;
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 0.85rem;
+    }
+
+    .contact-private-warning-box p {
+        font-size: 0.76rem !important;
+
+        line-height: 1.55 !important;
+    }
+
+    .contact-item {
+        padding: 13px;
+
+        gap: 12px;
+
+        margin-bottom: 10px;
+    }
+
+    .contact-item-icon {
+        flex: 0 0 42px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 1rem;
+    }
+
+    .contact-label {
+        font-size: 0.64rem;
+    }
+
+    .contact-copy-text {
+        font-size: 0.82rem;
+
+        line-height: 1.4;
+    }
+
+    /* BOTONES UNO DEBAJO DEL OTRO */
+
+    .contact-actions {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        margin-top: 18px;
+    }
+
+    .contact-action-btn {
+        min-height: 48px;
+
+        font-size: 0.8rem;
+
+        padding: 11px 12px;
+    }
+}
+
+/* =========================================================
+   TELÉFONOS MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .contact-modal {
+        padding: 6px !important;
+    }
+
+    .contact-modal-content {
+        max-height: 94vh;
+    }
+
+    .contact-modal-content .contact-modal-header {
+        padding: 24px 14px 14px;
+    }
+
+    .contact-modal-scroll {
+        padding: 0 14px 18px;
+    }
+
+    .contact-modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .contact-intro {
+        font-size: 0.76rem !important;
+    }
+
+    .contact-notice {
+        padding: 12px;
+    }
+
+    .contact-purpose-list li {
+        font-size: 0.75rem;
+    }
+
+    .contact-private-warning-box {
+        padding: 11px;
+    }
+
+    .contact-private-warning-box p {
+        font-size: 0.72rem !important;
+    }
+
+    .contact-copy-text {
+        font-size: 0.78rem;
+    }
+
+    .contact-action-btn {
+        font-size: 0.76rem;
+
+        min-height: 46px;
+    }
+}
+/* =========================================================
+   JESÚS ESTÁ EN LAS CALLES
+   GALERÍA / CARRUSEL
+   ========================================================= */
+
+.calles-modal-content {
+    width: 100%;
+}
+
+
+/* =========================================================
+   HISTORIA
+   ========================================================= */
+
+.calles-history-content {
+    width: 100%;
+    color: #d2d2d2;
+    line-height: 1.6;
+}
+
+.calles-history-content p {
+    color: #c4c4c4;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    margin: 0 0 10px;
+}
+
+.calles-history-content p:last-child {
+    margin-bottom: 0;
+}
+
+.calles-history-content strong,
+.calles-history-content b {
+    color: var(--gold-light);
+}
+
+
+/* =========================================================
+   SEPARADOR
+   ========================================================= */
+
+.calles-gallery-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 18px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(212, 175, 55, 0.55),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   GALERÍA
+   ========================================================= */
+
+.jesus-calles-gallery {
+    width: 100%;
+    padding: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.055),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.2);
+
+    border-radius: 11px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CABECERA
+   ========================================================= */
+
+.jesus-calles-gallery-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 8px;
+}
+
+
+.jesus-calles-gallery-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--gold-light);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+.jesus-calles-gallery-title i {
+    color: var(--gold-primary);
+
+    font-size: 0.78rem;
+}
+
+
+.jesus-calles-gallery-counter {
+    flex-shrink: 0;
+
+    color: #999;
+
+    font-size: 0.62rem;
+
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(212, 175, 55, 0.06);
+
+    border:
+        1px solid rgba(212, 175, 55, 0.15);
+}
+
+
+/* =========================================================
+   CONTENEDOR DEL CARRUSEL
+   ========================================================= */
+
+.jesus-calles-carousel-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   CARRUSEL
+   ========================================================= */
+
+.jesus-calles-carousel {
+    display: flex;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
+    border-radius: 8px;
+
+    background: #020202;
+
+    box-sizing: border-box;
+}
+
+
+.jesus-calles-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   FOTO
+   ========================================================= */
+
+.jesus-calles-slide {
+    position: relative;
+
+    flex: 0 0 100%;
+
+    width: 100%;
+
+    /*
+       Altura compacta.
+       La imagen se adapta sin recortarse.
+    */
+
+    height: 190px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #020202;
+
+    border-radius: 8px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   IMAGEN
+   ========================================================= */
+
+.jesus-calles-slide img {
+    display: block;
+
+    /*
+       La imagen ocupa todo el espacio disponible
+       sin deformarse ni recortarse.
+    */
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    background: #020202;
+
+    border: 1px solid rgba(212, 175, 55, 0.35);
+
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.35s ease;
+}
+
+
+/* EFECTO SUAVE */
+
+.jesus-calles-slide:hover img {
+    transform: scale(1.01);
+
+    filter: brightness(1.04);
+}
+
+
+/* =========================================================
+   FLECHAS
+   ========================================================= */
+
+.jesus-calles-arrow {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background:
+        rgba(5, 5, 5, 0.88);
+
+    border:
+        1px solid rgba(212, 175, 55, 0.55);
+
+    color: var(--gold-light);
+
+    font-size: 0.75rem;
+
+    backdrop-filter: blur(5px);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.jesus-calles-arrow:hover {
+    background: var(--gold-primary);
+
+    color: #050505;
+
+    box-shadow:
+        0 5px 18px rgba(212, 175, 55, 0.3);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+.jesus-calles-arrow:active {
+    transform:
+        translateY(-50%)
+        scale(0.94);
+}
+
+
+.jesus-calles-arrow-left {
+    left: 7px;
+}
+
+
+.jesus-calles-arrow-right {
+    right: 7px;
+}
+
+
+/* =========================================================
+   PUNTOS
+   ========================================================= */
+
+.jesus-calles-dots {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 7px;
+}
+
+
+.jesus-calles-dot {
+    display: block;
+
+    width: 6px;
+
+    height: 6px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background: #555;
+
+    border: none;
+
+    transition:
+        width 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.jesus-calles-dot.active {
+    width: 17px;
+
+    border-radius: 10px;
+
+    background: var(--gold-primary);
+
+    box-shadow:
+        0 0 8px rgba(212, 175, 55, 0.35);
+}
+
+
+/* =========================================================
+   INDICACIÓN
+   ========================================================= */
+
+.jesus-calles-gallery-hint {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 6px;
+
+    color: #707070;
+
+    font-size: 0.56rem;
+
+    text-align: center;
+}
+
+
+.jesus-calles-gallery-hint i {
+    color: var(--gold-primary);
+
+    font-size: 0.54rem;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .jesus-calles-slide {
+        height: 165px;
+    }
+
+}
+
+
+/* =========================================================
+   TELÉFONOS
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .calles-history-content p {
+        font-size: 0.77rem;
+
+        line-height: 1.55;
+
+        margin-bottom: 8px;
+    }
+
+
+    .calles-gallery-divider {
+        margin: 13px 0;
+    }
+
+
+    .jesus-calles-gallery {
+        padding: 8px;
+
+        border-radius: 9px;
+    }
+
+
+    .jesus-calles-gallery-header {
+        margin-bottom: 7px;
+    }
+
+
+    .jesus-calles-gallery-title {
+        font-size: 0.67rem;
+    }
+
+
+    .jesus-calles-gallery-counter {
+        font-size: 0.55rem;
+
+        padding: 3px 6px;
+    }
+
+
+    .jesus-calles-slide {
+        height: 145px;
+
+        border-radius: 7px;
+    }
+
+
+    .jesus-calles-slide img {
+        border-radius: 7px;
+    }
+
+
+    .jesus-calles-arrow {
+        width: 29px;
+
+        height: 29px;
+
+        font-size: 0.61rem;
+    }
+
+
+    .jesus-calles-arrow-left {
+        left: 5px;
+    }
+
+
+    .jesus-calles-arrow-right {
+        right: 5px;
+    }
+
+
+    .jesus-calles-dots {
+        margin-top: 6px;
+    }
+
+
+    .jesus-calles-gallery-hint {
+        font-size: 0.51rem;
+
+        margin-top: 5px;
+    }
+
+}
+
+
+/* =========================================================
+   TELÉFONOS MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .jesus-calles-slide {
+        height: 125px;
+    }
+
+
+    .jesus-calles-arrow {
+        width: 26px;
+
+        height: 26px;
+
+        font-size: 0.54rem;
+    }
+
+}
+/* =========================================================
+   JESÚS FUENTE ETERNA - GALERÍA
+   ========================================================= */
+
+.fuente-modal-content {
+    width: 100%;
+}
+
+.fuente-history-content {
+    width: 100%;
+    color: #d2d2d2;
+    line-height: 1.6;
+}
+
+.fuente-history-content p {
+    color: #c4c4c4;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    margin: 0 0 10px;
+}
+
+.fuente-history-content p:last-child {
+    margin-bottom: 0;
+}
+
+.fuente-history-content strong,
+.fuente-history-content b {
+    color: var(--gold-light);
+}
+
+
+/* DIVISOR */
+
+.fuente-gallery-divider {
+    width: 100%;
+    height: 1px;
+    margin: 18px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(212, 175, 55, 0.55),
+            transparent
+        );
+}
+
+
+/* CONTENEDOR */
+
+.jesus-fuente-gallery {
+    width: 100%;
+    padding: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.055),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.2);
+
+    border-radius: 11px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    box-sizing: border-box;
+}
+
+
+/* CABECERA */
+
+.jesus-fuente-gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 8px;
+}
+
+.jesus-fuente-gallery-title {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--gold-light);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.jesus-fuente-gallery-title i {
+    color: var(--gold-primary);
+
+    font-size: 0.78rem;
+}
+
+
+/* CONTADOR */
+
+.jesus-fuente-gallery-counter {
+    flex-shrink: 0;
+
+    color: #999;
+
+    font-size: 0.62rem;
+
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(212, 175, 55, 0.06);
+
+    border:
+        1px solid rgba(212, 175, 55, 0.15);
+}
+
+
+/* CARRUSEL */
+
+.jesus-fuente-carousel-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.jesus-fuente-carousel {
+    display: flex;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
+    border-radius: 8px;
+
+    background: #020202;
+
+    box-sizing: border-box;
+}
+
+.jesus-fuente-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* FOTO */
+
+.jesus-fuente-slide {
+    position: relative;
+
+    flex: 0 0 100%;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #020202;
+
+    border-radius: 8px;
+
+    box-sizing: border-box;
+}
+
+
+/*
+   IMPORTANTE:
+   El borde está directamente sobre la imagen.
+   Así el borde tendrá exactamente el mismo tamaño
+   que la fotografía.
+*/
+
+.jesus-fuente-slide img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: 190px;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    background: #020202;
+
+    border: 1px solid rgba(212, 175, 55, 0.35);
+
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.35s ease;
+}
+
+.jesus-fuente-slide:hover img {
+    transform: scale(1.01);
+
+    filter: brightness(1.04);
+}
+
+
+/* FLECHAS */
+
+.jesus-fuente-arrow {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background:
+        rgba(5, 5, 5, 0.88);
+
+    border:
+        1px solid rgba(212, 175, 55, 0.55);
+
+    color: var(--gold-light);
+
+    font-size: 0.75rem;
+
+    backdrop-filter: blur(5px);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.jesus-fuente-arrow:hover {
+    background: var(--gold-primary);
+
+    color: #050505;
+
+    box-shadow:
+        0 5px 18px rgba(212, 175, 55, 0.3);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+.jesus-fuente-arrow:active {
+    transform:
+        translateY(-50%)
+        scale(0.94);
+}
+
+.jesus-fuente-arrow-left {
+    left: 7px;
+}
+
+.jesus-fuente-arrow-right {
+    right: 7px;
+}
+
+
+/* PUNTOS */
+
+.jesus-fuente-dots {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 7px;
+
+    flex-wrap: wrap;
+}
+
+.jesus-fuente-dot {
+    display: block;
+
+    width: 6px;
+
+    height: 6px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background: #555;
+
+    border: none;
+
+    transition:
+        width 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.jesus-fuente-dot.active {
+    width: 17px;
+
+    border-radius: 10px;
+
+    background: var(--gold-primary);
+
+    box-shadow:
+        0 0 8px rgba(212, 175, 55, 0.35);
+}
+
+
+/* TEXTO INFORMATIVO */
+
+.jesus-fuente-gallery-hint {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 6px;
+
+    color: #707070;
+
+    font-size: 0.56rem;
+
+    text-align: center;
+}
+
+.jesus-fuente-gallery-hint i {
+    color: var(--gold-primary);
+
+    font-size: 0.54rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .fuente-history-content p {
+        font-size: 0.77rem;
+
+        line-height: 1.55;
+
+        margin-bottom: 8px;
+    }
+
+    .fuente-gallery-divider {
+        margin: 13px 0;
+    }
+
+    .jesus-fuente-gallery {
+        padding: 8px;
+
+        border-radius: 9px;
+    }
+
+    .jesus-fuente-gallery-header {
+        margin-bottom: 7px;
+    }
+
+    .jesus-fuente-gallery-title {
+        font-size: 0.67rem;
+    }
+
+    .jesus-fuente-gallery-counter {
+        font-size: 0.55rem;
+
+        padding: 3px 6px;
+    }
+
+    .jesus-fuente-slide {
+        border-radius: 7px;
+    }
+
+    .jesus-fuente-slide img {
+        max-height: 145px;
+
+        border-radius: 7px;
+    }
+
+    .jesus-fuente-arrow {
+        width: 29px;
+
+        height: 29px;
+
+        font-size: 0.61rem;
+    }
+
+    .jesus-fuente-arrow-left {
+        left: 5px;
+    }
+
+    .jesus-fuente-arrow-right {
+        right: 5px;
+    }
+
+    .jesus-fuente-dots {
+        margin-top: 6px;
+
+        gap: 4px;
+    }
+
+    .jesus-fuente-gallery-hint {
+        font-size: 0.51rem;
+
+        margin-top: 5px;
+    }
+
+}
+
+
+/* PANTALLAS MUY PEQUEÑAS */
+
+@media (max-width: 400px) {
+
+    .jesus-fuente-slide img {
+        max-height: 125px;
+    }
+
+    .jesus-fuente-arrow {
+        width: 26px;
+
+        height: 26px;
+
+        font-size: 0.54rem;
+    }
+
+}
+/* ==========================================
+   RECURSOS
+   ========================================== */
+
+.resources-section {
+    position: relative;
+    padding: 110px 20px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212, 175, 55, 0.07) 0%,
+            rgba(0, 0, 0, 0) 55%
+        ),
+        var(--bg-dark);
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    overflow: hidden;
+}
+
+.resources-section::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.025);
+    filter: blur(70px);
+    pointer-events: none;
+}
+
+.resources-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.resources-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.resources-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 20px;
+
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+
+    color: var(--gold-primary);
+    font-size: 1.6rem;
+
+    background: rgba(212, 175, 55, 0.05);
+
+    box-shadow:
+        0 0 25px rgba(212, 175, 55, 0.08),
+        inset 0 0 20px rgba(212, 175, 55, 0.03);
+}
+
+.resources-coming-soon {
+    max-width: 780px;
+    min-height: 390px;
+
+    margin: 0 auto;
+
+    padding: 65px 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.025),
+            rgba(212,175,55,0.025)
+        );
+
+    border: 1px solid var(--border-gold);
+    border-radius: 14px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.45),
+        inset 0 0 40px rgba(212,175,55,0.02);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.resources-coming-soon::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 180px;
+    height: 1px;
+
+    transform: translateX(-50%);
+
+    background: var(--gold-primary);
+
+    box-shadow:
+        0 0 15px rgba(212,175,55,0.7);
+}
+
+.resources-coming-icon {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 50%;
+
+    color: var(--gold-primary);
+
+    border: 1px solid var(--border-gold);
+
+    background: rgba(212,175,55,0.04);
+
+    font-size: 1.7rem;
+
+    box-shadow:
+        0 0 25px rgba(212,175,55,0.08);
+}
+
+.resources-label {
+    color: var(--gold-primary);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.resources-coming-soon h3 {
+    color: var(--text-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 1.65rem;
+
+    margin-bottom: 18px;
+}
+
+.resources-coming-soon p {
+    color: var(--text-gray);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+.resources-coming-soon p strong {
+    color: var(--gold-light);
+
+    font-weight: 600;
+}
+
+.resources-line {
+    width: 80px;
+    height: 1px;
+
+    margin: 28px auto 20px;
+
+    background: var(--gold-primary);
+
+    opacity: 0.7;
+}
+
+.resources-verse {
+    color: #888;
+
+    font-size: 0.82rem;
+
+    letter-spacing: 0.3px;
+}
+
+.resources-verse i {
+    color: var(--gold-primary);
+    margin-right: 6px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .resources-section {
+        padding: 80px 18px;
+    }
+
+    .resources-coming-soon {
+        min-height: 350px;
+        padding: 50px 22px;
+    }
+
+    .resources-coming-soon h3 {
+        font-size: 1.3rem;
+    }
+
+    .resources-coming-soon p {
+        font-size: 0.92rem;
+    }
+
+    .resources-label {
+        font-size: 0.68rem;
+        letter-spacing: 3px;
+    }
+}
+/* =========================================================
+   MODAL DE MINISTERIOS - RESPONSIVE
+   AJUSTE SIN ALTERAR LOS CARRUSELES INTERNOS
+   ========================================================= */
+
+/* PC */
+.ministry-modal-content {
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* El contenido nunca se sale horizontalmente */
+.ministry-modal-content #modalBody {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .ministry-modal-content {
+        width: 94vw !important;
+        max-width: 94vw !important;
+        max-height: 90vh !important;
+
+        padding: 25px 15px 20px !important;
+
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+
+        border-radius: 10px;
+    }
+
+    .ministry-modal-content #modalTitle {
+        font-size: 1.2rem !important;
+        line-height: 1.35 !important;
+
+        margin-bottom: 15px !important;
+
+        padding-right: 25px;
+    }
+
+    .ministry-modal-content #modalBody {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        font-size: 0.88rem !important;
+        line-height: 1.65 !important;
+    }
+
+    .ministry-modal-content #modalBody p {
+        margin-bottom: 12px;
+    }
+
+    /* Las imágenes normales se adaptan */
+    .ministry-modal-content #modalBody > img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* NO tocar:
+       .jesus-calles-carousel
+       .jesus-calles-slide
+       .jesus-fuente-carousel
+       .jesus-fuente-slide
+
+       Esos carruseles ya tienen su propio responsive.
+    */
+
+    .ministry-modal-content .close-modal {
+        top: 8px !important;
+        right: 10px !important;
+        font-size: 27px !important;
+        z-index: 20;
+    }
+
+    #modalWhatsappContainer {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .ministry-modal-content .whatsapp-link-btn {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.82rem;
+        padding: 12px 10px;
+    }
+}
+
+/* =========================================================
+   TELÉFONOS MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .ministry-modal-content {
+        width: 95vw !important;
+        max-width: 95vw !important;
+
+        padding: 22px 12px 18px !important;
+    }
+
+    .ministry-modal-content #modalTitle {
+        font-size: 1.08rem !important;
+    }
+
+    .ministry-modal-content #modalBody {
+        font-size: 0.82rem !important;
+        line-height: 1.6 !important;
+    }
+}

@@ -1,0 +1,3058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Mundial de Avivamiento ARDE | Profeta Daniel Riquezes</title>
+    <link rel="icon" href="flame.svg?v=1" type="image/svg+xml">
+    <link rel="preconnect" href="https://wufbwtizjzpuccqopvre.supabase.co">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="usuarios.css">
+    <!-- Fuentes Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .public-pdf-card { background:var(--bg-card); border:1px solid var(--border-gold); border-radius:12px; padding:24px; box-shadow:0 10px 28px rgba(0,0,0,.45); transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
+        .public-pdf-card:hover { transform:translateY(-4px); border-color:var(--gold-primary); box-shadow:0 14px 34px rgba(0,0,0,.6); }
+        .public-pdf-icon { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:15px; border:1px solid var(--gold-primary); color:var(--gold-primary); background:rgba(212,175,55,.08); font-size:1.55rem; }
+        .public-pdf-card h3 { color:var(--gold-light); margin-bottom:10px; }
+        .public-pdf-card p { color:var(--text-gray); line-height:1.65; font-size:.92rem; margin-bottom:18px; }
+        .public-pdf-meta { color:#888; font-size:.78rem; margin-bottom:15px; }
+        .public-pdf-actions { display:flex; gap:10px; flex-wrap:wrap; }
+        .public-pdf-actions a { text-decoration:none; text-align:center; flex:1; min-width:130px; }
+        .public-pdf-secondary { background:transparent !important; color:var(--gold-light) !important; border:1px solid var(--border-gold) !important; }
+        .public-pdf-secondary:hover { background:rgba(212,175,55,.12) !important; }
+        .public-pdf-content-btn { background:transparent !important; color:var(--gold-light) !important; border:1px solid var(--border-gold) !important; }
+        .public-pdf-content-btn:hover { background:rgba(212,175,55,.12) !important; }
+        .public-pdf-gallery-mini { display:flex; gap:6px; margin:12px 0 15px; overflow:hidden; }
+        .public-pdf-gallery-mini img { width:52px; height:42px; object-fit:cover; border-radius:6px; border:1px solid var(--border-gold); }
+        .public-pdf-more { color:#aaa; font-size:.75rem; align-self:center; }
+        .resource-view-modal { position:fixed; inset:0; background:rgba(0,0,0,.82); display:none; align-items:center; justify-content:center; z-index:10050; padding:20px; }
+        .resource-view-card { width:min(900px,100%); max-height:90vh; overflow:auto; background:#101010; border:1px solid var(--border-gold); border-radius:14px; padding:28px; box-shadow:0 20px 70px rgba(0,0,0,.75); position:relative; }
+        .resource-view-close { position:absolute; top:10px; right:15px; background:transparent; border:0; color:#fff; font-size:30px; cursor:pointer; }
+        .resource-view-title { color:var(--gold-light); margin:0 35px 10px 0; }
+        .resource-view-text { color:#ddd; line-height:1.8; white-space:pre-wrap; margin-top:18px; }
+        .resource-view-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:22px; }
+        .resource-view-gallery img { width:100%; max-height:260px; object-fit:cover; border-radius:8px; border:1px solid var(--border-gold); }
+        .resource-view-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+        .resource-view-actions a, .resource-view-actions button { flex:1; min-width:170px; text-decoration:none; text-align:center; }
+        #publicResourcesGrid:empty { display:none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+        CABECERA Y MENÚ
+        ========================================== -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-fire" style="color: var(--gold-primary);"></i>
+                ARDE
+            </a>
+            
+            <button class="menu-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#quienes-somos" onclick="toggleMobileMenu()" data-i18n="nav_about">Quiénes Somos</a></li>
+                <li><a href="#ministerios" onclick="toggleMobileMenu()" data-i18n="nav_ministries">Ministerios</a></li>
+                <li><a href="#movimientos" onclick="toggleMobileMenu()" data-i18n="nav_movements">Movimientos</a></li>
+                <li><a href="#fundaciones" onclick="toggleMobileMenu()" data-i18n="nav_foundations">Fundaciones</a></li>
+                <li><a href="#libros" onclick="toggleMobileMenu()" data-i18n="nav_books">Libros</a></li>
+                <li><a href="#eventos" onclick="toggleMobileMenu()" data-i18n="nav_events">Eventos</a></li>
+                <li><a href="#recursos" onclick="toggleMobileMenu()" data-i18n="nav_resources">Recursos</a></li>
+                <li><a href="#donaciones" onclick="toggleMobileMenu()" data-i18n="nav_donations" style="color: var(--gold-primary);">Donaciones</a></li>
+                <li>
+                    <a href="javascript:void(0)" onclick="openContactModal()" data-i18n="nav_contact">
+                        Contacto
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="lang-selector">
+                    <select id="globalLangSelect" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+    <option value="ru">Русский</option>
+    <option value="zh">中文</option>
+    <option value="ja">日本語</option>
+    <option value="pt">Português</option>
+    <option value="fr">Français</option>
+    <option value="it">Italiano</option>
+    <option value="ar">العربية</option>
+    <option value="he">עברית</option>
+</select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+        SECCIÓN HERO
+        ========================================== -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="Etiqueta.png" alt="Centro Mundial de Avivamiento ARDE" class="hero-tag-img">
+            <a href="#quienes-somos" class="btn-gold" data-i18n="hero_btn">Conoce Su Ministerio</a>
+        </div>
+    </section>
+
+    <!-- ==========================================
+        QUIÉNES SOMOS
+        ========================================== -->
+    <section id="quienes-somos" class="section">
+        <h2 class="section-title" id="about_main_title" data-i18n="about_main_title">Quiénes Somos — ARDE</h2>
+        <p class="section-subtitle" id="about_main_sub" data-i18n="about_main_sub">Centro Mundial de Avivamiento ARDE y Trayectoria Ministerial</p>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <p id="about_p1" data-i18n="about_p1"><strong>Centro Mundial de Avivamiento ARDE</strong> es una iglesia profética y de avivamiento, dirigida por el <em>Profeta Daniel Riquezes y su esposa, Andrea de Riquezes</em>.</p>
+                <p id="about_p2" data-i18n="about_p2">Este ministerio nació en el corazón de Dios con el propósito de <strong>impactar a las naciones a través del poder del Espíritu Santo</strong>, anunciar el Evangelio y preparar el camino para el regreso de nuestro Señor Jesucristo.</p>
+                <p id="about_p3" data-i18n="about_p3">Nuestra misión es <strong>enseñar la verdad a la luz de la Palabra de Dios, levantar discípulos valientes y formar guerreros espirituales</strong> que vivan en santidad, conozcan su identidad en Cristo y sean instrumentos de transformación en su generación.</p>
+                
+                <h3 class="cinzel-font" id="bio_heading" style="color: var(--gold-light); margin: 25px 0 15px 0; font-size: 1.3rem;" data-i18n="bio_heading">Profeta Daniel Riquezes</h3>
+                <p id="bio_p1" data-i18n="bio_p1">El <strong>Profeta Daniel Riquezes</strong>, de origen venezolano y actualmente residente en Venezuela, tuvo un encuentro con Cristo a los 20 años de edad, mientras era estudiante, en el estado Anzoátegui, Venezuela. Desde entonces, respondió al llamado de Dios y decidió dedicarse al ministerio profético a tiempo completo.</p>
+                <p id="bio_p2" data-i18n="bio_p2">Según su testimonio, durante una experiencia sobrenatural recibió de Dios un llamado con estas palabras:</p>
+                <p id="bio_quote" style="border-left: 3px solid var(--gold-primary); padding-left: 15px; margin: 15px 0; color: var(--gold-light);"><em data-i18n="bio_quote">“Te he llamado como mi profeta y te he escogido como príncipe de mi pueblo.”</em></p>
+                <p id="bio_p3" data-i18n="bio_p3">
+    A partir de ese momento, asumió el compromiso de predicar el Evangelio con <strong>valentía, denuedo y convicción</strong>, llevando el mensaje de Cristo tanto a las calles como a las diferentes plataformas digitales.
+</p>
+
+<p id="bio_p4" data-i18n="bio_p4">
+    Como resultado de este ministerio, Dios ha permitido un crecimiento significativo de su alcance e influencia en Venezuela y en diferentes lugares de Latinoamérica, impactando diariamente a miles de personas mediante <strong>predicaciones, enseñanzas y mensajes proféticos</strong>.
+</p>
+
+<p id="bio_p5" data-i18n="bio_p5">
+    Su ministerio mantiene presencia constante en plataformas como <strong>Instagram, TikTok y YouTube</strong>, utilizando los medios digitales como herramientas para anunciar el Evangelio y llevar un mensaje de fe, restauración y transformación.
+</p>
+                
+            </div>
+
+            <!-- Carrusel de fotos -->
+            <div class="carousel-container" id="photoCarousel">
+                <div class="carousel-slide active">
+                    <img src="Foto personal.jpg" alt="Profeta Daniel Riquezes - Foto Principal">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Foto Personal 2.jpeg" alt="Profeta Daniel Riquezes - Segunda Foto">
+                </div>
+            </div>
+        </div>
+
+        <!-- Redes Sociales y WhatsApp -->
+        <div class="social-links-bar">
+            <a href="https://whatsapp.com/channel/0029VbB7wOjEwEk2RZDiyE3g" target="_blank" class="social-btn" title="Canal de WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@profetadanielriquezes/videos" target="_blank" class="social-btn" title="YouTube Oficial"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@profetadanielriquezes" target="_blank" class="social-btn" title="TikTok Oficial"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/cmdeavivamientoarde?stkn=MTZ5aDY1MWVsYmE5dw==" target="_blank" class="social-btn" title="Instagram Oficial"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/ProfetaDanielRiquezes/?locale=es_LA" target="_blank" class="social-btn" title="Facebook Oficial"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+
+        <!-- Cruzadas Dinámicas -->
+        <div class="crusade-container" id="crusadesPublicContainer" style="display: flex; flex-direction: column; gap: 40px; margin: 40px 0;">
+            <!-- Cruzada 1 por defecto -->
+            <div class="crusade-banner" style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-gold); padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div style="flex: 0 0 280px; text-align: center;">
+                    <div class="carousel-container crusade-carousel" style="position: relative; width: 100%; max-width: 270px; height: 380px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border-gold); box-shadow: 0 8px 25px rgba(0,0,0,0.8); margin: 0 auto;">
+                        <div class="carousel-slide active" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 1; transition: opacity 0.8s ease-in-out;">
+                            <img src="flyerdaniel.jpeg" alt="Cruzada Restaurando el Altar" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="carousel-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out;">
+                            <img src="altarbrasil.jpeg" alt="Cruzada Restaurando el Altar - Altar Brasil" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 260px;">
+                    <h3 class="cinzel-font" style="color: var(--gold-light); font-size: 1.5rem; margin-bottom: 15px;" data-i18n="crusade_title">Restaurando el Altar (2026)</h3>
+                    <p style="line-height: 1.7; font-size: 1rem; color: #ddd;" data-i18n="crusade_desc">En el año 2026, inició la cruzada “Restaurando el Altar”, un movimiento enfocado en llamar a la Iglesia nuevamente a la santidad, la oración, la presencia de Dios y el avivamiento, tomando como referencia el ministerio del profeta Elías.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos -->
+        <div class="videos-container">
+            <h3 class="cinzel-font" style="text-align: center; color: var(--gold-light); font-size: 1.6rem; margin-bottom: 20px;" data-i18n="videos_title">Prédicas y Mensajes en YouTube</h3>
+            <div class="videos-wrapper-outer">
+                <button class="video-nav-btn video-prev" onclick="scrollVideos(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="videos-grid" id="videosGrid">
+                    <div class="video-card">
+                        <a href="https://www.youtube.com/watch?v=rWB0U0Fdb7w" target="_blank" class="video-thumb-container">
+                            <img src="https://img.youtube.com/vi/rWB0U0Fdb7w/maxresdefault.jpg" alt="Transmisión 1">
+                            <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                        </a>
+                        <div class="video-info"><h4 data-i18n="vid1_title">Transmisión Profética en Vivo 1</h4></div>
+                    </div>
+                    <div class="video-card">
+                        <a href="https://www.youtube.com/watch?v=Y_CJBdZ3IuI" target="_blank" class="video-thumb-container">
+                            <img src="https://img.youtube.com/vi/Y_CJBdZ3IuI/hqdefault.jpg" alt="Transmisión 2">
+                            <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                        </a>
+                        <div class="video-info"><h4 data-i18n="vid2_title">Transmisión Profética en Vivo 2</h4></div>
+                    </div>
+                    <div class="video-card">
+                        <a href="https://www.youtube.com/watch?v=X3GCLfdygUg" target="_blank" class="video-thumb-container">
+                            <img src="https://img.youtube.com/vi/X3GCLfdygUg/maxresdefault.jpg" alt="Transmisión 3">
+                            <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                        </a>
+                        <div class="video-info"><h4 data-i18n="vid3_title">Transmisión Profética en Vivo 3</h4></div>
+                    </div>
+                    <div class="video-card">
+                        <a href="https://www.youtube.com/watch?v=fwkmSCBxgw8" target="_blank" class="video-thumb-container">
+                            <img src="https://img.youtube.com/vi/fwkmSCBxgw8/maxresdefault.jpg" alt="Transmisión 4">
+                            <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                        </a>
+                        <div class="video-info"><h4 data-i18n="vid4_title">Transmisión Profética en Vivo 4</h4></div>
+                    </div>
+                    <div class="video-card">
+                        <a href="https://www.youtube.com/playlist?list=PL2f_biIa2eHpn4HrA9yTAQxS6j-jocO1Z" target="_blank" class="video-thumb-container">
+                            <img src="https://img.youtube.com/vi/B1RLaIsMifU/maxresdefault.jpg" alt="Lista de Podcast">
+                            <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                        </a>
+                        <div class="video-info"><h4 data-i18n="vid5_title">Lista de Podcast</h4></div>
+                    </div>
+                    <div class="video-card">
+                        <a href="https://www.youtube.com/watch?v=l_7M6xmTlQg" target="_blank" class="video-thumb-container">
+                            <img src="https://img.youtube.com/vi/l_7M6xmTlQg/maxresdefault.jpg" alt="Mensaje Especial">
+                            <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                        </a>
+                        <div class="video-info"><h4 data-i18n="vid6_title">Mensaje y Avivamiento Especial</h4></div>
+                    </div>
+                </div>
+                <button class="video-nav-btn video-next" onclick="scrollVideos(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+        MINISTERIOS
+        ========================================== -->
+    <section id="ministerios" class="section" style="background: var(--bg-dark-gray);">
+        <h2 class="section-title" data-i18n="ministries_title">Nuestros Ministerios</h2>
+        <p class="section-subtitle" data-i18n="ministries_sub">Conoce el propósito, historia y canal de WhatsApp de cada ministerio</p>
+        
+        <div class="ministries-grid" id="ministeriosGrid">
+            <!-- Dorcas -->
+            <div class="ministry-card" onclick="openMinistryModal('dorcas')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logo.JPG.jpeg" alt="Logo Dorcas" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                        <span class="badge-wa-indicator"><i class="fa-brands fa-whatsapp"></i> Canal WA</span>
+                    </div>
+                    <h3>Dorcas</h3>
+                    <p data-i18n="dorcas_summary">Ministerio de mujeres nacido en 2025 para reunir, edificar y acompañar a mujeres en su caminar con Dios.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Escuadrón de YHWH -->
+            <div class="ministry-card" onclick="openMinistryModal('escuadron')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logoyhwh.jpeg" alt="Logo Escuadrón de YHWH" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                        <span class="badge-wa-indicator"><i class="fa-brands fa-whatsapp"></i> Canal WA</span>
+                    </div>
+                    <h3>Escuadrón de YHWH</h3>
+                    <p data-i18n="escuadron_summary">Ministerio de intercesión y guerra espiritual enfocado en la oración y autoridad espiritual.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- La Forja -->
+            <div class="ministry-card" onclick="openMinistryModal('laforja')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logoforja.jpeg" alt="Logo La Forja" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                        <span class="badge-wa-indicator"><i class="fa-brands fa-whatsapp"></i> Canal WA</span>
+                    </div>
+                    <h3>La Forja</h3>
+                    <p data-i18n="laforja_summary">Ministerio de hombres enfocado en forjar carácter, integridad y liderazgo conforme a Cristo.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Jesús Fuente Eterna -->
+            <div class="ministry-card" onclick="openMinistryModal('fuenteeterna')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logojesusfuente.PNG" alt="Logo Jesús Fuente Eterna" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                    </div>
+                    <h3>Jesús Fuente Eterna</h3>
+                    <p data-i18n="fuenteeterna_summary">Ministerio profético y Escuela Profética dirigido por los profetas Daniel y Andrea de Riquezes.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Jesús Está en las Calles -->
+            <div class="ministry-card" onclick="openMinistryModal('calles')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logojesuscalle.PNG" alt="Logo Jesús Está en las Calles" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                        <span class="badge-wa-indicator"><i class="fa-brands fa-whatsapp"></i> Canal WA</span>
+                    </div>
+                    <h3>Jesús Está en las Calles</h3>
+                    <p data-i18n="calles_summary">Ministerio de evangelismo dinámico llevando el mensaje fuera de las cuatro paredes a las comunidades.</p>
+                </div>
+                <button type="button" class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+        MOVIMIENTOS
+        ========================================== -->
+    <section id="movimientos" class="section">
+        <h2 class="section-title" data-i18n="movements_title">Movimientos y Escuelas</h2>
+        <p class="section-subtitle" data-i18n="movements_sub">Explora los movimientos de avivamiento y nuestra escuela profética</p>
+        
+        <div class="grid-2x2" id="movimientosGrid">
+            <div class="ministry-card" onclick="openMinistryModal('altaralias')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logoelias.jpeg" alt="Logo Altar de Elías" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                        <span class="badge-wa-indicator"><i class="fa-brands fa-whatsapp"></i> Canal WA</span>
+                    </div>
+                    <h3>Altar de Elías ARDE</h3>
+                    <p data-i18n="altaralias_summary">Movimiento de adoración pública juvenil provocando el avivamiento internacional.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div class="ministry-card" onclick="openMinistryModal('azusa')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logoazusa.jpeg" alt="Logo Avivamiento Azusa" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                    </div>
+                    <h3>Avivamiento Azusa</h3>
+                    <p data-i18n="azusa_summary">Movimiento de avivamiento profético buscando con sed y hambre el derramamiento del Espíritu Santo.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+        FUNDACIONES
+        ========================================== -->
+    <section id="fundaciones" class="section" style="background: var(--bg-dark-gray);">
+        <h2 class="section-title" data-i18n="foundations_title">Fundaciones y Ayuda Social</h2>
+        <p class="section-subtitle" data-i18n="foundations_sub">Acciones prácticas que manifiestan el amor de Dios en la sociedad</p>
+        
+        <div class="ministries-grid" id="fundacionesGrid">
+            <div class="ministry-card" onclick="openMinistryModal('bartimeo')">
+                <div>
+                    <div class="ministry-card-top">
+                        <i class="fa-solid fa-hand-holding-heart main-icon"></i>
+                    </div>
+                    <h3>Bartimeo</h3>
+                    <p data-i18n="bartimeo_summary">Ministerio de ayuda social para personas en situación de calle y pobreza extrema.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div class="ministry-card" onclick="openMinistryModal('ingridmillan')">
+                <div>
+                    <div class="ministry-card-top">
+                        <img src="logo.jpeg" alt="Logo Fundación Ingrid Millán" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 1px solid var(--border-gold);">
+                    </div>
+                    <h3>Fundación Ingrid Millán</h3>
+                    <p data-i18n="ingridmillan_summary">Organización de apoyo a familias necesitadas en honra al legado de Ingrid Millán.</p>
+                </div>
+                <button class="card-explore-btn"><span data-i18n="read_history">Leer Historia</span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+        LIBROS Y OBRA LITERARIA
+        ========================================== -->
+    <section id="libros" class="section books-section">
+        <h2 class="section-title" data-i18n="books_main_title">Obra Literaria</h2>
+        <p class="section-subtitle" data-i18n="books_main_sub">Autor de “Dios liberta a Venezuela” y en preparación “La Forja del Profeta”</p>
+
+        <div id="publicBooksGrid" class="public-books-grid" aria-live="polite">
+          <div class="public-book-featured">
+            <!-- Tarjeta Principal Recuadro -->
+            <div class="ministry-card" style="cursor: default; padding: 30px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border-gold); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                <div>
+                    <h3 class="cinzel-font" style="color: var(--gold-light); font-size: 1.35rem; margin-bottom: 12px; text-align: center;">DIOS LIBERTA A VENEZUELA</h3>
+                    
+                    <div style="text-align: center; margin: 15px 0 20px 0;">
+                        <a href="https://www.amazon.com/liberta-Venezuela-Spanish-Daniel-Riquezes-ebook/dp/B0FBSB2M5Q" target="_blank">
+                            <img src="https://images-na.ssl-images-amazon.com/images/P/B0FBSB2M5Q.01.LZZZZZZZ.jpg" 
+                                 alt="Portada Dios Liberta a Venezuela" 
+                                 referrerpolicy="no-referrer"
+                                 style="width: 100%; max-width: 260px; border-radius: 8px; border: 1px solid var(--border-gold); box-shadow: 0 6px 18px rgba(0,0,0,0.6);">
+                        </a>
+                    </div>
+
+                    <p style="color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+                        Un testimonio revelador de experiencias proféticas y batallas espirituales libradas por la libertad de la nación. Una obra que destaca el poder de la fe inquebrantable.
+                    </p>
+                </div>
+
+                <!-- Botón Leer Historia que abre la modal -->
+                <button class="card-explore-btn" onclick="openBookModal()" style="width: 100%; margin-bottom: 20px;">
+                    <span>Leer Historia</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- Selector de Idioma y Botón de Compra AFUERA -->
+                <div style="background: #0a0a0a; border: 1px solid var(--border-gold); padding: 18px; border-radius: 8px; text-align: center;">
+                    <label for="outerBookLangSelect" style="display: block; margin-bottom: 8px; color: var(--gold-primary); font-size: 0.85rem; font-weight: 600;">
+                        <i class="fa-solid fa-globe"></i> Elige el idioma para adquirirlo en Amazon:
+                    </label>
+                    <select id="outerBookLangSelect" style="width: 100%; padding: 10px; background: var(--bg-card); color: #fff; border: 1px solid var(--border-gold); border-radius: 6px; font-size: 0.85rem; outline: none; margin-bottom: 12px;">
+                        <option value="es">Español (Amazon E-book)</option>
+                        <option value="en">English (God Frees Venezuela)</option>
+                    </select>
+                    <button class="btn-gold" onclick="goToAmazonBookOuter()" style="width: 100%; padding: 11px; font-size: 0.85rem;">
+                        COMPRAR EN AMAZON AHORA
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+<!-- ==========================================
+     MODAL DE CONTACTO MINISTERIAL
+     ========================================== -->
+<div class="modal contact-modal" id="contactModal">
+
+    <div class="contact-modal-content">
+
+        <!-- BOTÓN CERRAR -->
+        <span class="close-modal" onclick="closeContactModal()">&times;</span>
+
+        <div class="contact-modal-header">
+
+            <div class="contact-modal-icon">
+                <i class="fa-solid fa-handshake"></i>
+            </div>
+
+            <h3 data-i18n="contact_title">Contacto Ministerial</h3>
+
+            <p class="contact-intro" data-i18n="contact_intro">
+                Este canal de contacto está destinado exclusivamente a asuntos relacionados con el ministerio.
+            </p>
+
+        </div>
+
+        <div class="contact-modal-scroll">
+
+            <div class="contact-notice">
+
+                <div class="contact-notice-icon">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                </div>
+
+                <div>
+
+                    <strong data-i18n="contact_purpose_title">
+                        ¿Para qué puede utilizar este contacto?
+                    </strong>
+
+                    <p data-i18n="contact_purpose_intro">
+                        Este medio está destinado exclusivamente para:
+                    </p>
+
+                    <ul class="contact-purpose-list">
+
+                        <li>
+                            <i class="fa-solid fa-fire"></i>
+                            <span data-i18n="contact_campaigns">
+                                Campañas cristianas
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span data-i18n="contact_events">
+                                Eventos cristianos
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                            <span data-i18n="contact_invitations">
+                                Invitaciones ministeriales
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-cross"></i>
+                            <span data-i18n="contact_crusades">
+                                Cruzadas
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-church"></i>
+                            <span data-i18n="contact_activities">
+                                Actividades ministeriales
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-private-warning-box">
+
+                <div class="contact-private-icon">
+                    <i class="fa-solid fa-ban"></i>
+                </div>
+
+                <div>
+
+                    <strong data-i18n="contact_important">
+                        IMPORTANTE
+                    </strong>
+
+                    <p>
+                        <span data-i18n="contact_private_warning_1">
+                            Este contacto
+                        </span>
+
+                        <b data-i18n="contact_private_warning_bold">
+                            NO es para asuntos privados o personales.
+                        </b>
+                    </p>
+
+                    <p data-i18n="contact_private_warning_2">
+                        El número de WhatsApp indicado pertenece al medio de contacto ministerial y no es un número personal destinado para recibir solicitudes de oración, peticiones personales o consultas privadas.
+                    </p>
+
+                    <p data-i18n="contact_private_warning_3">
+                        Este número NO está destinado para solicitudes de oración.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+
+                <div class="contact-item-info">
+
+                    <span
+                        class="contact-label"
+                        data-i18n="contact_email_label"
+                    >
+                        Correo electrónico ministerial
+                    </span>
+
+                    <span
+                        class="contact-copy-text"
+                        title="Selecciona el correo para copiarlo"
+                        data-i18n-title="contact_copy_email_title"
+                    >
+                        danielriquezes00@gmail.com
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon whatsapp-contact-icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+
+                <div class="contact-item-info">
+
+                    <span
+                        class="contact-label"
+                        data-i18n="contact_whatsapp_label"
+                    >
+                        WhatsApp ministerial
+                    </span>
+
+                    <span
+                        class="contact-copy-text"
+                        title="Selecciona el número para copiarlo"
+                        data-i18n-title="contact_copy_whatsapp_title"
+                    >
+                        +58 412 107 4089
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-actions">
+
+                <button
+                    type="button"
+                    class="contact-action-btn contact-email-btn"
+                    onclick="sendContactEmail()"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    <span data-i18n="contact_send_email">
+                        Enviar correo ministerial
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="contact-action-btn contact-whatsapp-btn"
+                    onclick="openContactWhatsApp()"
+                >
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    <span data-i18n="contact_whatsapp_button">
+                        Contactar por WhatsApp
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     MODAL DE MINISTERIOS
+     ========================================== -->
+<div class="modal" id="ministryModal" style="display:none;">
+
+    <div
+        class="modal-content ministry-modal-content"
+        style="max-width: 900px; max-height: 90vh; overflow-y: auto;"
+    >
+
+        <!-- BOTÓN CERRAR -->
+        <span
+            class="close-modal"
+            onclick="closeModal('ministryModal')"
+        >&times;</span>
+
+        <!-- TÍTULO -->
+        <h2
+            id="modalTitle"
+            class="cinzel-font"
+            style="
+                color: var(--gold-light);
+                text-align: center;
+                margin-bottom: 20px;
+            "
+        ></h2>
+
+        <!-- CONTENIDO DEL MINISTERIO -->
+        <div
+            id="modalBody"
+            style="
+                color: var(--text-gray);
+                line-height: 1.8;
+                font-size: 0.95rem;
+            "
+        ></div>
+
+        <!-- WHATSAPP -->
+        <div
+            id="modalWhatsappContainer"
+            style="
+                text-align: center;
+                margin-top: 25px;
+            "
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     MODAL COMPLETO DEL LIBRO
+     ========================================== -->
+<div class="modal" id="bookModal" style="display:none;">
+
+    <div
+        class="modal-content"
+        style="max-width: 850px; max-height: 90vh; overflow-y: auto;"
+    >
+
+        <span
+            class="close-modal"
+            onclick="closeModal('bookModal')"
+        >&times;</span>
+
+        <h3
+            class="cinzel-font"
+            style="
+                color: var(--gold-light);
+                text-align: center;
+                margin-bottom: 20px;
+            "
+            data-i18n="book_title"
+        >
+            DIOS LIBERTA A VENEZUELA
+        </h3>
+
+        <div
+            style="
+                color: var(--text-gray);
+                line-height: 1.8;
+                font-size: 0.95rem;
+            "
+        >
+
+            <p
+                style="
+                    color: var(--gold-light);
+                    font-weight: 600;
+                    font-size: 1.05rem;
+                    margin-bottom: 15px;
+                "
+                data-i18n="book_question"
+            >
+                ¿Estás listo para descubrir el destino profético de una nación?
+            </p>
+
+            <p
+                style="margin-bottom: 15px;"
+                data-i18n="book_p1"
+            >
+                En este libro revelador, el <strong>Profeta Daniel Riquezes</strong> abre las puertas del mundo espiritual para narrar, con crudeza y pasión, su travesía como guerrero del Reino en medio de una intensa guerra espiritual por la liberación de Venezuela. Desde su unción divina a los 21 años —cuando el Eterno lo llamó en un éxtasis celestial como profeta y príncipe de su pueblo— hasta sus enfrentamientos con principados, potestades y huestes de maldad, cada página está impregnada de fuego profético y revelación divina.
+            </p>
+
+            <p
+                style="margin-bottom: 15px;"
+                data-i18n="book_p2"
+            >
+                Este no es solo un libro. Es un llamado urgente al despertar espiritual, una crónica de guerra espiritual, y una promesa de esperanza para una nación que clama por redención. Aquí conocerás:
+            </p>
+
+            <ul
+                style="
+                    list-style-type: disc;
+                    padding-left: 20px;
+                    margin-bottom: 15px;
+                    color: #ddd;
+                "
+            >
+
+                <li
+                    style="margin-bottom: 8px;"
+                    data-i18n="book_li1"
+                >
+                    Las visiones y juicios proféticos que estremecen el alma.
+                </li>
+
+                <li
+                    style="margin-bottom: 8px;"
+                    data-i18n="book_li2"
+                >
+                    Las estrategias del Reino para derribar fortalezas espirituales.
+                </li>
+
+                <li
+                    style="margin-bottom: 8px;"
+                    data-i18n="book_li3"
+                >
+                    El destino glorioso de una nueva Venezuela, libre y restaurada por el poder de Dios.
+                </li>
+
+            </ul>
+
+            <p
+                style="margin-bottom: 15px;"
+                data-i18n="book_p3"
+            >
+                Prepárate para ser sacudido, inspirado y activado. Este libro no dejará tu espíritu indiferente. Es tiempo de tomar posición en el ejército del Altísimo y ser parte del renacer de una nación.
+            </p>
+
+            <p
+                style="
+                    border-left: 3px solid var(--gold-primary);
+                    padding-left: 12px;
+                    color: var(--gold-light);
+                    font-style: italic;
+                    margin-bottom: 25px;
+                "
+                data-i18n="book_quote"
+            >
+                📖 Descubre el final de los que oprimen espiritualmente a esta nación... y el amanecer de la gloria.
+            </p>
+
+        </div>
+
+
+        <!-- BLOQUE MULTIMEDIA -->
+        <div
+            style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                align-items: flex-start;
+                justify-content: center;
+                margin-bottom: 20px;
+            "
+        >
+
+            <div
+                style="
+                    flex: 1 1 300px;
+                    max-width: 380px;
+                    width: 100%;
+                "
+            >
+
+                <h4
+                    class="cinzel-font"
+                    style="
+                        color: var(--gold-light);
+                        font-size: 1rem;
+                        text-align: center;
+                        margin-bottom: 10px;
+                    "
+                    data-i18n="book_video_title"
+                >
+                    <i
+                        class="fa-brands fa-youtube"
+                        style="color: #ff0000;"
+                    ></i>
+                    Video del Libro
+                </h4>
+
+                <div
+                    class="video-card"
+                    style="
+                        margin: 0;
+                        border: 1px solid var(--border-gold);
+                    "
+                >
+
+                    <a
+                        href="https://youtu.be/ecunxUPkNAo"
+                        target="_blank"
+                        class="video-thumb-container"
+                    >
+
+                        <img
+                            src="https://img.youtube.com/vi/ecunxUPkNAo/hqdefault.jpg"
+                            alt="Video del Libro"
+                            data-i18n-alt="book_video_alt"
+                        >
+
+                        <div class="play-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div
+                style="
+                    flex: 1 1 300px;
+                    max-width: 380px;
+                    width: 100%;
+                "
+            >
+
+                <h4
+                    class="cinzel-font"
+                    style="
+                        color: var(--gold-light);
+                        font-size: 1rem;
+                        text-align: center;
+                        margin-bottom: 10px;
+                    "
+                    data-i18n="book_instagram_title"
+                >
+                    <i
+                        class="fa-brands fa-instagram"
+                        style="color: #e1306c;"
+                    ></i>
+                    Publicación Oficial
+                </h4>
+
+                <div
+                    style="
+                        width: 100%;
+                        height: 260px;
+                        overflow: hidden;
+                        border-radius: 8px;
+                        border: 1px solid var(--border-gold);
+                        background: #000;
+                    "
+                >
+
+                    <iframe
+                        src="https://www.instagram.com/p/DbD6nxBEcee/embed"
+                        width="100%"
+                        height="380"
+                        frameborder="0"
+                        scrolling="no"
+                        allowtransparency="true"
+                        style="
+                            border: none;
+                            margin-top: -60px;
+                        "
+                    ></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            style="
+                border-top: 1px solid var(--border-gold);
+                padding-top: 15px;
+                text-align: center;
+            "
+        >
+
+            <strong
+                style="
+                    color:var(--gold-light);
+                    display:block;
+                    margin-bottom:8px;
+                "
+                data-i18n="book_instagram_official"
+            >
+                <i class="fa-solid fa-share-nodes"></i>
+                Instagram Oficial del Libro:
+            </strong>
+
+            <a
+                href="https://www.instagram.com/dioslibertaavenezuela"
+                target="_blank"
+                style="
+                    color:#fff;
+                    text-decoration:none;
+                    font-size: 1.05rem;
+                    font-weight: 500;
+                "
+            >
+
+                <i
+                    class="fa-brands fa-instagram"
+                    style="
+                        color:#e1306c;
+                        margin-right:8px;
+                    "
+                ></i>
+
+                @dioslibertaavenezuela
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     EVENTOS
+     ========================================== -->
+<section id="eventos" class="section">
+
+    <h2
+        class="section-title"
+        data-i18n="events_title"
+    >
+        Próximos Eventos y Presentaciones
+    </h2>
+
+    <p
+        class="section-subtitle"
+        data-i18n="events_sub"
+    >
+        Acompañanos en las vigilias, cruzadas y congresos proféticos
+    </p>
+
+    <div class="events-grid" id="eventsGridPublic">
+        <div class="event-card">
+            <span class="event-date" data-i18n="ev1_date">2026 / PRÓXIMAMENTE</span>
+            <h3 style="color: var(--text-white); margin-bottom: 10px;" data-i18n="ev1_title">Cruzada Restaurando el Altar (Brasil)</h3>
+            <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 15px;" data-i18n="ev1_location"><i class="fa-solid fa-location-dot"></i> Brasil</p>
+            <p style="color: var(--text-gray);" data-i18n="ev1_desc">Avivamiento, Fuego y Santidad.</p>
+        </div>
+        <div class="event-card">
+            <span class="event-date" data-i18n="ev2_date">2026 / PRÓXIMAMENTE</span>
+            <h3 style="color: var(--text-white); margin-bottom: 10px;" data-i18n="ev2_title">Encuentro de Mujeres "Volviendo al Diseño Original"</h3>
+            <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 15px;" data-i18n="ev2_location"><i class="fa-solid fa-location-dot"></i> Venezuela</p>
+            <p style="color: var(--text-gray);" data-i18n="ev2_desc">Fe, Amor, Transformación.</p>
+        </div>
+    </div>
+
+</section>
+
+<section id="donaciones" class="donations-section">
+
+    <div class="donations-content">
+
+        <h2 class="section-title" id="donations_main_title" data-i18n="donations_main_title">
+            Siembra y Diezmo en el Reino
+        </h2>
+
+        <p data-i18n="donations_sub">
+            Selecciona si deseas realizar tu aporte como
+            <strong>Siembra</strong>
+            o como
+            <strong>Diezmo</strong>,
+            y elige tu método de pago preferido:
+        </p>
+
+
+        <div class="donation-type-selector">
+
+            <button
+                class="donation-type-btn active"
+                onclick="setDonationType('siembra', this)"
+                data-i18n="type_siembra"
+            >
+                🌱 Siembra
+            </button>
+
+            <button
+                class="donation-type-btn"
+                onclick="setDonationType('diezmo', this)"
+                data-i18n="type_diezmo"
+            >
+                🕊 Diezmo
+            </button>
+
+        </div>
+
+
+        <div class="donation-methods-grid">
+
+            <button
+                class="donation-method-btn active"
+                onclick="selectDonationMethod('pagomovil', this)"
+            >
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span data-i18n="btn_pagomovil">
+                    Pago Móvil
+                </span>
+            </button>
+
+            <button
+                class="donation-method-btn"
+                onclick="selectDonationMethod('transferencia', this)"
+            >
+                <i class="fa-solid fa-building-columns"></i>
+                <span data-i18n="btn_transferencia">
+                    Transferencia
+                </span>
+            </button>
+
+            <button
+                class="donation-method-btn"
+                onclick="selectDonationMethod('leadbank', this)"
+            >
+                <i class="fa-solid fa-building-columns"></i>
+                <span data-i18n="btn_leadbank">
+                    Lead Bank
+                </span>
+            </button>
+
+            <button
+                class="donation-method-btn"
+                onclick="selectDonationMethod('western', this)"
+            >
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                <span data-i18n="btn_western">
+                    Western Union
+                </span>
+            </button>
+
+            <button
+                class="donation-method-btn"
+                onclick="selectDonationMethod('binance', this)"
+            >
+                <i class="fa-solid fa-coins"></i>
+                <span data-i18n="btn_binance">
+                    Binance
+                </span>
+            </button>
+
+            <button
+                class="donation-method-btn"
+                onclick="selectDonationMethod('zinli', this)"
+            >
+                <i class="fa-solid fa-wallet"></i>
+                <span data-i18n="btn_zinli">
+                    Zinli
+                </span>
+            </button>
+
+            <button
+                class="donation-method-btn"
+                onclick="selectDonationMethod('paypal', this)"
+            >
+                <i class="fa-brands fa-paypal"></i>
+                <span data-i18n="btn_paypal">
+                    PayPal
+                </span>
+            </button>
+
+        </div>
+
+
+        <div
+            id="donationDetailsBox"
+            style="
+                background: var(--bg-card);
+                border: 1px solid var(--border-gold);
+                padding: 30px;
+                border-radius: 8px;
+                margin-bottom: 25px;
+                text-align: left;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            "
+        >
+
+            <h4
+                id="donationMethodTitle"
+                style="
+                    color: var(--gold-light);
+                    margin-bottom: 12px;
+                    font-size: 1.2rem;
+                "
+            >
+                <i class="fa-solid fa-circle-info"></i>
+                Pago Móvil — Siembra
+            </h4>
+
+            <p
+                id="donationInstruction"
+                style="
+                    color: var(--text-white);
+                    margin-bottom: 20px;
+                    line-height: 1.7;
+                    font-size: 1rem;
+                "
+            >
+                <strong>Banco:</strong> Banco Venezuela (0102)<br>
+                <strong>Teléfono:</strong> 04125082937<br>
+                <strong>C.I.:</strong> 25.389.410
+            </p>
+
+            <div
+                style="
+                    text-align: center;
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                "
+            >
+
+                <button
+                    class="btn-gold"
+                    onclick="proceedDonation()"
+                    id="donationActionBtn"
+                >
+                    Copiar Datos de Pago Móvil (Siembra)
+                </button>
+
+                <button
+                    class="btn-gold"
+                    onclick="openReportModal()"
+                    style="
+                        background: #111;
+                        border: 1px solid var(--gold-primary);
+                        color: var(--gold-light);
+                    "
+                >
+                    <i class="fa-solid fa-receipt"></i>
+
+                    <span id="reportBtnPrefix">
+                        Reportar Pago
+                    </span>
+
+                    (
+                    <span id="reportBtnTypeLabel">
+                        Siembra
+                    </span>
+                    )
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <p
+            style="
+                font-size: 0.9rem;
+                color: var(--gold-light);
+                font-style: italic;
+                margin-top: 20px;
+            "
+            data-i18n="verse_donations"
+        >
+            "Cada ofrenda · Cada siembra · Cada vida transformada — Dios ama al dador alegre"
+
+            <span
+                style="
+                    display: block;
+                    font-size: 0.78rem;
+                    color: #888;
+                    margin-top: 4px;
+                "
+            >
+                (2 Corintios 9:7)
+            </span>
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     MODAL DE REPORTAR PAGO
+     ========================================== -->
+<div class="modal" id="reportModal" style="display:none;">
+    <div class="modal-content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
+        
+        <!-- BOTÓN CERRAR -->
+        <span class="close-modal" onclick="closeModal('reportModal')">&times;</span>
+
+        <h3 class="cinzel-font" style="color: var(--gold-light); text-align: center; margin-bottom: 20px;" data-i18n="modal_report_header">
+            Reportar Pago
+        </h3>
+
+        <form id="reportPaymentForm" onsubmit="submitReportPayment(event)" style="display: flex; flex-direction: column; gap: 15px; color: var(--text-gray);">
+            <input type="hidden" id="emailSubjectInput" name="email_subject" value="¡Nuevo Reporte de Donación: Siembra!">
+            
+            <div>
+                <label for="inputNombre" style="display: block; margin-bottom: 5px; color: var(--gold-light); font-size: 0.9rem;" data-i18n="field_fullname">Nombre completo</label>
+                <input type="text" id="inputNombre" required style="width: 100%; padding: 10px; background: var(--bg-card); color: #fff; border: 1px solid var(--border-gold); border-radius: 6px; outline: none;">
+            </div>
+
+            <div>
+                <label for="inputCorreo" style="display: block; margin-bottom: 5px; color: var(--gold-light); font-size: 0.9rem;" data-i18n="field_email">Correo electrónico</label>
+                <input type="email" id="inputCorreo" required style="width: 100%; padding: 10px; background: var(--bg-card); color: #fff; border: 1px solid var(--border-gold); border-radius: 6px; outline: none;">
+            </div>
+
+            <div>
+                <label for="inputTipoAporte" style="display: block; margin-bottom: 5px; color: var(--gold-light); font-size: 0.9rem;" data-i18n="field_contribution_type">Tipo de contribución</label>
+                <input type="text" id="inputTipoAporte" readonly style="width: 100%; padding: 10px; background: #151515; color: var(--gold-light); border: 1px solid var(--border-gold); border-radius: 6px; outline: none;" value="Siembra">
+            </div>
+
+            <div>
+                <label for="selectMetodoPago" style="display: block; margin-bottom: 5px; color: var(--gold-light); font-size: 0.9rem;" data-i18n="field_payment_method">Método de pago</label>
+                <input type="text" id="selectMetodoPago" readonly style="width: 100%; padding: 10px; background: #151515; color: #fff; border: 1px solid var(--border-gold); border-radius: 6px; outline: none;" value="Pago Móvil">
+            </div>
+
+            <div>
+                <label for="inputComprobante" style="display: block; margin-bottom: 5px; color: var(--gold-light); font-size: 0.9rem;" data-i18n="field_upload_screenshot">Captura del comprobante</label>
+                <input type="file" id="inputComprobante" accept="image/*" required style="width: 100%; padding: 8px; background: var(--bg-card); color: #fff; border: 1px solid var(--border-gold); border-radius: 6px; outline: none;">
+            </div>
+
+            <button type="submit" class="btn-gold" style="width: 100%; padding: 12px; margin-top: 10px; font-size: 0.95rem;" data-i18n="btn_submit_report">
+                Enviar Reporte
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- ==========================================
+     RECURSOS
+     ========================================== -->
+<section
+    id="recursos"
+    class="resources-section"
+>
+
+    <div class="resources-container">
+
+        <div class="resources-header">
+
+            <span class="resources-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </span>
+
+            <h2
+                class="section-title"
+                data-i18n="resources_title"
+            >
+                Recursos
+            </h2>
+
+            <p
+                class="section-subtitle"
+                data-i18n="resources_subtitle"
+            >
+                Devocionales, actualizaciones y contenido para edificar tu vida espiritual.
+            </p>
+
+        </div>
+
+
+        <!-- ACCESO RÁPIDO ADMIN -->
+        <button
+            onclick="window.location.href='admin.html'"
+            title="Administración"
+            aria-label="Administración"
+            style="
+                position: fixed;
+                bottom: 18px;
+                right: 18px;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                border: 1px solid var(--border-gold);
+                background: #0b0b0b;
+                color: var(--gold-primary);
+                cursor: pointer;
+                z-index: 9999;
+                font-size: 15px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+                transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='var(--gold-primary)'; this.style.color='#000';"
+            onmouseout="this.style.background='#0b0b0b'; this.style.color='var(--gold-primary)';"
+        >
+            <i class="fa-solid fa-user-shield"></i>
+        </button>
+
+
+        <div
+            id="publicResourcesEmpty"
+            class="resources-coming-soon"
+        >
+
+            <div class="resources-coming-icon">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+            </div>
+
+            <span
+                class="resources-label"
+                data-i18n="resources_badge"
+            >
+                PRÓXIMAMENTE
+            </span>
+
+            <h3 data-i18n="resources_coming_title">
+                Nuevos recursos están por llegar
+            </h3>
+
+            <p data-i18n="resources_coming_text">
+                Se añadirán más actualizaciones y devocionales.
+                <br>
+                <strong>¡Estén atentos!</strong>
+            </p>
+
+            <div class="resources-line"></div>
+
+        </div>
+
+
+        <div
+            id="publicResourcesGrid"
+            style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+                gap:24px;
+                margin-top:28px;
+            "
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     MODAL PARA VER TODO EL CONTENIDO DEL RECURSO
+     ========================================== -->
+<div
+    id="resourceViewModal"
+    class="resource-view-modal"
+    onclick="if(event.target===this) closeResourceModal()"
+>
+
+    <div class="resource-view-card">
+
+        <button
+            type="button"
+            class="resource-view-close"
+            onclick="closeResourceModal()"
+            aria-label="Cerrar"
+        >
+            &times;
+        </button>
+
+        <div id="resourceViewBody"></div>
+
+    </div>
+
+</div>
+<!-- ==========================================
+     CONTADOR DE VISITANTES
+     ========================================== -->
+<section class="site-visitor-counter" id="siteVisitorCounter">
+    <div class="visitor-counter-card">
+        <div class="visitor-counter-icon">
+            <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="visitor-counter-info">
+            <span class="visitor-counter-label" data-i18n="visitor_counter_label">
+                VISITANTES DEL SITIO
+            </span>
+
+            <strong id="visitorCount">0</strong>
+
+            <span class="visitor-counter-status">
+                <i class="fa-solid fa-circle"></i>
+                <span data-i18n="visitor_counter_status">
+                    Gracias por visitarnos
+                </span>
+            </span>
+        </div>
+    </div>
+</section>
+
+<footer>
+
+    <p>
+        &copy; 2026
+        <span>
+            Centro Mundial de Avivamiento ARDE / Profeta Daniel Riquezes
+        </span>.
+        Todos los derechos reservados.
+    </p>
+
+    <p
+        style="
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #777;
+        "
+        data-i18n="footer_verse"
+    >
+        "Levántate, resplandece; porque ha venido tu luz..." — Isaías 60:1
+    </p>
+
+</footer>
+
+
+<!-- ==========================================
+     LIBRERÍAS
+     ========================================== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="modal-content.js?v=2"></script>
+<script src="js.js?v=16"></script>
+<script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
+<script src="traducion.js"></script>
+<script src="usuarios.js"></script>
+<script>
+
+/* =========================================================
+   ROTACIÓN AUTOMÁTICA PARA MÚLTIPLES CARRUSELES DE CRUZADAS
+   ========================================================= */
+
+function runCrusadeCarousels() {
+
+    const carousels =
+        document.querySelectorAll('.crusade-carousel');
+
+    carousels.forEach(carousel => {
+
+        const slides =
+            carousel.querySelectorAll('.carousel-slide');
+
+        if (slides.length <= 1) return;
+
+        let activeIndex = -1;
+
+        slides.forEach((slide, idx) => {
+
+            if (slide.classList.contains('active')) {
+                activeIndex = idx;
+            }
+
+        });
+
+        if (activeIndex === -1) {
+            activeIndex = 0;
+        }
+
+        slides[activeIndex].style.opacity = '0';
+        slides[activeIndex].classList.remove('active');
+
+        const nextIndex =
+            (activeIndex + 1) % slides.length;
+
+        slides[nextIndex].style.opacity = '1';
+        slides[nextIndex].classList.add('active');
+
+    });
+
+}
+
+setInterval(runCrusadeCarousels, 4000);
+
+
+/* =========================================================
+   SUPABASE — CONTENIDO PÚBLICO DEL INDEX
+   ========================================================= */
+
+(function () {
+
+    const SUPABASE_URL =
+        "https://wufbwtizjzpuccqopvre.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_nnf1EBZJeNbOtGVtM59_LQ_0y_ZR8fy";
+
+    let db = null;
+
+
+    try {
+
+        db = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+    } catch (error) {
+
+        console.error(
+            "No se pudo inicializar Supabase:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       BUSCAR ELEMENTO
+       ===================================================== */
+
+    function buscarElemento(clave) {
+
+        if (!clave) return null;
+
+        let elemento =
+            document.getElementById(clave);
+
+        if (elemento) return elemento;
+
+
+        elemento =
+            document.querySelector(
+                '[data-i18n="' +
+                CSS.escape(clave) +
+                '"]'
+            );
+
+        if (elemento) return elemento;
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       APLICAR TEXTO DE SUPABASE
+       ===================================================== */
+
+    function aplicarTexto(clave, contenido) {
+
+        const elemento =
+            buscarElemento(clave);
+
+        if (!elemento) return false;
+
+        elemento.innerHTML =
+            contenido || "";
+
+        elemento.dataset.liveContent = "true";
+
+        return true;
+
+    }
+
+
+    /* =====================================================
+       VOLVER A APLICAR EL IDIOMA ACTUAL
+       ===================================================== */
+
+    function reaplicarIdiomaActual() {
+
+        try {
+
+            if (
+                typeof window.translatePage === "function"
+            ) {
+
+                const idioma =
+                    typeof window.getCurrentLanguage === "function"
+                        ? window.getCurrentLanguage()
+                        : (
+                            document.getElementById(
+                                "globalLangSelect"
+                            )?.value || "es"
+                        );
+
+                window.translatePage(idioma);
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "No se pudo reaplicar el idioma:",
+                error
+            );
+
+        }
+
+    }
+/* =====================================================
+       CARGAR VIDEOS PÚBLICOS DESDE SUPABASE
+       ===================================================== */
+async function cargarEventosPublicos() {
+        const grid = document.getElementById("eventsGridPublic");
+        if (!grid) return;
+
+        try {
+            const { data, error } = await db
+                .from("site_content")
+                .select("content_value")
+                .eq("section", "admin_data")
+                .eq("content_key", "arde_eventos")
+                .maybeSingle();
+
+            if (error) {
+                console.warn("No se pudieron cargar los eventos:", error.message);
+                return;
+            }
+
+            if (!data || !data.content_value) return;
+
+            let eventos;
+            try {
+                eventos = JSON.parse(data.content_value);
+            } catch (e) {
+                return;
+            }
+
+            if (!Array.isArray(eventos)) return;
+            if (eventos.length === 0) {
+                grid.innerHTML = "";
+                return;
+            }
+
+            grid.innerHTML = eventos.map(item => {
+                const media = item.image_url
+                    ? `<img src="${escapeResourceHtml(item.image_url)}" alt="${escapeResourceHtml(item.title || 'Evento')}" style="width:100%; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border-gold); margin-bottom:12px;">`
+                    : (Array.isArray(item.images) && item.images.length ? `<img src="${escapeResourceHtml(item.images[0])}" alt="${escapeResourceHtml(item.title || 'Evento')}" style="width:100%; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border-gold); margin-bottom:12px;">` : "");
+
+                const video = item.video_url
+                    ? `<a href="${escapeResourceHtml(item.video_url)}" target="_blank" rel="noopener" style="color: var(--gold-light); margin-top: 8px; display:inline-block;"><i class="fa-solid fa-video"></i> Ver video</a>`
+                    : "";
+
+                return `
+                    <div class="event-card">
+                        <span class="event-date">${escapeResourceHtml(item.date || 'PRÓXIMAMENTE')}</span>
+                        ${media}
+                        <h3 style="color: var(--text-white); margin-bottom: 10px;">${escapeResourceHtml(item.title || 'Evento')}</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 15px;"><i class="fa-solid fa-location-dot"></i> ${escapeResourceHtml(item.location || 'Por confirmar')}</p>
+                        <p style="color: var(--text-gray);">${escapeResourceHtml(item.summary || item.text || '')}</p>
+                        ${video}
+                    </div>
+                `;
+            }).join("");
+        } catch (e) {
+            console.warn("Error cargando eventos públicos:", e);
+        }
+    }
+
+    async function cargarVideosPublicos() {
+        const grid = document.getElementById("videosGrid");
+        if (!grid) return;
+
+        try {
+            const { data, error } = await db
+                .from("site_content")
+                .select("content_value")
+                .eq("section", "admin_data")
+                .eq("content_key", "arde_videos")
+                .single();
+
+            if (error || !data || !data.content_value) return;
+
+            const videos = JSON.parse(data.content_value);
+            if (!Array.isArray(videos) || videos.length === 0) return;
+
+            grid.innerHTML = "";
+
+            videos.forEach(video => {
+                const videoId = video.videoId || extractYouTubeVideoId(video.url);
+                // Usamos hqdefault.jpg por defecto para evitar errores 404 en videos que no tienen maxresdefault
+                const thumb = video.thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "");
+                const title = video.title || "Video";
+                const url = video.url || "#";
+
+                const card = document.createElement("div");
+                card.className = "video-card";
+                card.innerHTML = `
+                    <a href="${url}" target="_blank" class="video-thumb-container">
+                        <img src="${thumb}" alt="${escapeResourceHtml(title)}" onerror="this.src='https://img.youtube.com/vi/${videoId}/mqdefault.jpg'">
+                        <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    </a>
+                    <div class="video-info"><h4>${escapeResourceHtml(title)}</h4></div>
+                `;
+                grid.appendChild(card);
+            });
+        } catch (e) {
+            console.warn("Error cargando videos públicos:", e);
+        }
+    }
+
+    // Función auxiliar para extraer el ID de YouTube si es necesario
+    function extractYouTubeVideoId(url) {
+        if (!url) return "";
+        try {
+            const parsed = new URL(url);
+            if (parsed.hostname.includes("youtube.com") || parsed.hostname.includes("youtube-nocookie.com")) {
+                const v = parsed.searchParams.get("v");
+                if (v) return v;
+                const shorts = parsed.pathname.match(/\/shorts\/([^/?]+)/);
+                if (shorts) return shorts[1];
+                const embed = parsed.pathname.match(/\/embed\/([^/?]+)/);
+                if (embed) return embed[1];
+            }
+            if (parsed.hostname === "youtu.be") {
+                return parsed.pathname.replace("/", "").split("?")[0];
+            }
+        } catch (e) {}
+        return "";
+    }
+
+    /* =====================================================
+       CARGAR CRUZADAS PÚBLICAS
+       ===================================================== */
+
+    async function cargarCruzadasPublicas() {
+
+        const container =
+            document.getElementById(
+                "crusadesPublicContainer"
+            );
+
+        if (!container) return;
+
+
+        try {
+
+            const { data, error } = await db
+                .from("site_content")
+                .select("content_value")
+                .eq("section", "admin_data")
+                .eq("content_key", "arde_cruzadas")
+                .single();
+
+
+            if (error) {
+
+                console.warn(
+                    "No se pudieron cargar las cruzadas:",
+                    error.message
+                );
+
+                return;
+
+            }
+
+
+            if (
+                data &&
+                data.content_value
+            ) {
+
+                const cruzadas =
+                    JSON.parse(data.content_value);
+
+
+                if (
+                    cruzadas &&
+                    cruzadas.length > 0
+                ) {
+
+                    container.innerHTML = "";
+
+
+                    cruzadas.forEach(item => {
+
+                        let imageHtml = "";
+
+
+                        /* =================================
+                           CARRUSEL DE IMÁGENES
+                           ================================= */
+
+                        if (
+                            item.images &&
+                            item.images.length > 1
+                        ) {
+
+                            imageHtml = `
+                                <div
+                                    class="carousel-container crusade-carousel"
+                                    style="
+                                        position: relative;
+                                        width: 100%;
+                                        max-width: 270px;
+                                        height: 380px;
+                                        border-radius: 10px;
+                                        overflow: hidden;
+                                        border: 2px solid var(--border-gold);
+                                        box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+                                        margin: 0 auto;
+                                    "
+                                >
+
+                                    ${item.images.map((img, i) => `
+
+                                        <div
+                                            class="carousel-slide ${i === 0 ? 'active' : ''}"
+                                            style="
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                width: 100%;
+                                                height: 100%;
+                                                opacity: ${i === 0 ? '1' : '0'};
+                                                transition: opacity 0.8s ease-in-out;
+                                            "
+                                        >
+
+                                            <img
+                                                src="${img}"
+                                                alt="${item.title || ''}"
+                                                style="
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    object-fit: cover;
+                                                "
+                                            >
+
+                                        </div>
+
+                                    `).join('')}
+
+                                </div>
+                            `;
+
+                        } else {
+
+                            const singleImg =
+                                (
+                                    item.images &&
+                                    item.images.length > 0
+                                )
+                                    ? item.images[0]
+                                    : 'flyerdaniel.jpeg';
+
+
+                            imageHtml = `
+                                <img
+                                    src="${singleImg}"
+                                    alt="${item.title || ''}"
+                                    style="
+                                        width: 100%;
+                                        max-width: 270px;
+                                        border-radius: 10px;
+                                        border: 2px solid var(--border-gold);
+                                        box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+                                    "
+                                >
+                            `;
+
+                        }
+
+
+                        /* =================================
+                           BANNER
+                           ================================= */
+
+                        const banner =
+                            document.createElement("div");
+
+                        banner.className =
+                            "crusade-banner";
+
+                        banner.style.cssText =
+                            "display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-gold); padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);";
+
+
+                        /* =================================
+                           CONTENIDO ORIGINAL DE SUPABASE
+                           ================================= */
+
+                        const crusadeTitle =
+                            item.title || "";
+
+                        const crusadeDescription =
+                            item.summary ||
+                            item.text ||
+                            "";
+
+
+                        /* =================================
+                           DETECTAR CRUZADA
+                           ================================= */
+
+                        const normalizedTitle =
+                            crusadeTitle
+                                .toLowerCase()
+                                .normalize("NFD")
+                                .replace(
+                                    /[\u0300-\u036f]/g,
+                                    ""
+                                );
+
+
+                        let titleKey = "";
+                        let descKey = "";
+
+
+                        if (
+                            normalizedTitle.includes(
+                                "restaurando el altar"
+                            )
+                        ) {
+
+                            titleKey =
+                                "crusade_title";
+
+                            descKey =
+                                "crusade_desc";
+
+                        }
+
+
+                        if (
+                            normalizedTitle.includes(
+                                "mi mejor amigo"
+                            ) ||
+                            normalizedTitle.includes(
+                                "espiritu santo"
+                            )
+                        ) {
+
+                            titleKey =
+                                "crusade_spirit_title";
+
+                            descKey =
+                                "crusade_spirit_desc";
+
+                        }
+
+
+                        /* =================================
+                           CREAR HTML
+                           ================================= */
+
+                        banner.innerHTML = `
+
+                            <div
+                                style="
+                                    flex: 0 0 280px;
+                                    text-align: center;
+                                "
+                            >
+                                ${imageHtml}
+                            </div>
+
+
+                            <div
+                                style="
+                                    flex: 1;
+                                    min-width: 260px;
+                                "
+                            >
+
+                                <h3
+                                    class="cinzel-font"
+                                    ${titleKey ? `data-i18n="${titleKey}"` : ""}
+                                    style="
+                                        color: var(--gold-light);
+                                        font-size: 1.5rem;
+                                        margin-bottom: 15px;
+                                    "
+                                >
+                                    ${crusadeTitle}
+                                </h3>
+
+
+                                <p
+                                    ${descKey ? `data-i18n="${descKey}"` : ""}
+                                    style="
+                                        line-height: 1.7;
+                                        font-size: 1rem;
+                                        color: #ddd;
+                                    "
+                                >
+                                    ${crusadeDescription}
+                                </p>
+
+                            </div>
+
+                        `;
+
+
+                        container.appendChild(banner);
+
+                    });
+
+
+                    /*
+                     * IMPORTANTE:
+                     * Después de insertar las cruzadas,
+                     * dejamos que js.js vuelva a aplicar
+                     * el idioma seleccionado.
+                     */
+                    reaplicarIdiomaActual();
+
+                }
+
+            }
+
+        } catch (e) {
+
+            console.warn(
+                "Error cargando cruzadas:",
+                e
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ESCAPAR HTML PARA RECURSOS
+       ===================================================== */
+
+    function escapeResourceHtml(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =====================================================
+       FORMATO DE FECHA
+       ===================================================== */
+
+    function formatResourceDate(value) {
+
+        if (!value) return "";
+
+        const d = new Date(value);
+
+        if (Number.isNaN(d.getTime())) {
+            return "";
+        }
+
+        return d.toLocaleDateString(
+            "es-VE",
+            {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       URL DE DESCARGA
+       ===================================================== */
+
+    function resourceDownloadUrl(url, fileName) {
+
+        if (!url) return "";
+
+        const separator =
+            url.includes("?")
+                ? "&"
+                : "?";
+
+        return (
+            url +
+            separator +
+            "download=" +
+            encodeURIComponent(
+                fileName || "recurso.pdf"
+            )
+        );
+
+    }
+
+
+    /* =====================================================
+       DESCARGAR PDF
+       ===================================================== */
+
+    async function descargarRecursoPDF(
+        url,
+        fileName
+    ) {
+
+        if (!url) return;
+
+        const downloadUrl =
+            resourceDownloadUrl(
+                url,
+                fileName
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    downloadUrl,
+                    {
+                        method: "GET"
+                    }
+                );
+
+
+            if (!response.ok) {
+                throw new Error(
+                    "No se pudo obtener el PDF"
+                );
+            }
+
+
+            const blob =
+                await response.blob();
+
+
+            const blobUrl =
+                URL.createObjectURL(blob);
+
+
+            const a =
+                document.createElement("a");
+
+
+            a.href = blobUrl;
+
+            a.download =
+                fileName ||
+                "recurso.pdf";
+
+
+            document.body.appendChild(a);
+
+            a.click();
+
+            a.remove();
+
+
+            setTimeout(
+                () =>
+                    URL.revokeObjectURL(
+                        blobUrl
+                    ),
+                1500
+            );
+
+
+        } catch (error) {
+
+            const a =
+                document.createElement("a");
+
+
+            a.href =
+                downloadUrl;
+
+            a.download =
+                fileName ||
+                "recurso.pdf";
+
+
+            document.body.appendChild(a);
+
+            a.click();
+
+            a.remove();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MODAL DE RECURSO
+       ===================================================== */
+
+    function openResourceModal(resource) {
+
+        const modal =
+            document.getElementById(
+                "resourceViewModal"
+            );
+
+        const body =
+            document.getElementById(
+                "resourceViewBody"
+            );
+
+
+        if (!modal || !body) return;
+
+
+        const title =
+            escapeResourceHtml(
+                resource.title ||
+                "Recurso PDF"
+            );
+
+
+        const summary =
+            escapeResourceHtml(
+                resource.summary ||
+                ""
+            );
+
+
+        const text =
+            escapeResourceHtml(
+                resource.text ||
+                ""
+            );
+
+
+        const fileName =
+            resource.file_name ||
+            "recurso.pdf";
+
+
+        const date =
+            formatResourceDate(
+                resource.created_at
+            );
+
+
+        const pdfUrl =
+            String(
+                resource.file_url ||
+                ""
+            );
+
+
+        const downloadUrl =
+            resourceDownloadUrl(
+                pdfUrl,
+                fileName
+            );
+
+
+        const whatsapp =
+            String(
+                resource.whatsapp ||
+                ""
+            ).trim();
+
+
+        const safeWhatsApp =
+            /^https?:\/\//i.test(
+                whatsapp
+            )
+                ? whatsapp
+                : "";
+
+
+        const images =
+            Array.isArray(resource.images)
+                ? resource.images.filter(Boolean)
+                : [];
+
+
+        const gallery =
+            images.length
+                ? `
+                    <div class="resource-view-gallery">
+
+                        ${images.map(
+                            (img, i) => `
+                                <img
+                                    src="${escapeResourceHtml(img)}"
+                                    alt="${escapeResourceHtml(resource.title || "Recurso")} - imagen ${i + 1}"
+                                >
+                            `
+                        ).join("")}
+
+                    </div>
+                `
+                : "";
+
+
+        body.innerHTML = `
+
+            <h2
+                class="cinzel-font resource-view-title"
+            >
+                ${title}
+            </h2>
+
+
+            ${
+                summary
+                    ? `
+                        <p
+                            style="
+                                color:#bbb;
+                                line-height:1.6;
+                                margin-bottom:5px;
+                            "
+                        >
+                            <strong
+                                style="
+                                    color:var(--gold-light);
+                                "
+                            >
+                                Resumen:
+                            </strong>
+
+                            ${summary}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            ${
+                date
+                    ? `
+                        <div class="public-pdf-meta">
+
+                            <i class="fa-solid fa-calendar"></i>
+
+                            ${escapeResourceHtml(date)}
+
+                            ${
+                                fileName
+                                    ? ` · ${escapeResourceHtml(fileName)}`
+                                    : ""
+                            }
+
+                        </div>
+                    `
+                    : ""
+            }
+
+
+            ${
+                text
+                    ? `
+                        <div class="resource-view-text">
+                            ${text}
+                        </div>
+                    `
+                    : `
+                        <p
+                            style="
+                                color:#999;
+                                margin-top:18px;
+                            "
+                        >
+                            Este recurso no tiene una descripción adicional.
+                        </p>
+                    `
+            }
+
+
+            ${gallery}
+
+
+            <div class="resource-view-actions">
+
+                <a
+                    href="${escapeResourceHtml(pdfUrl)}"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn-gold"
+                >
+                    <i class="fa-solid fa-eye"></i>
+                    Ver PDF
+                </a>
+
+
+                <button
+                    type="button"
+                    class="btn-gold public-pdf-secondary"
+                    id="resourceModalDownloadBtn"
+                >
+                    <i class="fa-solid fa-download"></i>
+                    Descargar PDF
+                </button>
+
+
+                ${
+                    safeWhatsApp
+                        ? `
+                            <a
+                                href="${escapeResourceHtml(safeWhatsApp)}"
+                                target="_blank"
+                                rel="noopener"
+                                class="btn-gold"
+                            >
+                                <i class="fa-brands fa-whatsapp"></i>
+                                Canal / WhatsApp
+                            </a>
+                        `
+                        : ""
+                }
+
+            </div>
+
+        `;
+
+
+        const downloadBtn =
+            document.getElementById(
+                "resourceModalDownloadBtn"
+            );
+
+
+        if (downloadBtn) {
+
+            downloadBtn.addEventListener(
+                "click",
+                () =>
+                    descargarRecursoPDF(
+                        pdfUrl,
+                        fileName
+                    )
+            );
+
+        }
+
+
+        modal.style.display =
+            "flex";
+
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    /* =====================================================
+       CERRAR MODAL RECURSO
+       ===================================================== */
+
+    function closeResourceModal() {
+
+        const modal =
+            document.getElementById(
+                "resourceViewModal"
+            );
+
+
+        if (modal) {
+            modal.style.display =
+                "none";
+        }
+
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    window.closeResourceModal =
+        closeResourceModal;
+
+    window.openResourceModal =
+        openResourceModal;
+
+
+    /* =====================================================
+       RENDERIZAR RECURSOS PÚBLICOS
+       ===================================================== */
+
+    function renderPublicResources(resources) {
+
+        const grid =
+            document.getElementById(
+                "publicResourcesGrid"
+            );
+
+
+        const empty =
+            document.getElementById(
+                "publicResourcesEmpty"
+            );
+
+
+        if (!grid || !empty) return;
+
+
+        const valid =
+            (resources || [])
+                .filter(
+                    r =>
+                        r &&
+                        r.active !== false &&
+                        r.file_url
+                );
+
+
+        grid.innerHTML = "";
+
+
+        if (!valid.length) {
+
+            empty.style.display =
+                "flex";
+
+            return;
+
+        }
+
+
+        empty.style.display =
+            "none";
+
+
+        valid.forEach(resource => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "public-pdf-card";
+
+
+            const title =
+                escapeResourceHtml(
+                    resource.title ||
+                    "Recurso PDF"
+                );
+
+
+            const summary =
+                escapeResourceHtml(
+                    resource.summary ||
+                    "Contenido ministerial para edificar tu vida espiritual."
+                );
+
+
+            const fileName =
+                escapeResourceHtml(
+                    resource.file_name ||
+                    "Documento PDF"
+                );
+
+
+            const date =
+                formatResourceDate(
+                    resource.created_at
+                );
+
+
+            const safeUrl =
+                String(
+                    resource.file_url ||
+                    ""
+                );
+
+
+            const images =
+                Array.isArray(
+                    resource.images
+                )
+                    ? resource.images.filter(Boolean)
+                    : [];
+
+
+            const imagePreview =
+                images.length
+                    ? `
+                        <div class="public-pdf-gallery-mini">
+
+                            ${images
+                                .slice(0, 3)
+                                .map(
+                                    (img, i) =>
+                                        `
+                                            <img
+                                                src="${escapeResourceHtml(img)}"
+                                                alt="Vista previa ${i + 1}"
+                                            >
+                                        `
+                                )
+                                .join("")}
+
+
+                            ${
+                                images.length > 3
+                                    ? `
+                                        <span
+                                            class="public-pdf-more"
+                                        >
+                                            +${images.length - 3} fotos
+                                        </span>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+                    `
+                    : "";
+
+
+            const hasExtra =
+                Boolean(
+                    (
+                        resource.text ||
+                        ""
+                    ).trim() ||
+                    images.length ||
+                    (
+                        resource.whatsapp ||
+                        ""
+                    ).trim()
+                );
+
+
+            card.innerHTML = `
+
+                <div class="public-pdf-icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+
+
+                <h3 class="cinzel-font">
+                    ${title}
+                </h3>
+
+
+                <p>
+                    ${summary}
+                </p>
+
+
+                ${imagePreview}
+
+
+                <div class="public-pdf-meta">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                    ${fileName}
+
+                    ${
+                        date
+                            ? ` · ${escapeResourceHtml(date)}`
+                            : ""
+                    }
+
+                </div>
+
+
+                <div class="public-pdf-actions">
+
+                    ${
+                        hasExtra
+                            ? `
+                                <button
+                                    type="button"
+                                    class="btn-gold public-pdf-content-btn"
+                                >
+                                    <i class="fa-solid fa-book-open"></i>
+                                    Ver contenido
+                                </button>
+                            `
+                            : ""
+                    }
+
+
+                    <a
+                        href="${escapeResourceHtml(safeUrl)}"
+                        target="_blank"
+                        rel="noopener"
+                        class="btn-gold"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                        Ver PDF
+                    </a>
+
+
+                    <button
+                        type="button"
+                        class="btn-gold public-pdf-secondary public-download-btn"
+                    >
+                        <i class="fa-solid fa-download"></i>
+                        Descargar
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const contentBtn =
+                card.querySelector(
+                    ".public-pdf-content-btn"
+                );
+
+
+            if (contentBtn) {
+
+                contentBtn.addEventListener(
+                    "click",
+                    () =>
+                        openResourceModal(
+                            resource
+                        )
+                );
+
+            }
+
+
+            const downloadBtn =
+                card.querySelector(
+                    ".public-download-btn"
+                );
+
+
+            if (downloadBtn) {
+
+                downloadBtn.addEventListener(
+                    "click",
+                    () =>
+                        descargarRecursoPDF(
+                            safeUrl,
+                            resource.file_name ||
+                            "recurso.pdf"
+                        )
+                );
+
+            }
+
+
+            grid.appendChild(card);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       CARGAR RECURSOS DESDE SUPABASE
+       ===================================================== */
+
+    async function cargarRecursosPublicos() {
+
+        try {
+
+            const {
+                data,
+                error
+            } = await db
+                .from("site_content")
+                .select("content_value")
+                .eq(
+                    "section",
+                    "admin_data"
+                )
+                .eq(
+                    "content_key",
+                    "arde_recursos"
+                )
+                .maybeSingle();
+
+
+            if (error) {
+
+                console.warn(
+                    "No se pudieron cargar los recursos:",
+                    error.message
+                );
+
+                return;
+
+            }
+
+
+            let resources = [];
+
+
+            if (
+                data &&
+                data.content_value
+            ) {
+
+                try {
+
+                    resources =
+                        JSON.parse(
+                            data.content_value
+                        );
+
+                } catch (e) {
+
+                    resources = [];
+
+                }
+
+            }
+
+
+            renderPublicResources(
+                Array.isArray(resources)
+                    ? resources
+                    : []
+            );
+
+
+            /*
+             * Si hay contenido nuevo,
+             * volvemos a ejecutar el idioma.
+             */
+            reaplicarIdiomaActual();
+
+        } catch (error) {
+
+            console.warn(
+                "Error cargando Recursos:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SINCRONIZAR INDEX CON SUPABASE
+       ===================================================== */
+
+    async function sincronizarIndex(refreshAdminCards = false) {
+
+        try {
+
+            const resultado =
+                await db
+                    .from("site_content")
+                    .select(
+                        "section,content_key,content_value,updated_at"
+                    )
+                    .eq(
+                        "section",
+                        "live_index"
+                    );
+
+
+            if (!resultado.error) {
+
+                const datos =
+                    resultado.data || [];
+
+
+                datos.forEach(
+                    function (row) {
+
+                        if (
+                            row.section ===
+                            "live_index"
+                        ) {
+
+                            aplicarTexto(
+                                row.content_key,
+                                row.content_value
+                            );
+
+                        }
+
+                    }
+                );
+
+                reaplicarIdiomaActual();
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Error sincronizando Index:",
+                error
+            );
+
+        }
+
+        await Promise.all([
+            loadPublicAdminCardData(refreshAdminCards),
+            cargarCruzadasPublicas(),
+            cargarEventosPublicos(),
+            cargarRecursosPublicos(),
+            cargarVideosPublicos()
+        ]);
+    }
+
+    function refrescarIndexDesdeCambiosExternos() {
+        if (document.hidden) {
+            return;
+        }
+
+        setTimeout(function () {
+            sincronizarIndex(true);
+        }, 200);
+    }
+
+
+    /* =====================================================
+       ESC
+       ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeResourceModal();
+
+            }
+
+        }
+    );
+
+    window.addEventListener(
+        "storage",
+        function (event) {
+            if (
+                event.key === "arde_sync_timestamp"
+            ) {
+                refrescarIndexDesdeCambiosExternos();
+            }
+        }
+    );
+
+    document.addEventListener(
+        "visibilitychange",
+        function () {
+            if (!document.hidden) {
+                refrescarIndexDesdeCambiosExternos();
+            }
+        }
+    );
+
+    window.addEventListener(
+        "focus",
+        refrescarIndexDesdeCambiosExternos
+    );
+
+    window.addEventListener(
+        "pageshow",
+        function () {
+            sincronizarIndex(true);
+        }
+    );
+
+
+    /* =====================================================
+       CARGAR CUANDO TERMINA LAPÁGINA
+       ===================================================== */
+
+    window.addEventListener(
+        "load",
+        function () {
+            sincronizarIndex();
+        }
+    );
+
+    /*
+     * =====================================================
+     * SI JS.JS CAMBIA EL IDIOMA DESPUÉS DE CARGAR SUPABASE
+     * =====================================================
+     *
+     * No reemplazamos el sistema de idiomas.
+     * Solicamente escuchamos su evento.
+     */
+
+    window.addEventListener(
+        "ardeLanguageChanged",
+        function () {
+
+            /*
+             * Los elementos estáticos son manejados
+             * directamente por js.js.
+             *
+             * El contenido generado dinámicamente
+             * también se vuelve a procesar.
+             */
+
+             setTimeout(
+                function () {
+
+                    reaplicarIdiomaActual();
+
+                },
+                0
+            );
+
+        }
+    );
+
+
+})();
+</script>
+
+</body>
+</html>

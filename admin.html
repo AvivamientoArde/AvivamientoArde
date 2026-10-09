@@ -1,0 +1,3330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Mundial de Avivamiento ARDE | Panel de Edición Visual</title>
+    <link rel="icon" href="flame.svg?v=1" type="image/svg+xml">
+
+    <!-- Estilos CSS originales -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuentes Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa8c2c;
+            --card: #101010;
+            --border: rgba(212,175,55,.25);
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            background: #050505;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(circle at center, rgba(212,175,55,.08), transparent 45%), #050505;
+        }
+
+        .login-box {
+            position: relative;
+            width: 100%;
+            max-width: 430px;
+            background: rgba(15,15,15,.95);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,.7), inset 0 0 30px rgba(212,175,55,.02);
+        }
+
+        .close-login-btn {
+            position: absolute;
+            top: 16px;
+            right: 22px;
+            color: #888;
+            font-size: 28px;
+            text-decoration: none;
+            font-weight: 300;
+            line-height: 1;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .close-login-btn:hover {
+            color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .logo-login {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo-symbol {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: Cinzel, serif;
+            font-size: 28px;
+            box-shadow: 0 0 25px rgba(212,175,55,.15);
+        }
+
+        .logo-login h1 {
+            font-family: Cinzel, serif;
+            color: var(--gold);
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        .logo-login p {
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gold-light);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .login-box input {
+            width: 100%;
+            background: #080808;
+            border: 1px solid #292929;
+            color: #fff;
+            border-radius: 10px;
+            padding: 13px 14px;
+            outline: none;
+            font-family: inherit;
+            transition: .25s;
+        }
+
+        .login-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212,175,55,.08);
+        }
+
+        .main-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #080808;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s;
+            margin-top: 10px;
+        }
+
+        .main-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .error {
+            color: #ff7777;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        #dashboard {
+            display: none;
+            padding-bottom: 110px;
+        }
+
+        .editable-active {
+            outline: 2px dashed var(--gold) !important;
+            outline-offset: 4px;
+            cursor: text;
+            transition: outline 0.2s;
+        }
+
+        .editable-active:hover {
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        .card-admin-overlay {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .btn-card-edit {
+            flex: 1;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-card-edit:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .btn-card-delete {
+            background: rgba(255, 77, 77, 0.15);
+            border: 1px solid #ff4d4d;
+            color: #ff7777;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-card-delete:hover {
+            background: #ff4d4d;
+            color: #fff;
+        }
+
+        .btn-add-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin: 15px 0 25px 0;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-add-item:hover {
+            transform: scale(1.03);
+        }
+
+        .admin-modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+
+        .admin-modal-card label {
+            display: block;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+
+        .admin-modal-card input[type="text"],
+        .admin-modal-card textarea {
+            width: 100%;
+            padding: 11px;
+            background: #111;
+            border: 1px solid var(--border-gold);
+            color: #fff;
+            border-radius: 6px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .admin-modal-card textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .image-preview-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .image-preview-item {
+            position: relative;
+            width: 110px;
+            height: 90px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview-item .btn-remove-img {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(255, 0, 0, 0.85);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .books-admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .admin-floating-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.96);
+            border-top: 1px solid var(--border);
+            padding: 14px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .admin-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .resource-admin-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .resource-admin-file {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            color: var(--gold-light);
+            font-size: .86rem;
+            word-break: break-all;
+        }
+        .resource-admin-file i { color: var(--gold); }
+        .pdf-upload-box {
+            border: 1px dashed var(--gold);
+            background: rgba(212,175,55,.05);
+            padding: 14px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+        .pdf-upload-box small { display:block; color:#999; margin-top:7px; line-height:1.5; }
+        .pdf-current-file {
+            display:none;
+            margin-top:8px;
+            padding:10px;
+            border-radius:7px;
+            background:#090909;
+            border:1px solid var(--border);
+            color:#ddd;
+            font-size:.85rem;
+            word-break:break-all;
+        }
+    </style>
+</head>
+<body>
+
+<section id="loginScreen" class="login-screen">
+    <div class="login-box">
+        <a href="index.html" class="close-login-btn" title="Volver a la página principal">&times;</a>
+
+        <div class="logo-login">
+            <div class="logo-symbol">AR</div>
+            <h1>ARDE</h1>
+            <p>Panel de Administración</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Tu usuario" autocomplete="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Tu contraseña" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="main-button">ENTRAR AL PANEL</button>
+            <div id="loginError" class="error"></div>
+        </form>
+    </div>
+</section>
+
+<section id="dashboard">
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-fire" style="color: var(--gold-primary);"></i>
+                ARDE <span style="font-size:0.75rem; color:var(--gold);">(MODO EDICIÓN VISUAL)</span>
+            </a>
+            
+            <button class="menu-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#quienes-somos" onclick="toggleMobileMenu()">Quiénes Somos</a></li>
+                <li><a href="#ministerios" onclick="toggleMobileMenu()">Ministerios</a></li>
+                <li><a href="#movimientos" onclick="toggleMobileMenu()">Movimientos</a></li>
+                <li><a href="#fundaciones" onclick="toggleMobileMenu()">Fundaciones</a></li>
+                <li><a href="#libros" onclick="toggleMobileMenu()">Libros</a></li>
+                <li><a href="#eventos" onclick="toggleMobileMenu()">Eventos</a></li>
+                <li><a href="#recursos" onclick="toggleMobileMenu()">Recursos</a></li>
+                <li><a href="#donaciones" onclick="toggleMobileMenu()" style="color: var(--gold-primary);">Donaciones</a></li>
+                <li><a href="javascript:void(0)" onclick="openContactModal()">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+    <div class="lang-selector">
+        <select id="globalLangSelect">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+            <option value="ar">العربية</option>
+            <option value="he">עברית</option>
+        </select>
+    </div>
+</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <img src="Etiqueta.png" alt="Centro Mundial de Avivamiento ARDE" class="hero-tag-img">
+            <a href="#quienes-somos" class="btn-gold">Conoce Su Ministerio</a>
+        </div>
+    </section>
+
+    <section id="quienes-somos" class="section">
+        <h2 class="section-title editable-active" id="about_main_title" contenteditable="true">Quiénes Somos — ARDE</h2>
+        <p class="section-subtitle editable-active" id="about_main_sub" contenteditable="true">Centro Mundial de Avivamiento ARDE y Trayectoria Ministerial</p>
+
+      <div class="about-grid">
+    <div class="about-text">
+
+        <p class="editable-active" id="about_p1" contenteditable="true"><strong>Centro Mundial de Avivamiento ARDE</strong> es una iglesia profética y de avivamiento, dirigida por el <em>Profeta Daniel Riquezes y su esposa, Andrea de Riquezes</em>.</p>
+
+        <p class="editable-active" id="about_p2" contenteditable="true">Este ministerio nació en el corazón de Dios con el propósito de <strong>impactar a las naciones a través del poder del Espíritu Santo</strong>, anunciar el Evangelio y preparar el camino para el regreso de nuestro Señor Jesucristo.</p>
+
+        <p class="editable-active" id="about_p3" contenteditable="true">Nuestra misión es <strong>enseñar la verdad a la luz de la Palabra de Dios, levantar discípulos valientes y formar guerreros espirituales</strong> que vivan en santidad, conozcan su identidad en Cristo y sean instrumentos de transformación en su generación.</p>
+
+        <h3 class="cinzel-font editable-active" id="bio_heading" contenteditable="true" style="color: var(--gold-light); margin: 25px 0 15px 0; font-size: 1.3rem;">Profeta Daniel Riquezes</h3>
+
+        <p class="editable-active" id="bio_p1" contenteditable="true">El <strong>Profeta Daniel Riquezes</strong>, de origen venezolano y actualmente residente en Venezuela, tuvo un encuentro con Cristo a los 20 años de edad, mientras era estudiante, en el estado Anzoátegui, Venezuela. Desde entonces, respondió al llamado de Dios y decidió dedicarse al ministerio profético a tiempo completo.</p>
+
+        <p class="editable-active" id="bio_p2" contenteditable="true">Según su testimonio, durante una experiencia sobrenatural recibió de Dios un llamado con estas palabras:</p>
+
+        <p class="editable-active" id="bio_quote" contenteditable="true" style="border-left: 3px solid var(--gold-primary); padding-left: 15px; margin: 15px 0; color: var(--gold-light);"><em>“Te he llamado como mi profeta y te he escogido como príncipe de mi pueblo.”</em></p>
+
+        <p class="editable-active" id="bio_p3" contenteditable="true">
+            A partir de ese momento, asumió el compromiso de predicar el Evangelio con <strong>valentía, denuedo y convicción</strong>, llevando el mensaje de Cristo tanto a las calles como a las diferentes plataformas digitales.
+        </p>
+
+        <p class="editable-active" id="bio_p4" contenteditable="true">
+            Como resultado de este ministerio, Dios ha permitido un crecimiento significativo de su alcance e influencia en Venezuela y en diferentes lugares de Latinoamérica, impactando diariamente a miles de personas mediante <strong>predicaciones, enseñanzas y mensajes proféticos</strong>.
+        </p>
+
+        <p class="editable-active" id="bio_p5" contenteditable="true">
+            Su ministerio mantiene presencia constante en plataformas como <strong>Instagram, TikTok y YouTube</strong>, utilizando los medios digitales como herramientas para anunciar el Evangelio y llevar un mensaje de fe, restauración y transformación.
+        </p>
+
+</div>
+
+            <div class="carousel-container" id="photoCarousel">
+                <div class="carousel-slide active">
+                    <img src="Foto personal.jpg" alt="Profeta Daniel Riquezes - Foto Principal">
+                </div>
+                <div class="carousel-slide">
+                    <img src="Foto Personal 2.jpeg" alt="Profeta Daniel Riquezes - Segunda Foto">
+                </div>
+            </div>
+        </div>
+
+        <div class="social-links-bar">
+            <a href="https://whatsapp.com/channel/0029Vb942EuADTO8erP90U09" target="_blank" class="social-btn" title="Canal de WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@profetadanielriquezes/videos" target="_blank" class="social-btn" title="YouTube Oficial"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@profetadanielriquezes" target="_blank" class="social-btn" title="TikTok Oficial"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/cmdeavivamientoarde" target="_blank" class="social-btn" title="Instagram Oficial"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/ProfetaDanielRiquezes" target="_blank" class="social-btn" title="Facebook Oficial"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+
+        <div class="crusade-container" style="display: flex; flex-direction: column; gap: 40px; margin: 40px 0;" id="cruzadasAdminContainer">
+            <div style="text-align: center;">
+                <button class="btn-add-item" onclick="openAdminCardModal('cruzada', -1)">
+                    <i class="fa-solid fa-plus-circle"></i> Añadir Nueva Cruzada
+                </button>
+            </div>
+
+            <div class="crusades-grid-admin" id="cruzadasGrid" style="display: flex; flex-direction: column; gap: 40px;"></div>
+        </div>
+
+    
+<div class="videos-container">
+
+    <h3 class="cinzel-font editable-active"
+        id="videos_title"
+        contenteditable="true"
+        style="text-align:center;color:var(--gold-light);font-size:1.6rem;margin-bottom:20px;">
+        Prédicas y Mensajes en YouTube
+    </h3>
+
+    <div id="adminVideosEditor" class="admin-videos-editor">
+
+        <!-- Los videos se generan automáticamente desde admin.js -->
+
+    </div>
+
+</div>
+
+    </section>
+
+    <section id="ministerios" class="section" style="background: var(--bg-dark-gray);">
+        <h2 class="section-title editable-active" id="ministries_title" contenteditable="true">Nuestros Ministerios</h2>
+        <p class="section-subtitle editable-active" id="ministries_sub" contenteditable="true">Conoce el propósito, historia y canal de WhatsApp de cada ministerio</p>
+        
+        <div style="text-align: center;">
+            <button class="btn-add-item" onclick="openAdminCardModal('ministerio', -1)">
+                <i class="fa-solid fa-plus-circle"></i> Añadir Nuevo Ministerio
+            </button>
+        </div>
+
+        <div class="ministries-grid" id="ministeriosGrid"></div>
+    </section>
+
+    <section id="movimientos" class="section">
+        <h2 class="section-title editable-active" id="movements_title" contenteditable="true">Movimientos y Escuelas</h2>
+        <p class="section-subtitle editable-active" id="movements_sub" contenteditable="true">Explora los movimientos de avivamiento y nuestra escuela profética</p>
+        
+        <div style="text-align: center;">
+            <button class="btn-add-item" onclick="openAdminCardModal('movimiento', -1)">
+                <i class="fa-solid fa-plus-circle"></i> Añadir Nuevo Movimiento
+            </button>
+        </div>
+
+        <div class="grid-2x2" id="movimientosGrid"></div>
+    </section>
+
+    <section id="fundaciones" class="section" style="background: var(--bg-dark-gray);">
+        <h2 class="section-title editable-active" id="foundations_title" contenteditable="true">Fundaciones y Ayuda Social</h2>
+        <p class="section-subtitle editable-active" id="foundations_sub" contenteditable="true">Acciones prácticas que manifiestan el amor de Dios en la sociedad</p>
+
+        <div style="text-align: center;">
+            <button class="btn-add-item" onclick="openAdminCardModal('fundacion', -1)">
+                <i class="fa-solid fa-plus-circle"></i> Añadir Nueva Fundación
+            </button>
+        </div>
+
+        <div class="ministries-grid" id="fundacionesGrid"></div>
+    </section>
+
+    <section id="libros" class="section books-section">
+        <h2 class="section-title editable-active" id="books_main_title" contenteditable="true">Obra Literaria</h2>
+        <p class="section-subtitle editable-active" id="books_main_sub" contenteditable="true">Publicaciones, literatura profética y testimonios de fe</p>
+
+        <div style="text-align: center;">
+            <button class="btn-add-item" onclick="openAdminCardModal('libro', -1)">
+                <i class="fa-solid fa-plus-circle"></i> Añadir Nuevo Libro
+            </button>
+        </div>
+
+        <div class="books-admin-grid" id="librosGrid"></div>
+    </section>
+
+    <section id="eventos" class="section">
+        <h2 class="section-title editable-active" id="events_title" contenteditable="true">Próximos Eventos y Presentaciones</h2>
+        <p class="section-subtitle editable-active" id="events_sub" contenteditable="true">Acompañanos en las vigilias, cruzadas y congresos proféticos</p>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="btn-add-item" onclick="openAdminCardModal('evento', -1)">
+                <i class="fa-solid fa-plus-circle"></i> Añadir Nuevo Evento
+            </button>
+        </div>
+
+        <div class="events-grid" id="eventosGrid"></div>
+    </section>
+
+    <section id="donaciones" class="donations-section">
+        <div class="donations-content">
+            <h2 class="section-title" id="donations_main_title">Siembra y Diezmo en el Reino</h2>
+            <p id="donations_sub">Selecciona si deseas realizar tu aporte como <strong>Siembra</strong> o como <strong>Diezmo</strong>, y elige tu método de pago preferido:</p>
+            
+            <div id="donationDetailsBox" style="background: var(--bg-card); border: 1px solid var(--border-gold); padding: 30px; border-radius: 8px; margin-bottom: 25px; text-align: left;">
+                <h4 id="donationMethodTitle" style="color: var(--gold-light); margin-bottom: 12px; font-size: 1.2rem;"><i class="fa-solid fa-circle-info"></i> Pago Móvil — Siembra</h4>
+                <p id="donationInstruction" style="color: var(--text-white); margin-bottom: 20px; line-height: 1.7; font-size: 1rem;">
+                    <strong>Banco:</strong> Banco Venezuela (0102)<br>
+                    <strong>Teléfono:</strong> 04125082937<br>
+                    <strong>C.I.:</strong> 25.389.410
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="recursos" class="resources-section">
+        <div class="resources-container">
+            <div class="resources-header">
+                <span class="resources-icon"><i class="fa-solid fa-book-open"></i></span>
+                <h2 class="section-title editable-active" id="resources_title" contenteditable="true">Recursos</h2>
+                <p class="section-subtitle editable-active" id="resources_subtitle" contenteditable="true">Devocionales, actualizaciones y contenido para edificar tu vida espiritual.</p>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn-add-item" onclick="openAdminCardModal('recurso', -1)">
+                    <i class="fa-solid fa-plus-circle"></i> Publicar Nuevo Recurso / Devocional
+                </button>
+                <button type="button" class="btn-add-item" onclick="openAdminCardModal('recurso', -1); setTimeout(() => document.getElementById('modalPdfFileInput')?.click(), 150);" style="margin-left:8px;">
+                    <i class="fa-solid fa-file-circle-plus"></i> Cargar varios PDF
+                </button>
+                <div id="recursosCounter" style="margin-top:10px;color:#aaa;font-size:.82rem;">0 PDFs publicados · puedes agregar 5 o más</div>
+            </div>
+
+            <div class="resources-coming-soon">
+                <span class="resources-label editable-active" id="resources_badge" contenteditable="true">PRÓXIMAMENTE</span>
+                <h3 class="editable-active" id="resources_coming_title" contenteditable="true">Nuevos recursos están por llegar</h3>
+                <p class="editable-active" id="resources_coming_text" contenteditable="true">Se añadirán más actualizaciones y devocionales. ¡Estén atentos!</p>
+                <div id="recursosGrid" style="margin-top: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>Centro Mundial de Avivamiento ARDE / Profeta Daniel Riquezes</span>. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="admin-floating-bar">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span class="admin-badge"><i class="fa-solid fa-pen-to-square"></i> Edición Visual Activa</span>
+            <span id="saveStatus" style="font-size:0.85rem; color:var(--gold-light);"></span>
+        </div>
+        <div style="display: flex; gap: 12px;">
+            <button class="btn-add-item" onclick="saveAllChanges()" style="margin:0; padding:10px 24px;">
+                <i class="fa-solid fa-floppy-disk"></i> GUARDAR TODO EL SITIO
+            </button>
+            <button onclick="logoutAdmin()" style="background:transparent; border:1px solid var(--border); color:#aaa; padding:9px 16px; border-radius:8px; cursor:pointer;">
+                <i class="fa-solid fa-right-from-bracket"></i> Salir
+            </button>
+        </div>
+    </div>
+
+</section>
+
+<div class="admin-modal-backdrop" id="adminCardModal">
+    <div class="admin-modal-card">
+        <span class="close-modal" onclick="closeAdminCardModal()" style="position:absolute; top:15px; right:15px; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</span>
+        <h3 class="cinzel-font" id="adminModalHeaderTitle" style="color: var(--gold-light); margin-bottom: 15px;">Editar Elemento</h3>
+        
+        <input type="hidden" id="modalEditType">
+        <input type="hidden" id="modalEditIndex">
+
+        <label>Título / Nombre:</label>
+        <input type="text" id="modalInputTitle" placeholder="Ej. Restaurando el Altar">
+
+        <label>Resumen Corto (Aparece en la tarjeta):</label>
+        <input type="text" id="modalInputSummary" placeholder="Breve descripción">
+
+        <label>Historia Completa / Contenido del Modal / Descripción:</label>
+        <textarea id="modalInputFullText" placeholder="Escribe aquí toda la descripción..."></textarea>
+
+        <div id="modalExtraFields">
+            <label id="modalInputLinkLabel">Enlace del Canal de WhatsApp (Opcional):</label>
+            <input type="url" id="modalInputWhatsApp" placeholder="https://whatsapp.com/channel/...">
+
+            <div id="eventoExtraFields" style="display:none;">
+                <label>Fecha del evento:</label>
+                <input type="text" id="modalEventDate" placeholder="2026 / PRÓXIMAMENTE">
+
+                <label>Ubicación:</label>
+                <input type="text" id="modalEventLocation" placeholder="Brasil o En línea">
+
+                <label>Video / enlace del evento (Opcional):</label>
+                <input type="url" id="modalEventVideo" placeholder="https://youtube.com/watch?... o https://...">
+            </div>
+
+            <div id="resourcePdfFields" style="display:none;" class="pdf-upload-box">
+                <label style="margin-top:0;">Archivo PDF:</label>
+                <input type="file" id="modalPdfFileInput" accept="application/pdf,.pdf" multiple style="display:none;" onchange="handlePdfSelect(this)">
+                <button type="button" class="btn-gold" onclick="document.getElementById('modalPdfFileInput').click()" style="width:100%; padding:10px; font-size:.85rem;">
+                    <i class="fa-solid fa-file-pdf"></i> Seleccionar uno o varios PDF desde la PC
+                </button>
+                <div id="pdfCurrentFile" class="pdf-current-file"></div>
+                <small>Puedes seleccionar 1, 5 o más PDF. Al guardar, cada archivo nuevo se publicará como un recurso independiente y aparecerá en el Index.</small>
+            </div>
+        </div>
+
+        <label>Galería de Fotos / Carrusel (Añadir desde la PC):</label>
+        <input type="file" id="modalImageFileInput" accept="image/*" multiple style="display: none;" onchange="handleFileSelect(this)">
+        <button type="button" class="btn-gold" onclick="document.getElementById('modalImageFileInput').click()" style="width: 100%; padding: 10px; margin-bottom: 10px; font-size: 0.85rem;">
+            <i class="fa-solid fa-folder-open"></i> + Seleccionar Fotos de la PC
+        </button>
+
+        <div class="image-preview-list" id="modalImagePreviewList"></div>
+
+        <div style="display: flex; gap: 12px; margin-top: 25px; justify-content: flex-end;">
+            <button type="button" onclick="closeAdminCardModal()" style="background: transparent; border: 1px solid var(--border); color: #fff; padding: 10px 18px; border-radius: 6px; cursor: pointer;">Cancelar</button>
+            <button type="button" class="btn-gold" onclick="saveAdminCardModal()" style="padding: 10px 22px;">Guardar Cambios</button>
+        </div>
+    </div>
+</div>
+<script src="admin.js?v=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="modal-content.js?v=2"></script>
+
+<script>
+// Rotación automática para múltiples carruseles en el panel admin
+function runCrusadeCarousels() {
+    const carousels = document.querySelectorAll('.crusade-carousel');
+    carousels.forEach(carousel => {
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        if (slides.length <= 1) return;
+        
+        let activeIndex = -1;
+        slides.forEach((slide, idx) => {
+            if (slide.classList.contains('active')) {
+                activeIndex = idx;
+            }
+        });
+        if (activeIndex === -1) activeIndex = 0;
+        
+        slides[activeIndex].style.opacity = '0';
+        slides[activeIndex].classList.remove('active');
+        
+        let nextIndex = (activeIndex + 1) % slides.length;
+        
+        slides[nextIndex].style.opacity = '1';
+        slides[nextIndex].classList.add('active');
+    });
+}
+setInterval(runCrusadeCarousels, 4000);
+
+const SUPABASE_URL = "https://gyjeyoostzxvkbgdyyuk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_XIQX2Uyi-SSY4jXipnIBAg_AcV-GQp5";
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const INDEX_SUPABASE_URL = "https://wufbwtizjzpuccqopvre.supabase.co";
+const INDEX_SUPABASE_KEY = "sb_publishable_nnf1EBZJeNbOtGVtM59_LQ_0y_ZR8fy";
+
+const indexSupabaseClient = window.supabase.createClient(INDEX_SUPABASE_URL, INDEX_SUPABASE_KEY);
+
+// Clientes de Storage para Recursos/PDF.
+// Se prueban ambos proyectos ya utilizados por el sitio para evitar que
+// una instalación anterior del proyecto apunte al Storage equivocado.
+const ardeStorageClients = [
+    {
+        name: "principal",
+        client: window.supabase.createClient(
+            "https://wufbwtizjzpuccqopvre.supabase.co",
+            "sb_publishable_nnf1EBZJeNbOtGVtM59_lQ_0y_ZR8fy"
+        )
+    },
+    {
+        name: "panel",
+        client: window.supabase.createClient(
+            "https://gyjeyoostzxvkbgdyyuk.supabase.co",
+            "sb_publishable_XIQX2Uyi-SSY4jXipnIBAg_AcV-GQp5"
+        )
+    }
+];
+
+// Cliente principal conservado para cualquier código existente que lo use.
+const ardeStorageClient = ardeStorageClients[0].client;
+
+let cruzadasData = [
+    {
+        id: 'cruzada1',
+        title: 'Restaurando el Altar (2026)',
+        summary: 'En el año 2026, inició la cruzada “Restaurando el Altar”, un movimiento enfocado en llamar a la Iglesia nuevamente a la santidad, la oración, la presencia de Dios y el avivamiento, tomando como referencia el ministerio del profeta Elías.',
+        text: 'En el año 2026, inició la cruzada “Restaurando el Altar”, un movimiento enfocado en llamar a la Iglesia nuevamente a la santidad, la oración, la presencia de Dios y el avivamiento, tomando como referencia el ministerio del profeta Elías.',
+        images: ['flyerdaniel.jpeg', 'altarbrasil.jpeg']
+    },
+    {
+        id: 'cruzada2',
+        title: 'Mi Mejor Amigo el Espíritu Santo (2026)',
+        summary: 'En el año 2026, inició la cruzada “Restaurando el Altar”, un movimiento enfocado en llamar a la Iglesia nuevamente a la santidad, la oración, la presencia de Dios y el avivamiento, tomando como referencia el ministerio del profeta Elías.',
+        text: 'En el año 2026, inició la cruzada “Restaurando el Altar”, un movimiento enfocado en llamar a la Iglesia nuevamente a la santidad, la oración, la presencia de Dios y el avivamiento, tomando como referencia el ministerio del profeta Elías.',
+        images: ['flyerespiritu.jpeg']
+    }
+];
+
+let ministeriosData = [
+    {
+        id: 'dorcas',
+        title: 'Dorcas',
+        summary: 'Ministerio de mujeres nacido en 2025 para reunir, edificar y acompañar a mujeres en su caminar con Dios.',
+        text: '<strong>Dorcas</strong> is a ministry of women...',
+        whatsapp: 'https://whatsapp.com/channel/0029VbBrKXHBvvsdhRCuph3G',
+        images: ['M_Dorca/dorca1.jpeg', 'M_Dorca/dorca2.jpeg', 'M_Dorca/dorca3.jpeg']
+    },
+    {
+        id: 'escuadron',
+        title: 'Escuadrón de YHWH',
+        summary: 'Ministerio de intercesión y guerra espiritual enfocado en la oración y autoridad espiritual.',
+        text: '<strong>Escuadrón de YHWH</strong> es un ministerio especial...',
+        whatsapp: 'https://whatsapp.com/channel/0029Vb7QLrjF1YlPwG7q9x3p',
+        images: ['escuadron_Yhwh/es1.WEBP', 'escuadron_Yhwh/es2.WEBP', 'escuadron_Yhwh/es3.WEBP', 'escuadron_Yhwh/es4.WEBP']
+    },
+    {
+        id: 'laforja',
+        title: 'La Forja',
+        summary: 'Ministerio de hombres enfocado en forjar carácter, integridad y liderazgo conforme a Cristo.',
+        text: '<strong>La Forja</strong> es el ministerio de varones...',
+        whatsapp: 'https://whatsapp.com/channel/0029Vb942EuADTO8erP90U09',
+        images: []
+    },
+    {
+        id: 'fuenteeterna',
+        title: 'Jesús Fuente Eterna',
+        summary: 'Ministerio profético y Escuela Profética dirigido por los profetas Daniel y Andrea de Riquezes.',
+        text: '<strong>Jesús Fuente Eterna</strong> es un pilar ministerial...',
+        whatsapp: '',
+        images: []
+    },
+    {
+        id: 'calles',
+        title: 'Jesús Está en las Calles',
+        summary: 'Ministerio de evangelismo dinámico llevando el mensaje fuera de las cuatro paredes a las comunidades.',
+        text: '<strong>Jesús Está en las Calles</strong> es un movimiento dinámico...',
+        whatsapp: 'https://whatsapp.com/channel/0029VbDcXpCEQIapnROrGN3g',
+        images: ['Jesus en la calle/Jesus 1.WEBP', 'Jesus en la calle/Jesus 2.WEBP']
+    }
+];
+
+let movimientosData = [
+    {
+        id: 'altaralias',
+        title: 'Altar de Elías ARDE',
+        summary: 'Movimiento de adoración pública juvenil provocando el avivamiento internacional.',
+        text: '<strong>Altar de Elías ARDE</strong> representa un movimiento...',
+        whatsapp: 'https://whatsapp.com/channel/0029Vb7xgDyBlHpaLfSB0r2e',
+        images: ['Altar de Elías Arde/Arde 3.jpeg', 'Altar de Elías Arde/Arde 4.jpeg']
+    },
+    {
+        id: 'azusa',
+        title: 'Avivamiento Azusa',
+        summary: 'Movimiento de avivamiento profético buscando con sed y hambre el derramamiento del Espíritu Santo.',
+        text: '<strong>Avivamiento Azusa</strong> es un mover espiritual...',
+        whatsapp: '',
+        images: []
+    }
+];
+
+let fundacionesData = [
+    {
+        id: 'bartimeo',
+        title: 'Bartimeo',
+        summary: 'Ministerio de ayuda social para personas en situación de calle y pobreza extrema.',
+        text: '<strong>Bartimeo</strong> es un ministerio de acción social...',
+        whatsapp: '',
+        images: []
+    },
+    {
+        id: 'ingridmillan',
+        title: 'Fundación Ingrid Millán',
+        summary: 'Organización de apoyo a familias necesitadas en honra al legado de Ingrid Millán.',
+        text: 'La <strong>Fundación Ingrid Millán</strong> es una institución benéfica...',
+        whatsapp: '',
+        images: ['f_millan/millan1.jpeg']
+    }
+];
+
+let librosData = [
+    {
+        id: 'dios_liberta_venezuela',
+        title: 'DIOS LIBERTA A VENEZUELA',
+        summary: 'Un testimonio revelador de experiencias proféticas y batallas espirituales libradas por la libertad de la nación.',
+        text: 'En este libro revelador...',
+        cover: 'https://images-na.ssl-images-amazon.com/images/P/B0FBSB2M5Q.01.LZZZZZZZ.jpg',
+        images: []
+    }
+];
+
+let eventosData = [
+    {
+        id: 'evento_1',
+        title: 'Cruzada Restaurando el Altar (Brasil)',
+        date: '2026 / GIRA CRUZADA',
+        location: 'Brasil',
+        summary: 'Avivamiento, fuego y santidad.',
+        text: 'Movimiento nacional de llamado a la santidad y oración.',
+        image_url: '',
+        video_url: '',
+        images: [],
+        active: true
+    },
+    {
+        id: 'evento_2',
+        title: 'Encuentro de Mujeres "Volviendo al Diseño Original"',
+        date: 'PRÓXIMAMENTE',
+        location: 'Próximamente',
+        summary: 'Fe, amor, transformación.',
+        text: 'Conferencias especiales sobre libertad profética.',
+        image_url: '',
+        video_url: '',
+        images: [],
+        active: true
+    }
+];
+
+let recursosData = [];
+let currentModalImages = [];
+let currentModalPdfFile = null;
+let currentModalPdfFiles = [];
+
+function mostrarEstado(texto, error = false) {
+    const status = document.getElementById("saveStatus");
+    if (!status) return;
+    status.textContent = texto;
+    status.style.color = error ? "#ff7777" : "var(--gold-light)";
+}
+
+
+
+/* ============================================================
+   VIDEOS DEL SITIO - ADMIN COMPLETO
+   ============================================================ */
+
+const defaultVideosData = [
+    {
+        id: "vid1",
+        title: "Transmisión Profética en Vivo 1",
+        url: "https://www.youtube.com/watch?v=rWB0U0Fdb7w",
+        videoId: "rWB0U0Fdb7w",
+        type: "video",
+        thumbnailUrl: ""
+    },
+    {
+        id: "vid2",
+        title: "Transmisión Profética en Vivo 2",
+        url: "https://www.youtube.com/watch?v=Y_CJBdZ3IuI",
+        videoId: "Y_CJBdZ3IuI",
+        type: "video",
+        thumbnailUrl: ""
+    },
+    {
+        id: "vid3",
+        title: "Transmisión Profética en Vivo 3",
+        url: "https://www.youtube.com/watch?v=X3GCLfdygUg",
+        videoId: "X3GCLfdygUg",
+        type: "video",
+        thumbnailUrl: ""
+    },
+    {
+        id: "vid4",
+        title: "Transmisión Profética en Vivo 4",
+        url: "https://www.youtube.com/watch?v=fwkmSCBxgw8",
+        videoId: "fwkmSCBxgw8",
+        type: "video",
+        thumbnailUrl: ""
+    },
+    {
+        id: "vid5",
+        title: "Lista de Podcast",
+        url: "https://www.youtube.com/playlist?list=PL2f_biIa2eHpn4HrA9yTAQxS6j-jocO1Z",
+        videoId: "B1RLaIsMifU",
+        type: "playlist",
+        playlistId: "PL2f_biIa2eHpn4HrA9yTAQxS6j-jocO1Z",
+        thumbnailUrl: ""
+    },
+    {
+        id: "vid6",
+        title: "Mensaje y Avivamiento Especial",
+        url: "https://www.youtube.com/watch?v=l_7M6xmTlQg",
+        videoId: "l_7M6xmTlQg",
+        type: "video",
+        thumbnailUrl: ""
+    }
+];
+
+let videosData = JSON.parse(
+    JSON.stringify(defaultVideosData)
+);
+
+
+/* ============================================================
+   ESCAPAR TEXTO
+   ============================================================ */
+
+function escapeVideoAdminText(value) {
+
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ============================================================
+   EXTRAER ID DE VIDEO
+   ============================================================ */
+
+function extractYouTubeVideoId(url) {
+
+    if (!url) return "";
+
+    try {
+
+        const parsed = new URL(url);
+
+        if (
+            parsed.hostname.includes("youtube.com") ||
+            parsed.hostname.includes("youtube-nocookie.com")
+        ) {
+
+            const v = parsed.searchParams.get("v");
+
+            if (v) return v;
+
+            const shorts = parsed.pathname.match(
+                /\/shorts\/([^/?]+)/
+            );
+
+            if (shorts) return shorts[1];
+
+            const embed = parsed.pathname.match(
+                /\/embed\/([^/?]+)/
+            );
+
+            if (embed) return embed[1];
+        }
+
+        if (parsed.hostname === "youtu.be") {
+
+            return parsed.pathname
+                .replace("/", "")
+                .split("?")[0];
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Error analizando YouTube:",
+            url
+        );
+    }
+
+    return "";
+}
+
+
+/* ============================================================
+   EXTRAER PLAYLIST
+   ============================================================ */
+
+function extractYouTubePlaylistId(url) {
+
+    if (!url) return "";
+
+    try {
+
+        const parsed = new URL(url);
+
+        if (
+            parsed.hostname.includes("youtube.com")
+        ) {
+
+            return parsed.searchParams.get("list") || "";
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Error analizando playlist:",
+            url
+        );
+    }
+
+    return "";
+}
+
+
+/* ============================================================
+   MINIATURAS DE YOUTUBE
+   ============================================================ */
+
+function getYouTubeThumbnailCandidates(videoId) {
+    if (!videoId) return [];
+
+    return [
+        `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+        `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+        `https://img.youtube.com/vi/${videoId}/default.jpg`
+    ];
+}
+
+
+/* ============================================================
+   MINIATURA ACTUAL
+   ============================================================ */
+
+function getVideoThumbnail(video) {
+
+    if (!video) return "";
+
+    /*
+     * Primero usamos la miniatura personalizada.
+     */
+
+    if (video.thumbnailUrl) {
+
+        return video.thumbnailUrl;
+    }
+
+    /*
+     * Si no hay personalizada,
+     * usamos YouTube.
+     */
+
+    if (video.videoId) {
+
+        return getYouTubeThumbnailCandidates(
+            video.videoId
+        )[0];
+    }
+
+    return "";
+}
+
+
+/* ============================================================
+   NORMALIZAR
+   ============================================================ */
+
+function normalizeVideosData() {
+
+    if (!Array.isArray(videosData)) {
+
+        videosData =
+            JSON.parse(
+                JSON.stringify(defaultVideosData)
+            );
+
+        return;
+    }
+
+    defaultVideosData.forEach(defaultVideo => {
+
+        const existing =
+            videosData.find(
+                video =>
+                    video &&
+                    video.id === defaultVideo.id
+            );
+
+        if (!existing) {
+
+            videosData.push(
+                JSON.parse(
+                    JSON.stringify(defaultVideo)
+                )
+            );
+        }
+    });
+
+    videosData.forEach(video => {
+
+        if (!video.thumbnailUrl) {
+            video.thumbnailUrl = "";
+        }
+
+        if (!video.type) {
+            video.type = "video";
+        }
+
+    });
+
+    videosData.sort((a, b) => {
+
+        const aNumber =
+            parseInt(
+                String(a.id || "")
+                    .replace("vid", "")
+            ) || 0;
+
+        const bNumber =
+            parseInt(
+                String(b.id || "")
+                    .replace("vid", "")
+            ) || 0;
+
+        return aNumber - bNumber;
+    });
+}
+
+
+/* ============================================================
+   RENDERIZAR VIDEOS
+   ============================================================ */
+
+function renderAdminVideos() {
+
+    const container =
+        document.getElementById(
+            "adminVideosEditor"
+        );
+
+    if (!container) {
+
+        console.warn(
+            "No existe #adminVideosEditor"
+        );
+
+        return;
+    }
+
+    normalizeVideosData();
+
+    container.innerHTML = "";
+
+
+    videosData.forEach(
+        (video, index) => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "admin-video-editor-card";
+
+            card.style.cssText = `
+                background: var(--bg-card);
+                border: 1px solid var(--border-gold);
+                border-radius: 12px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+            `;
+
+
+            const thumbnail =
+                getVideoThumbnail(video);
+
+
+            const isPlaylist =
+                video.type === "playlist";
+
+
+            card.innerHTML = `
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    margin-bottom:15px;
+                    flex-wrap:wrap;
+                ">
+
+                    <h4
+                        class="cinzel-font"
+                        style="
+                            color:var(--gold-light);
+                            margin:0;
+                            font-size:1.2rem;
+                        "
+                    >
+                        Video ${index + 1}
+                        ${isPlaylist ? " · Playlist" : ""}
+                    </h4>
+
+                </div>
+
+
+                <div style="
+                    display:flex;
+                    gap:25px;
+                    flex-wrap:wrap;
+                    align-items:flex-start;
+                ">
+
+
+                    <!-- MINIATURA -->
+
+                    <div style="
+                        width:280px;
+                        max-width:100%;
+                        flex-shrink:0;
+                    ">
+
+                        <div style="
+                            position:relative;
+                            width:100%;
+                            aspect-ratio:16/9;
+                            overflow:hidden;
+                            border-radius:10px;
+                            border:1px solid var(--border-gold);
+                            background:#050505;
+                        ">
+
+                            <img
+                                id="videoThumbnail_${index}"
+                                src="${escapeVideoAdminText(thumbnail)}"
+                                alt="Miniatura ${index + 1}"
+                                style="
+                                    width:100%;
+                                    height:100%;
+                                    object-fit:cover;
+                                    display:block;
+                                "
+                            >
+
+                            <div
+                                id="videoPlaceholder_${index}"
+                                style="
+                                    display:none;
+                                    width:100%;
+                                    height:100%;
+                                    align-items:center;
+                                    justify-content:center;
+                                    flex-direction:column;
+                                    color:#999;
+                                    gap:8px;
+                                "
+                            >
+
+                                <i
+                                    class="fa-solid fa-image"
+                                    style="
+                                        font-size:2rem;
+                                        color:var(--gold-light);
+                                    "
+                                ></i>
+
+                                <span>
+                                    Miniatura no disponible
+                                </span>
+
+                            </div>
+
+                            <div style="
+                                position:absolute;
+                                inset:0;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                pointer-events:none;
+                            ">
+
+                                <i
+                                    class="fa-solid fa-play"
+                                    style="
+                                        color:white;
+                                        font-size:2rem;
+                                        text-shadow:0 2px 8px black;
+                                    "
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- DATOS -->
+
+                    <div style="
+                        flex:1;
+                        min-width:280px;
+                    ">
+
+
+                        <label style="
+                            display:block;
+                            color:var(--gold-light);
+                            margin-bottom:7px;
+                            font-weight:bold;
+                        ">
+                            Título
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="adminVideoTitle_${index}"
+                            value="${escapeVideoAdminText(video.title)}"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                margin-bottom:15px;
+                                background:#111;
+                                color:#fff;
+                                border:1px solid var(--border-gold);
+                                border-radius:7px;
+                                box-sizing:border-box;
+                            "
+                        >
+
+
+                        <label style="
+                            display:block;
+                            color:var(--gold-light);
+                            margin-bottom:7px;
+                            font-weight:bold;
+                        ">
+                            Enlace de YouTube
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="adminVideoUrl_${index}"
+                            value="${escapeVideoAdminText(video.url)}"
+                            placeholder="https://www.youtube.com/watch?v=..."
+                            style="
+                                width:100%;
+                                padding:12px;
+                                margin-bottom:12px;
+                                background:#111;
+                                color:#fff;
+                                border:1px solid var(--border-gold);
+                                border-radius:7px;
+                                box-sizing:border-box;
+                            "
+                        >
+
+
+                        <div style="
+                            color:#aaa;
+                            font-size:.85rem;
+                            line-height:1.5;
+                            margin-bottom:15px;
+                        ">
+
+                            <i
+                                class="fa-solid fa-circle-info"
+                                style="
+                                    color:var(--gold-light);
+                                "
+                            ></i>
+
+                            Puedes cambiar el título y el enlace, y usar la miniatura pública de YouTube.
+
+                        </div>
+
+
+                        <div style="
+                            display:flex;
+                            gap:10px;
+                            flex-wrap:wrap;
+                        ">
+
+
+                            <button
+                                type="button"
+                                class="btn-card-edit"
+                                data-video-preview="${index}"
+                            >
+
+                                <i class="fa-solid fa-image"></i>
+
+                                Usar miniatura de YouTube
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-card-edit"
+                                data-video-save="${index}"
+                            >
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                Guardar video
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            container.appendChild(card);
+
+
+            /* ====================================================
+               BOTÓN ACTUALIZAR
+               ==================================================== */
+
+            const previewButton =
+                card.querySelector(
+                    `[data-video-preview="${index}"]`
+                );
+
+            if (previewButton) {
+
+                previewButton.addEventListener(
+                    "click",
+                    () => {
+
+                        previewAdminVideo(index);
+
+                    }
+                );
+            }
+
+
+            /* ====================================================
+               BOTÓN GUARDAR
+               ==================================================== */
+
+            const saveButton =
+                card.querySelector(
+                    `[data-video-save="${index}"]`
+                );
+
+            if (saveButton) {
+
+                saveButton.addEventListener(
+                    "click",
+                    () => {
+
+                        saveAdminVideo(index);
+
+                    }
+                );
+            }
+
+
+            /* ====================================================
+               URL → MINIATURA AUTOMÁTICA
+               ==================================================== */
+
+            const urlInput =
+                document.getElementById(
+                    `adminVideoUrl_${index}`
+                );
+
+
+            if (urlInput) {
+
+                urlInput.addEventListener(
+                    "input",
+                    function () {
+
+                        // Al cambiar el enlace, usa la miniatura del video nuevo.
+
+                        videosData[index].thumbnailUrl =
+                            "";
+
+
+                        const videoId =
+                            extractYouTubeVideoId(
+                                this.value.trim()
+                            );
+
+
+                        if (!videoId) return;
+
+
+                        setYouTubeThumbnailWithFallback(
+                            index,
+                            videoId
+                        );
+
+                    }
+                );
+            }
+
+
+            /* ====================================================
+               FALLBACK AUTOMÁTICO AL CARGAR
+               ==================================================== */
+
+            if (
+                !video.thumbnailUrl &&
+                video.videoId
+            ) {
+
+                setYouTubeThumbnailWithFallback(
+                    index,
+                    video.videoId
+                );
+            }
+
+        }
+    );
+}
+
+
+/* ============================================================
+   MINIATURA YOUTUBE CON FALLBACK
+   ============================================================ */
+
+function setYouTubeThumbnailWithFallback(
+    index,
+    videoId
+) {
+
+    const image =
+        document.getElementById(
+            `videoThumbnail_${index}`
+        );
+
+    const placeholder =
+        document.getElementById(
+            `videoPlaceholder_${index}`
+        );
+
+
+    if (!image || !videoId) return;
+
+
+    const candidates =
+        getYouTubeThumbnailCandidates(
+            videoId
+        );
+
+
+    let current = 0;
+
+
+    function tryNext() {
+
+        if (
+            current >=
+            candidates.length
+        ) {
+
+            image.style.display =
+                "none";
+
+            if (placeholder) {
+
+                placeholder.style.display =
+                    "flex";
+            }
+
+            return;
+        }
+
+
+        const testImage =
+            new Image();
+
+
+        testImage.onload =
+            function () {
+
+                image.src =
+                    candidates[current];
+
+                image.style.display =
+                    "block";
+
+                if (placeholder) {
+
+                    placeholder.style.display =
+                        "none";
+                }
+            };
+
+
+        testImage.onerror =
+            function () {
+
+                current++;
+
+                tryNext();
+
+            };
+
+
+        testImage.src =
+            candidates[current];
+    }
+
+
+    tryNext();
+}
+
+
+/* ============================================================
+   PREVISUALIZAR MINIATURA
+   ============================================================ */
+
+function previewAdminVideo(index) {
+
+    const urlInput =
+        document.getElementById(
+            `adminVideoUrl_${index}`
+        );
+
+
+    if (!urlInput) return;
+
+
+    const url =
+        urlInput.value.trim();
+
+
+    if (!url) {
+
+        alert(
+            "Pega primero un enlace de YouTube."
+        );
+
+        return;
+    }
+
+
+    const videoId =
+        extractYouTubeVideoId(url);
+
+
+    if (videoId) {
+
+        /*
+         * Quitamos personalizada porque
+         * estamos pidiendo explícitamente
+         * la miniatura de YouTube.
+         */
+
+        videosData[index].thumbnailUrl =
+            "";
+
+
+        setYouTubeThumbnailWithFallback(
+            index,
+            videoId
+        );
+
+
+        videosData[index].videoId =
+            videoId;
+
+
+        videosData[index].type =
+            "video";
+
+
+        mostrarEstado(
+            "✅ Miniatura de YouTube actualizada. Pulsa «Guardar video»."
+        );
+
+
+        return;
+    }
+
+
+    const playlistId =
+        extractYouTubePlaylistId(url);
+
+
+    if (playlistId) {
+
+        const currentVideo =
+            videosData[index];
+
+
+        if (
+            currentVideo &&
+            currentVideo.videoId
+        ) {
+
+            videosData[index].thumbnailUrl =
+                "";
+
+
+            setYouTubeThumbnailWithFallback(
+                index,
+                currentVideo.videoId
+            );
+
+
+            mostrarEstado(
+                "✅ Miniatura de la playlist actualizada."
+            );
+
+
+            return;
+        }
+    }
+
+
+    alert(
+        "No pude detectar un enlace válido de YouTube."
+    );
+}
+
+
+/* ============================================================
+   GUARDAR VIDEO
+   ============================================================ */
+
+async function saveAdminVideo(index) {
+    if (!adminDataLoaded) {
+        mostrarEstado("❌ No se puede guardar el video porque no se confirmó la carga de los datos.", true);
+        alert("Recarga el panel y espera a que termine de cargar antes de guardar cambios.");
+        return;
+    }
+
+    const titleInput =
+        document.getElementById(
+            `adminVideoTitle_${index}`
+        );
+
+    const urlInput =
+        document.getElementById(
+            `adminVideoUrl_${index}`
+        );
+
+
+    if (!titleInput || !urlInput) {
+
+        alert(
+            "No se encontraron los campos del video."
+        );
+
+        return;
+    }
+
+
+    const title =
+        titleInput.value.trim();
+
+    const url =
+        urlInput.value.trim();
+
+
+    if (!title) {
+
+        alert(
+            "Escribe un título para el video."
+        );
+
+        return;
+    }
+
+
+    if (!url) {
+
+        alert(
+            "Escribe un enlace de YouTube."
+        );
+
+        return;
+    }
+
+
+    const videoId =
+        extractYouTubeVideoId(url);
+
+    const playlistId =
+        extractYouTubePlaylistId(url);
+
+
+    if (!videoId && !playlistId) {
+
+        alert(
+            "El enlace no parece ser un enlace válido de YouTube."
+        );
+
+        return;
+    }
+
+
+    if (!videosData[index]) {
+
+        alert(
+            "No se encontró el video."
+        );
+
+        return;
+    }
+
+
+    const oldVideo =
+        videosData[index];
+
+
+    const updatedVideo = {
+
+        ...oldVideo,
+
+        title: title,
+
+        url: url
+
+    };
+
+
+    if (videoId) {
+
+        updatedVideo.type =
+            "video";
+
+        updatedVideo.videoId =
+            videoId;
+
+        updatedVideo.playlistId =
+            "";
+
+    } else {
+
+        updatedVideo.type =
+            "playlist";
+
+        updatedVideo.playlistId =
+            playlistId;
+
+        /*
+         * Conservamos videoId de la playlist
+         * para su miniatura.
+         */
+
+        updatedVideo.videoId =
+            oldVideo.videoId || "";
+    }
+
+
+    videosData[index] =
+        updatedVideo;
+
+
+    normalizeVideosData();
+
+
+    /*
+     * Guardar localmente.
+     */
+
+    saveListsToStorage();
+
+
+    mostrarEstado(
+        "⏳ Guardando video en Supabase..."
+    );
+
+
+    try {
+
+        const result =
+            await saveAdminDataToBothBases();
+
+
+        if (
+            result.adminError ||
+            result.indexError
+        ) {
+
+            console.error(
+                "Error guardando video:",
+                result
+            );
+
+
+            mostrarEstado(
+                "❌ No se pudo guardar el video.",
+                true
+            );
+
+
+            alert(
+                "ERROR AL GUARDAR VIDEO\n\n" +
+
+                (
+                    result.adminError
+                        ? "Admin: " +
+                          result.adminError.message +
+                          "\n"
+                        : ""
+                ) +
+
+                (
+                    result.indexError
+                        ? "Index: " +
+                          result.indexError.message
+                        : ""
+                )
+            );
+
+
+            return;
+        }
+
+
+        /*
+         * VERIFICACIÓN REAL
+         */
+
+        const { data: verifyData, error: verifyError } =
+            await supabaseClient
+                .from("site_content")
+                .select(
+                    "content_value"
+                )
+                .eq(
+                    "section",
+                    "admin_data"
+                )
+                .eq(
+                    "content_key",
+                    "arde_videos"
+                )
+                .maybeSingle();
+
+
+        if (verifyError) {
+
+            console.error(
+                "Error verificando video:",
+                verifyError
+            );
+
+        } else if (verifyData) {
+
+            try {
+
+                const saved =
+                    JSON.parse(
+                        verifyData.content_value
+                    );
+
+
+                const savedVideo =
+                    saved.find(
+                        item =>
+                            item.id ===
+                            updatedVideo.id
+                    );
+
+
+                if (savedVideo) {
+
+                    console.log(
+                        "Video confirmado en Supabase:",
+                        savedVideo
+                    );
+
+                }
+
+            } catch (e) {
+
+                console.warn(
+                    "No se pudo verificar JSON guardado."
+                );
+            }
+        }
+
+
+        renderAdminVideos();
+
+
+        mostrarEstado(
+            "✅ Video guardado correctamente. El cambio permanecerá después de actualizar."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Error inesperado:",
+            error
+        );
+
+
+        mostrarEstado(
+            "❌ Error al guardar.",
+            true
+        );
+
+
+        alert(
+            "Error al guardar el video:\n\n" +
+            error.message
+        );
+    }
+}
+
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value;
+    const errorBox = document.getElementById("loginError");
+    errorBox.textContent = "";
+
+    try {
+        const { data, error } = await supabaseClient.rpc("verify_admin", { p_username: u, p_password: p });
+        if (error) {
+            errorBox.textContent = "Error al autenticar.";
+            return;
+        }
+        if (data === true) {
+            sessionStorage.setItem("arde_admin", u);
+            await initAdminView();
+        } else {
+            errorBox.textContent = "Usuario o contraseña incorrectos.";
+        }
+    } catch (err) {
+        errorBox.textContent = "Error al autenticar.";
+    }
+});
+
+function logoutAdmin() {
+    sessionStorage.removeItem("arde_admin");
+    location.reload();
+}
+
+let adminDataLoaded = false;
+
+async function initAdminView() {
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    adminDataLoaded = false;
+
+    try {
+        await loadAllDataFromSupabase();
+        await window.loadSavedTexts();
+        loadAllCardData();
+        adminDataLoaded = true;
+    } catch (error) {
+        console.error("No se pudo cargar el contenido antes de habilitar el guardado:", error);
+        mostrarEstado("❌ No se cargó todo el contenido. No guardes cambios hasta reintentar.", true);
+        alert("No se cargó el contenido guardado. Para evitar sobrescribir información, el guardado queda bloqueado.\n\n" + error.message);
+    }
+}
+
+async function loadAllDataFromSupabase() {
+    try {
+        const { data, error } = await supabaseClient
+            .from("site_content")
+            .select("content_key,content_value")
+            .eq("section", "admin_data");
+        if (error) throw new Error("No se pudieron cargar las secciones: " + error.message);
+        if (!Array.isArray(data)) throw new Error("La respuesta de secciones no tiene un formato válido.");
+
+        const dataSetters = {
+            arde_cruzadas: value => { cruzadasData = value; },
+            arde_eventos: value => { eventosData = value; },
+            arde_ministerios: value => { ministeriosData = value; },
+            arde_movimientos: value => { movimientosData = value; },
+            arde_fundaciones: value => { fundacionesData = value; },
+            arde_libros: value => { librosData = value; },
+            arde_recursos: value => { recursosData = value; },
+            arde_videos: value => { videosData = value; }
+        };
+        const loadedKeys = new Set();
+
+        data.forEach(row => {
+            const setData = dataSetters[row.content_key];
+            if (!setData) return;
+
+            let parsed;
+            try {
+                parsed = JSON.parse(row.content_value || "[]");
+            } catch (error) {
+                throw new Error(`Los datos guardados de ${row.content_key} no se pueden leer: ${error.message}`);
+            }
+            if (!Array.isArray(parsed)) {
+                throw new Error(`Los datos guardados de ${row.content_key} no tienen un formato válido.`);
+            }
+
+            setData(parsed);
+            loadedKeys.add(row.content_key);
+        });
+
+        const missingKeys = Object.keys(dataSetters).filter(key => !loadedKeys.has(key));
+        if (missingKeys.length) {
+            throw new Error("Faltan secciones guardadas en Supabase: " + missingKeys.join(", "));
+        }
+    } catch (error) {
+        console.error("Error cargando datos de administración:", error);
+        throw error;
+    }
+}
+
+function loadAllCardData() {
+    normalizeVideosData();
+
+    renderCruzadasGrid();
+    renderEventosGrid();
+    renderSectionGrid("ministerio", ministeriosData, "ministeriosGrid");
+    renderSectionGrid("movimiento", movimientosData, "movimientosGrid");
+    renderSectionGrid("fundacion", fundacionesData, "fundacionesGrid");
+    renderLibrosGrid();
+    renderRecursosGrid();
+
+    renderAdminVideos();
+}
+
+function renderEventosGrid() {
+    const container = document.getElementById("eventosGrid");
+    if (!container) return;
+    container.innerHTML = "";
+
+    eventosData.forEach((item, index) => {
+        const media = item.image_url
+            ? `<img src="${item.image_url}" alt="${item.title || 'Evento'}" style="width:100%; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border-gold); margin-bottom:12px;">`
+            : (item.images && item.images.length
+                ? `<img src="${item.images[0]}" alt="${item.title || 'Evento'}" style="width:100%; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border-gold); margin-bottom:12px;">`
+                : "");
+
+        const video = item.video_url
+            ? `<a href="${item.video_url}" target="_blank" rel="noopener" style="color: var(--gold-light); font-size:.8rem; display:inline-block; margin-top:8px;"><i class="fa-solid fa-video"></i> Ver video</a>`
+            : "";
+
+        const card = document.createElement("div");
+        card.className = "event-card";
+        card.innerHTML = `
+            <span class="event-date">${item.date || 'PRÓXIMAMENTE'}</span>
+            ${media}
+            <h3 style="color: var(--text-white); margin-bottom: 10px;">${item.title || 'Evento sin título'}</h3>
+            <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 15px;"><i class="fa-solid fa-location-dot"></i> ${item.location || 'Por confirmar'}</p>
+            <p style="color: var(--text-gray); margin-bottom: 10px;">${item.summary || item.text || ''}</p>
+            ${video}
+            <div class="card-admin-overlay" style="margin-top: 14px; width: 100%;">
+                <button class="btn-card-edit" onclick="openAdminCardModal('evento', ${index})"><i class="fa-solid fa-pen-to-square"></i> Editar Evento</button>
+                <button class="btn-card-delete" onclick="deleteCardItem('evento', ${index})"><i class="fa-solid fa-trash"></i> Eliminar</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function renderCruzadasGrid() {
+    const container = document.getElementById("cruzadasGrid");
+    if (!container) return;
+    container.innerHTML = "";
+
+    cruzadasData.forEach((item, index) => {
+        let imageHtml = "";
+        if (item.images && item.images.length > 1) {
+            imageHtml = `
+                <div class="carousel-container crusade-carousel" style="position: relative; width: 100%; max-width: 270px; height: 380px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border-gold); box-shadow: 0 8px 25px rgba(0,0,0,0.8); margin: 0 auto;">
+                    ${item.images.map((img, i) => `
+                        <div class="carousel-slide ${i === 0 ? 'active' : ''}" style="position: absolute; top: 0; left: 0; width: 100\%; height: 100\%; opacity: ${i === 0 ? '1' : '0'}; transition: opacity 0.8s ease-in-out;">
+                            <img src="${img}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            const singleImg = (item.images && item.images.length > 0) ? item.images[0] : 'flyerdaniel.jpeg';
+            imageHtml = `<img src="${singleImg}" alt="${item.title}" style="width: 100%; max-width: 270px; border-radius: 10px; border: 2px solid var(--border-gold);">`;
+        }
+
+        const banner = document.createElement("div");
+        banner.className = "crusade-banner";
+        banner.style.cssText = "display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border-gold); padding: 30px; border-radius: 12px;";
+        banner.innerHTML = `
+            <div style="flex: 0 0 280px; text-align: center;">
+                ${imageHtml}
+            </div>
+            <div style="flex: 1; min-width: 260px;">
+                <h3 class="cinzel-font" style="color: var(--gold-light); font-size: 1.5rem; margin-bottom: 15px;">${item.title || ""}</h3>
+                <p style="line-height: 1.7; font-size: 1rem; color: #ddd;">${item.summary || item.text || ""}</p>
+            </div>
+            <div class="card-admin-overlay" style="width: 100%;">
+                <button class="btn-card-edit" onclick="openAdminCardModal('cruzada', ${index})"><i class="fa-solid fa-pen-to-square"></i> Editar Fotos y Detalles</button>
+                <button class="btn-card-delete" onclick="deleteCardItem('cruzada', ${index})"><i class="fa-solid fa-trash"></i> Eliminar</button>
+            </div>
+        `;
+        container.appendChild(banner);
+    });
+}
+
+function renderSectionGrid(type, list, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = "";
+
+    list.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "ministry-card";
+        card.innerHTML = `
+            <div>
+                <h3>${item.title || ""}</h3>
+                <p>${item.summary || ""}</p>
+            </div>
+            <div class="card-admin-overlay">
+                <button class="btn-card-edit" onclick="openAdminCardModal('${type}', ${index})"><i class="fa-solid fa-pen-to-square"></i> Editar Modal e Info</button>
+                <button class="btn-card-delete" onclick="deleteCardItem('${type}', ${index})"><i class="fa-solid fa-trash"></i> Eliminar</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function normalizeLegacyImagePath(path) {
+    return String(path || "").replace(
+        /^(?:M_Dorca|escuadron_Yhwh|Jesus en la calle|Altar de Elías Arde|f_millan)[\\/]/i,
+        ""
+    );
+}
+
+function renderLibrosGrid() {
+    const container = document.getElementById("librosGrid");
+    if (!container) return;
+    container.innerHTML = "";
+
+    librosData.forEach((book, index) => {
+        const card = document.createElement("div");
+        card.className = "ministry-card";
+        card.style.cursor = "default";
+        card.style.padding = "25px";
+
+        const coverImage = book.cover || book.images?.[0] || "";
+        const coverImgHtml = coverImage ? `<div style="text-align:center; margin:10px 0;"><img src="${coverImage}" alt="Portada del libro" style="max-width:200px; max-height:280px; object-fit:contain; border-radius:8px; border:1px solid var(--border-gold);"></div>` : "";
+
+        card.innerHTML = `
+            <div>
+                <h3 class="cinzel-font" style="color:var(--gold-light); font-size:1.2rem; text-align:center;">${book.title || ""}</h3>
+                ${coverImgHtml}
+                <p style="color:var(--text-gray); font-size:0.88rem; margin-top:12px; line-height:1.5;">${book.summary || ""}</p>
+            </div>
+            <div class="card-admin-overlay">
+                <button class="btn-card-edit" onclick="openAdminCardModal('libro', ${index})"><i class="fa-solid fa-pen-to-square"></i> Editar Libro</button>
+                <button class="btn-card-delete" onclick="deleteCardItem('libro', ${index})"><i class="fa-solid fa-trash"></i> Eliminar</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function renderRecursosGrid() {
+    const container = document.getElementById("recursosGrid");
+    if (!container) return;
+    container.innerHTML = "";
+    const counter = document.getElementById("recursosCounter");
+    if (counter) counter.textContent = `${Array.isArray(recursosData) ? recursosData.filter(r => r && r.file_url).length : 0} PDFs publicados · puedes agregar 5 o más`;
+
+    if (!recursosData || recursosData.length === 0) {
+        container.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:25px; color:#999; border:1px dashed var(--border); border-radius:10px;">
+                <i class="fa-solid fa-file-pdf" style="font-size:2rem; color:var(--gold); margin-bottom:10px;"></i>
+                <p>Aún no hay recursos publicados.</p>
+            </div>`;
+        return;
+    }
+
+    recursosData.forEach((rec, index) => {
+        const card = document.createElement("div");
+        card.className = "resource-admin-card";
+        card.style.background = "#111";
+        card.style.border = "1px solid var(--border)";
+        card.style.padding = "20px";
+        card.style.borderRadius = "8px";
+
+        const pdfInfo = rec.file_url
+            ? `<div class="resource-admin-file"><i class="fa-solid fa-file-pdf"></i><span>${rec.file_name || "Documento PDF"}</span></div>`
+            : `<div class="resource-admin-file" style="color:#ff9999;"><i class="fa-solid fa-triangle-exclamation"></i><span>Sin archivo PDF asociado</span></div>`;
+
+        card.innerHTML = `
+            <h4 style="color:var(--gold); margin:0;">${rec.title || "Recurso sin título"}</h4>
+            <p style="color:#ddd; font-size:0.9rem; margin-top:8px; line-height:1.5;">${rec.summary || ""}</p>
+            ${pdfInfo}
+            ${rec.file_url ? `<a href="${rec.file_url}" target="_blank" rel="noopener" style="color:var(--gold-light); font-size:.85rem; margin-top:5px;"><i class="fa-solid fa-up-right-from-square"></i> Abrir PDF</a>` : ""}
+            <div class="card-admin-overlay">
+                <button class="btn-card-edit" onclick="openAdminCardModal('recurso', ${index})"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                <button class="btn-card-delete" onclick="deleteCardItem('recurso', ${index})"><i class="fa-solid fa-trash"></i> Eliminar</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function openAdminCardModal(type, index) {
+    document.getElementById("modalEditType").value = type;
+    document.getElementById("modalEditIndex").value = index;
+
+    let data = { title: "", summary: "", text: "", whatsapp: "", images: [] };
+
+    if (index >= 0) {
+        if (type === "cruzada") data = cruzadasData[index];
+        if (type === "evento") data = eventosData[index];
+        if (type === "ministerio") data = ministeriosData[index];
+        if (type === "movimiento") data = movimientosData[index];
+        if (type === "fundacion") data = fundacionesData[index];
+        if (type === "libro") data = librosData[index];
+        if (type === "recurso") data = recursosData[index];
+    }
+
+    const defaultModalData =
+        window.ARDE_MODAL_CONTENT?.es?.[String(data.id || "").toLowerCase()];
+    if (
+        defaultModalData?.text &&
+        (!data.text || /\.{3,}|…/.test(data.text))
+    ) {
+        data = { ...data, text: defaultModalData.text };
+    }
+
+    document.getElementById("adminModalHeaderTitle").innerText = index >= 0 ? `Editar ${type.toUpperCase()}` : `Añadir Nueva ${type.toUpperCase()}`;
+    document.getElementById("modalInputTitle").value = data.title || "";
+    document.getElementById("modalInputSummary").value = data.summary || "";
+    document.getElementById("modalInputFullText").value = data.text || "";
+    const itemLinkInput = document.getElementById("modalInputWhatsApp");
+    const itemLinkLabel = document.getElementById("modalInputLinkLabel");
+    const isBook = type === "libro";
+    if (itemLinkLabel) {
+        itemLinkLabel.textContent = isBook
+            ? "Enlace de compra (Amazon u otra página):"
+            : "Enlace del Canal de WhatsApp (Opcional):";
+    }
+    if (itemLinkInput) {
+        itemLinkInput.placeholder = isBook
+            ? "https://www.amazon.com/..."
+            : "https://whatsapp.com/channel/...";
+        itemLinkInput.value = isBook
+            ? (data.purchase_url || data.amazon_url || data.url || data.whatsapp || "")
+            : (data.whatsapp || "");
+    }
+
+    const eventoExtraFields = document.getElementById("eventoExtraFields");
+    const modalEventDate = document.getElementById("modalEventDate");
+    const modalEventLocation = document.getElementById("modalEventLocation");
+    const modalEventVideo = document.getElementById("modalEventVideo");
+    if (modalEventDate) modalEventDate.value = data.date || "";
+    if (modalEventLocation) modalEventLocation.value = data.location || "";
+    if (modalEventVideo) modalEventVideo.value = data.video_url || "";
+
+    if (eventoExtraFields) {
+        eventoExtraFields.style.display = type === "evento" ? "block" : "none";
+    }
+
+    const pdfFields = document.getElementById("resourcePdfFields");
+    const pdfInput = document.getElementById("modalPdfFileInput");
+    const currentPdf = document.getElementById("pdfCurrentFile");
+    currentModalPdfFile = null;
+    currentModalPdfFiles = [];
+    if (pdfInput) pdfInput.value = "";
+
+    if (type === "recurso") {
+        pdfFields.style.display = "block";
+        if (data.file_url) {
+            currentPdf.style.display = "block";
+            currentPdf.innerHTML = `<i class="fa-solid fa-file-pdf" style="color:var(--gold); margin-right:7px;"></i> PDF actual: <strong>${data.file_name || "Documento PDF"}</strong>`;
+        } else {
+            currentPdf.style.display = "block";
+            currentPdf.innerHTML = `<span style="color:#ff9999;"><i class="fa-solid fa-triangle-exclamation"></i> Este recurso todavía no tiene PDF.</span>`;
+        }
+    } else {
+        pdfFields.style.display = "none";
+        currentPdf.style.display = "none";
+        currentPdf.innerHTML = "";
+    }
+
+    const savedImages = Array.isArray(data.images) ? data.images : [];
+    currentModalImages = savedImages.length
+        ? savedImages.map(normalizeLegacyImagePath)
+        : (type === "evento" && data.image_url
+            ? [normalizeLegacyImagePath(data.image_url)]
+            : []);
+    renderModalImagePreviews();
+    document.getElementById("adminCardModal").style.display = "flex";
+}
+
+function handlePdfSelect(input) {
+    if (!input.files || !input.files.length) return;
+
+    const files = Array.from(input.files);
+    const invalid = files.find(file => file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf"));
+    if (invalid) {
+        alert("Todos los archivos seleccionados deben ser PDF.");
+        input.value = "";
+        currentModalPdfFiles = [];
+        currentModalPdfFile = null;
+        return;
+    }
+
+    const tooLarge = files.find(file => file.size > 25 * 1024 * 1024);
+    if (tooLarge) {
+        alert(`El PDF "${tooLarge.name}" supera el límite de 25 MB.`);
+        input.value = "";
+        currentModalPdfFiles = [];
+        currentModalPdfFile = null;
+        return;
+    }
+
+    currentModalPdfFiles = files;
+    currentModalPdfFile = files[0] || null;
+
+    const currentPdf = document.getElementById("pdfCurrentFile");
+    currentPdf.style.display = "block";
+    if (files.length === 1) {
+        currentPdf.innerHTML = `<i class="fa-solid fa-file-pdf" style="color:var(--gold); margin-right:7px;"></i> Nuevo PDF: <strong>${files[0].name}</strong>`;
+    } else {
+        currentPdf.innerHTML = `<i class="fa-solid fa-layer-group" style="color:var(--gold); margin-right:7px;"></i> <strong>${files.length} PDF seleccionados</strong><br><small style="color:#aaa;">${files.map(f => f.name).join(" · ")}</small>`;
+    }
+}
+function closeAdminCardModal() {
+    document.getElementById("adminCardModal").style.display = "none";
+}
+
+function handleFileSelect(input) {
+    if (!input.files || input.files.length === 0) return;
+    Array.from(input.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            currentModalImages.push(e.target.result);
+            renderModalImagePreviews();
+        };
+        reader.readAsDataURL(file);
+    });
+    input.value = "";
+}
+
+function removeImageFromModalList(idx) {
+    currentModalImages.splice(idx, 1);
+    renderModalImagePreviews();
+}
+
+function renderModalImagePreviews() {
+    const preview = document.getElementById("modalImagePreviewList");
+    preview.innerHTML = "";
+    currentModalImages.forEach((img, idx) => {
+        const div = document.createElement("div");
+        div.className = "image-preview-item";
+        div.innerHTML = `
+            <img src="${img}" alt="Preview ${idx}">
+            <button type="button" class="btn-remove-img" onclick="removeImageFromModalList(${idx})">&times;</button>
+        `;
+        preview.appendChild(div);
+    });
+}
+
+function getAmazonBookCoverUrl(value) {
+    if (typeof value !== "string" || !value.trim()) return "";
+
+    let asin = "";
+    const input = value.trim();
+    if (/^[A-Z0-9]{10}$/i.test(input)) {
+        asin = input;
+    } else {
+        try {
+            const url = new URL(input);
+            if (!/(^|\.)amazon\.[a-z.]+$/i.test(url.hostname)) return "";
+            const match = url.pathname.match(/\/(?:dp|gp\/product|exec\/obidos\/ASIN)\/([A-Z0-9]{10})(?:[/?]|$)/i);
+            asin = match?.[1] || url.searchParams.get("asin") || "";
+        } catch (error) {
+            return "";
+        }
+    }
+
+    return /^[A-Z0-9]{10}$/i.test(asin)
+        ? `https://images-na.ssl-images-amazon.com/images/P/${asin.toUpperCase()}.01.LZZZZZZZ.jpg`
+        : "";
+}
+
+async function saveAdminCardModal() {
+    if (!adminDataLoaded) {
+        mostrarEstado("❌ No se puede guardar porque no se confirmó la carga de los datos.", true);
+        alert("Recarga el panel y espera a que termine de cargar antes de guardar cambios.");
+        return;
+    }
+
+    const type = document.getElementById("modalEditType").value;
+    const index = parseInt(document.getElementById("modalEditIndex").value);
+
+    let existingId = "";
+    let existingItem = null;
+    if (index >= 0) {
+        if (type === "cruzada") existingItem = cruzadasData[index];
+        if (type === "evento") existingItem = eventosData[index];
+        if (type === "ministerio") existingItem = ministeriosData[index];
+        if (type === "movimiento") existingItem = movimientosData[index];
+        if (type === "fundacion") existingItem = fundacionesData[index];
+        if (type === "libro") existingItem = librosData[index];
+        if (type === "recurso") existingItem = recursosData[index];
+        existingId = existingItem?.id || "";
+    }
+
+    // Carga múltiple: cada PDF nuevo se convierte en una tarjeta independiente.
+    if (type === "recurso" && index < 0 && currentModalPdfFiles.length > 1) {
+        const baseTitle = document.getElementById("modalInputTitle").value.trim();
+        const baseSummary = document.getElementById("modalInputSummary").value.trim();
+        const baseText = document.getElementById("modalInputFullText").value.trim();
+        const baseWhatsapp = document.getElementById("modalInputWhatsApp").value.trim();
+        const created = [];
+
+        for (let i = 0; i < currentModalPdfFiles.length; i++) {
+            const file = currentModalPdfFiles[i];
+            const id = "item_" + Date.now() + "_" + i;
+            const uploaded = await uploadResourcePdf(file, id);
+            if (!uploaded) {
+                alert(`Se detuvo la carga en el archivo ${i + 1} de ${currentModalPdfFiles.length}.`);
+                return;
+            }
+            const cleanName = file.name.replace(/\.[^.]+$/, "");
+            created.push({
+                id,
+                title: baseTitle ? `${baseTitle} — ${i + 1}` : cleanName,
+                summary: baseSummary || "Recurso PDF del Centro Mundial de Avivamiento ARDE.",
+                text: baseText,
+                whatsapp: baseWhatsapp,
+                images: [],
+                file_url: uploaded.publicUrl,
+                file_path: uploaded.path,
+                file_name: file.name,
+                file_size: file.size,
+                mime_type: file.type || "application/pdf",
+                created_at: new Date().toISOString(),
+                type: "pdf",
+                active: true
+            });
+        }
+
+        recursosData.push(...created);
+        saveListsToStorage();
+        loadAllCardData();
+        closeAdminCardModal();
+        const result = await saveAdminDataToBothBases();
+        if (result.adminError || result.indexError) {
+            mostrarEstado("❌ Los PDF se subieron, pero hubo un error guardando los datos.", true);
+            alert("Los archivos fueron subidos, pero no se pudo guardar la información en las bases de datos.\n\n" +
+                (result.adminError ? result.adminError.message : "") + "\n" +
+                (result.indexError ? result.indexError.message : ""));
+            return;
+        }
+        mostrarEstado(`✅ ${created.length} PDF publicados y sincronizados en Admin e Index.`);
+        return;
+    }
+
+    const itemObj = {
+        id: existingId || "item_" + Date.now(),
+        title: document.getElementById("modalInputTitle").value.trim(),
+        summary: document.getElementById("modalInputSummary").value.trim(),
+        text: document.getElementById("modalInputFullText").value.trim(),
+        whatsapp: document.getElementById("modalEditType").value === "libro"
+            ? ""
+            : document.getElementById("modalInputWhatsApp").value.trim(),
+        images: [...currentModalImages]
+    };
+
+    if (!itemObj.title) {
+        alert("Escribe un título para el recurso.");
+        return;
+    }
+
+    if (type === "recurso") {
+        if (existingItem) {
+            itemObj.file_url = existingItem.file_url || "";
+            itemObj.file_path = existingItem.file_path || "";
+            itemObj.file_name = existingItem.file_name || "";
+            itemObj.file_size = existingItem.file_size || 0;
+            itemObj.mime_type = existingItem.mime_type || "application/pdf";
+            itemObj.created_at = existingItem.created_at || new Date().toISOString();
+        } else {
+            itemObj.created_at = new Date().toISOString();
+        }
+
+        if (!itemObj.file_url && !currentModalPdfFile) {
+            alert("Selecciona un archivo PDF para este recurso.");
+            return;
+        }
+
+        if (currentModalPdfFiles.length === 1) currentModalPdfFile = currentModalPdfFiles[0];
+        if (currentModalPdfFile) {
+            const uploaded = await uploadResourcePdf(currentModalPdfFile, itemObj.id);
+            if (!uploaded) return;
+            itemObj.file_url = uploaded.publicUrl;
+            itemObj.file_path = uploaded.path;
+            itemObj.file_name = currentModalPdfFile.name;
+            itemObj.file_size = currentModalPdfFile.size;
+            itemObj.mime_type = currentModalPdfFile.type || "application/pdf";
+        }
+
+        itemObj.type = "pdf";
+        itemObj.active = true;
+    }
+
+    if (type === "evento") {
+        itemObj.date = document.getElementById("modalEventDate").value.trim();
+        itemObj.location = document.getElementById("modalEventLocation").value.trim();
+        itemObj.video_url = document.getElementById("modalEventVideo").value.trim();
+        itemObj.image_url = currentModalImages[0] || "";
+        itemObj.images = [...currentModalImages];
+        itemObj.active = true;
+    }
+
+    if (type === "libro") {
+        itemObj.purchase_url = document.getElementById("modalInputWhatsApp").value.trim();
+        itemObj.cover = currentModalImages[0] ||
+            getAmazonBookCoverUrl(itemObj.purchase_url) ||
+            existingItem?.cover ||
+            "";
+        ["purchase_url", "amazon_url", "url"].forEach(function (field) {
+            if (field !== "purchase_url" && existingItem && existingItem[field]) {
+                itemObj[field] = existingItem[field];
+            }
+        });
+    }
+
+    let targetList = null;
+    if (type === "cruzada") targetList = cruzadasData;
+    if (type === "evento") targetList = eventosData;
+    if (type === "ministerio") targetList = ministeriosData;
+    if (type === "movimiento") targetList = movimientosData;
+    if (type === "fundacion") targetList = fundacionesData;
+    if (type === "libro") targetList = librosData;
+    if (type === "recurso") targetList = recursosData;
+
+    if (!targetList) return;
+
+    if (index >= 0) targetList[index] = itemObj;
+    else targetList.push(itemObj);
+
+    saveListsToStorage();
+    loadAllCardData();
+    closeAdminCardModal();
+
+   if (type === "recurso") {
+
+    const result = await saveAdminDataToBothBases();
+
+    if (result.adminError || result.indexError) {
+
+        mostrarEstado(
+            "❌ El PDF se subió, pero hubo un error guardando los datos.",
+            true
+        );
+
+        alert(
+            "El archivo PDF fue subido, pero no se pudo guardar la información.\n\n" +
+            (result.adminError ? result.adminError.message : "") +
+            "\n" +
+            (result.indexError ? result.indexError.message : "")
+        );
+
+        return;
+    }
+
+    mostrarEstado(
+        "✅ PDF publicado y sincronizado en Admin e Index."
+    );
+
+} else {
+
+    let contentKey = "";
+
+    if (type === "ministerio") {
+        contentKey = "arde_ministerios";
+    }
+
+    if (type === "movimiento") {
+        contentKey = "arde_movimientos";
+    }
+
+    if (type === "fundacion") {
+        contentKey = "arde_fundaciones";
+    }
+
+    if (type === "libro") {
+        contentKey = "arde_libros";
+    }
+
+    if (type === "cruzada") {
+        contentKey = "arde_cruzadas";
+    }
+
+    if (type === "evento") {
+        contentKey = "arde_eventos";
+    }
+
+    if (!contentKey) {
+        mostrarEstado(
+            "⚠️ Tipo de modal no reconocido.",
+            true
+        );
+        return;
+    }
+
+    const now = new Date().toISOString();
+
+    const record = {
+        section: "admin_data",
+        content_key: contentKey,
+        content_value: JSON.stringify(targetList),
+        updated_at: now
+    };
+
+    mostrarEstado(
+        "⏳ Guardando cambio del modal..."
+    );
+
+    try {
+
+        const adminSave =
+            await supabaseClient
+                .from("site_content")
+                .upsert(
+                    record,
+                    {
+                        onConflict: "section,content_key"
+                    }
+                );
+
+        const indexSave =
+            await indexSupabaseClient
+                .from("site_content")
+                .upsert(
+                    record,
+                    {
+                        onConflict: "section,content_key"
+                    }
+                );
+
+        if (adminSave.error) {
+
+            console.error(
+                "❌ Error guardando modal en Admin:",
+                adminSave.error
+            );
+
+            mostrarEstado(
+                "❌ Error guardando el modal en la base Admin.",
+                true
+            );
+
+            alert(
+                "Error en la base Admin:\n\n" +
+                adminSave.error.message
+            );
+
+            return;
+        }
+
+        if (indexSave.error) {
+
+            console.error(
+                "❌ Error guardando modal en Index:",
+                indexSave.error
+            );
+
+            mostrarEstado(
+                "❌ Error guardando el modal en la base Index.",
+                true
+            );
+
+            alert(
+                "Error en la base Index:\n\n" +
+                indexSave.error.message
+            );
+
+            return;
+        }
+
+        saveListsToStorage();
+
+        localStorage.setItem(
+            "arde_sync_timestamp",
+            String(Date.now())
+        );
+
+        mostrarEstado(
+            "✅ Modal actualizado y sincronizado en Admin e Index."
+        );
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error guardando modal:",
+            error
+        );
+
+        mostrarEstado(
+            "❌ Error al guardar el modal.",
+            true
+        );
+
+        alert(
+            "Error al guardar el modal:\n\n" +
+            error.message
+        );
+    }
+}
+}
+
+async function uploadResourcePdf(file, resourceId) {
+    try {
+        if (!sessionStorage.getItem("arde_admin")) {
+            alert("Tu sesión de administrador no está activa.");
+            return null;
+        }
+        if (!adminDataLoaded) {
+            mostrarEstado("❌ No se puede subir el PDF hasta cargar los datos.", true);
+            return null;
+        }
+
+        if (!file || file.type !== "application/pdf") {
+            alert("Selecciona un archivo PDF válido.");
+            return null;
+        }
+
+        if (file.size > 25 * 1024 * 1024) {
+            alert("El PDF supera el límite recomendado de 25 MB.");
+            return null;
+        }
+
+        const safeName = file.name
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-zA-Z0-9._-]+/g, "_");
+        const path = `pdfs/${resourceId}_${Date.now()}_${safeName}`;
+
+        mostrarEstado("⏳ Subiendo PDF a Supabase...");
+
+        const errores = [];
+
+        for (const storageTarget of ardeStorageClients) {
+            try {
+                const { error } = await storageTarget.client.storage
+                    .from("resources")
+                    .upload(path, file, {
+                        cacheControl: "3600",
+                        contentType: "application/pdf",
+                        upsert: false
+                    });
+
+                if (!error) {
+                    const { data } = storageTarget.client.storage
+                        .from("resources")
+                        .getPublicUrl(path);
+
+                    console.log("PDF subido correctamente usando Storage:", storageTarget.name);
+                    return {
+                        path,
+                        publicUrl: data.publicUrl,
+                        storageProject: storageTarget.name
+                    };
+                }
+
+                errores.push(`${storageTarget.name}: ${error.message}`);
+            } catch (e) {
+                errores.push(`${storageTarget.name}: ${e.message}`);
+            }
+        }
+
+        console.error("No se pudo subir el PDF en ningún proyecto:", errores);
+        alert(
+            "No se pudo subir el PDF. El bucket 'resources' no está siendo encontrado por los proyectos conectados.\n\n" +
+            errores.join("\n")
+        );
+        mostrarEstado("❌ Error al subir el PDF.", true);
+        return null;
+    } catch (error) {
+        console.error(error);
+        alert("Ocurrió un error al subir el PDF: " + error.message);
+        mostrarEstado("❌ Error al subir el PDF.", true);
+        return null;
+    }
+}
+async function deleteCardItem(type, index) {
+    if (!adminDataLoaded) {
+        mostrarEstado("❌ No se puede eliminar porque no se confirmó la carga de los datos.", true);
+        alert("Recarga el panel y espera a que termine de cargar antes de eliminar contenido.");
+        return;
+    }
+
+    if (!confirm("¿Estás seguro de que deseas eliminar este elemento?")) return;
+
+    let removedResource = null;
+    if (type === "recurso") removedResource = recursosData[index];
+
+    if (type === "cruzada") cruzadasData.splice(index, 1);
+        if (type === "evento") eventosData.splice(index, 1);
+    if (type === "ministerio") ministeriosData.splice(index, 1);
+    if (type === "movimiento") movimientosData.splice(index, 1);
+    if (type === "fundacion") fundacionesData.splice(index, 1);
+    if (type === "libro") librosData.splice(index, 1);
+    if (type === "recurso") recursosData.splice(index, 1);
+
+    saveListsToStorage();
+    loadAllCardData();
+
+    if (type === "recurso" && removedResource?.file_path) {
+        let removedFromStorage = false;
+        for (const storageTarget of ardeStorageClients) {
+            try {
+                const { error } = await storageTarget.client.storage
+                    .from("resources")
+                    .remove([removedResource.file_path]);
+                if (!error) {
+                    removedFromStorage = true;
+                    break;
+                }
+            } catch (e) {
+                console.warn(`Error eliminando PDF desde ${storageTarget.name}:`, e);
+            }
+        }
+        if (!removedFromStorage) {
+            console.warn("No se pudo eliminar el archivo del Storage desde ninguno de los proyectos conectados.");
+        }
+    }
+
+    if (type === "recurso") {
+        const result = await saveAdminDataToBothBases();
+        if (result.adminError || result.indexError) {
+            mostrarEstado("❌ Se eliminó localmente, pero hubo un error sincronizando.", true);
+            alert("El recurso se quitó de la vista, pero hubo un error sincronizando las bases.\n\n" +
+                (result.adminError ? result.adminError.message : "") + "\n" +
+                (result.indexError ? result.indexError.message : ""));
+            return;
+        }
+        mostrarEstado("✅ Recurso y PDF eliminados.");
+    } else {
+        mostrarEstado("Elemento eliminado. Pulsa GUARDAR TODO EL SITIO para sincronizar.");
+    }
+}
+
+function saveListsToStorage() {
+    localStorage.setItem("arde_cruzadas", JSON.stringify(cruzadasData));
+    localStorage.setItem("arde_eventos", JSON.stringify(eventosData));
+    localStorage.setItem("arde_videos", JSON.stringify(videosData));
+    localStorage.setItem("arde_ministerios", JSON.stringify(ministeriosData));
+    localStorage.setItem("arde_movimientos", JSON.stringify(movimientosData));
+    localStorage.setItem("arde_fundaciones", JSON.stringify(fundacionesData));
+    localStorage.setItem("arde_libros", JSON.stringify(librosData));
+    localStorage.setItem("arde_recursos", JSON.stringify(recursosData));
+    localStorage.setItem("arde_sync_timestamp", String(Date.now()));
+}
+
+
+async function saveAdminDataToBothBases() {
+    if (!adminDataLoaded) {
+        const error = new Error("Los datos del Admin no se han cargado; no se guardaron cambios.");
+        return { adminError: error, indexError: error };
+    }
+
+    const now =
+        new Date().toISOString();
+
+
+    const adminDataRecords = [
+
+        {
+            section: "admin_data",
+            content_key: "arde_cruzadas",
+            content_value:
+                JSON.stringify(cruzadasData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_eventos",
+            content_value:
+                JSON.stringify(eventosData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_ministerios",
+            content_value:
+                JSON.stringify(ministeriosData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_movimientos",
+            content_value:
+                JSON.stringify(movimientosData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_fundaciones",
+            content_value:
+                JSON.stringify(fundacionesData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_libros",
+            content_value:
+                JSON.stringify(librosData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_recursos",
+            content_value:
+                JSON.stringify(recursosData),
+            updated_at: now
+        },
+
+        {
+            section: "admin_data",
+            content_key: "arde_videos",
+            content_value:
+                JSON.stringify(videosData),
+            updated_at: now
+        }
+
+    ];
+
+
+    console.log(
+        "Guardando admin_data:",
+        adminDataRecords
+    );
+
+
+    /* ========================================================
+       BASE ADMIN
+       ======================================================== */
+
+    const adminResult =
+        await supabaseClient
+            .from("site_content")
+            .upsert(
+                adminDataRecords,
+                {
+                    onConflict:
+                        "section,content_key"
+                }
+            );
+
+
+    /* ========================================================
+       BASE INDEX
+       ======================================================== */
+
+    const indexResult =
+        await indexSupabaseClient
+            .from("site_content")
+            .upsert(
+                adminDataRecords,
+                {
+                    onConflict:
+                        "section,content_key"
+                }
+            );
+
+
+    if (adminResult.error) {
+
+        console.error(
+            "❌ ERROR BASE ADMIN:",
+            adminResult.error
+        );
+
+    } else {
+
+        console.log(
+            "✅ Base Admin actualizada."
+        );
+
+    }
+
+
+    if (indexResult.error) {
+
+        console.error(
+            "❌ ERROR BASE INDEX:",
+            indexResult.error
+        );
+
+    } else {
+
+        console.log(
+            "✅ Base Index actualizada."
+        );
+
+    }
+
+
+    return {
+
+        adminError:
+            adminResult.error,
+
+        indexError:
+            indexResult.error
+
+    };
+}
+/* ============================================================
+   GUARDAR TODOS LOS CAMBIOS (TEXTOS EDITABLES + TARJETAS/VIDEOS)
+   ============================================================ */
+function syncVideoInputsToData() {
+    for (let index = 0; index < videosData.length; index++) {
+        const titleInput = document.getElementById(`adminVideoTitle_${index}`);
+        const urlInput = document.getElementById(`adminVideoUrl_${index}`);
+        if (!titleInput || !urlInput) continue;
+
+        const title = titleInput.value.trim();
+        const url = urlInput.value.trim();
+        const videoId = extractYouTubeVideoId(url);
+        const playlistId = extractYouTubePlaylistId(url);
+
+        if (!title) {
+            return `Escribe un título para el video ${index + 1}.`;
+        }
+
+        if (!videoId && !playlistId) {
+            return `El enlace del video ${index + 1} no es un enlace válido de YouTube.`;
+        }
+
+        videosData[index] = {
+            ...videosData[index],
+            title,
+            url,
+            type: videoId ? "video" : "playlist",
+            videoId: videoId || videosData[index].videoId || "",
+            playlistId: playlistId || ""
+        };
+    }
+
+    return "";
+}
+
+async function saveAllChanges() {
+    if (!adminDataLoaded) {
+        mostrarEstado("❌ No se puede guardar porque no se confirmó la carga de los datos.", true);
+        alert("El guardado está bloqueado porque el contenido actual no se cargó correctamente desde Supabase. Recarga el panel y vuelve a intentarlo.");
+        return;
+    }
+
+    mostrarEstado("⏳ Guardando todo el sitio...");
+    try {
+        const videoError = syncVideoInputsToData();
+        if (videoError) {
+            mostrarEstado("❌ Revisa los datos de los videos.", true);
+            alert(videoError);
+            return;
+        }
+
+        // 1. Guardar los datos de tarjetas, recursos y videos en Supabase
+        saveListsToStorage();
+        const cardResult = await saveAdminDataToBothBases();
+
+        // 2. Guardar todos los textos editados visualmente (contenteditable)
+        const editableElements = document.querySelectorAll('[contenteditable="true"]');
+        const indexRecords = [];
+        const now = new Date().toISOString();
+
+        editableElements.forEach(el => {
+            if (el.id) {
+                indexRecords.push({
+                    section: "live_index",
+                    content_key: el.id,
+                    content_value: typeof window.getAdminOriginalEditableHtml === "function"
+                        ? window.getAdminOriginalEditableHtml(el)
+                        : el.innerHTML,
+                    updated_at: now
+                });
+            }
+        });
+
+        let adminTextSave = null;
+        let indexTextSave = null;
+        if (indexRecords.length > 0) {
+            [adminTextSave, indexTextSave] = await Promise.all([
+                supabaseClient.from("site_content").upsert(indexRecords, { onConflict: "section,content_key" }),
+                indexSupabaseClient.from("site_content").upsert(indexRecords, { onConflict: "section,content_key" })
+            ]);
+        }
+
+        const saveErrors = [];
+        if (cardResult.adminError) saveErrors.push("Tarjetas/videos en Admin: " + cardResult.adminError.message);
+        if (cardResult.indexError) saveErrors.push("Tarjetas/videos en Index: " + cardResult.indexError.message);
+        if (adminTextSave?.error) saveErrors.push("Textos en Admin: " + adminTextSave.error.message);
+        if (indexTextSave?.error) saveErrors.push("Textos en Index: " + indexTextSave.error.message);
+
+        if (saveErrors.length) {
+            console.error("Falló la sincronización de algunos cambios:", saveErrors);
+            mostrarEstado("❌ Error al sincronizar con Supabase.", true);
+            alert("No se pudieron sincronizar todos los cambios:\n\n" + saveErrors.join("\n"));
+            return;
+        }
+
+        localStorage.setItem("arde_sync_timestamp", String(Date.now()));
+        mostrarEstado("✅ ¡Todo el sitio (textos, videos y secciones) se ha guardado correctamente!");
+        setTimeout(() => mostrarEstado(""), 4000);
+    } catch (err) {
+        console.error("Error en saveAllChanges:", err);
+        mostrarEstado("❌ Error inesperado al guardar.", true);
+        alert("Error: " + err.message);
+    }
+}
+</script>
+
+</body>
+</html>
